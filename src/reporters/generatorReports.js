@@ -14,6 +14,7 @@ const performanceBlock = "{{PerformanceBlock}}";
 const accessibilityBlock = "{{AccecibilityBlock}}";
 const bestPracticesBlock = "{{BestPracticesBlock}}";
 const ecoIndexBlock = "{{EcoIndexBlock}}";
+const lighthouseReportPath = "{{LighthouseReportPath}}";
 
 module.exports = async (options, results) => {
     if (options?.verbose) {
@@ -59,7 +60,8 @@ const populateTemplatePerPage = async (options, results) => {
                 .replace(bestPracticesBlock, bestPracticesBlockTemplate)
                 .replace(ecoIndexBlock, ecoIndexBlockTemplate)
                 .replace(numberPageTag, numberPage)
-                .replace(pageNameTag, page.pageName);
+                .replace(pageNameTag, page.pageName)
+                .replace(lighthouseReportPath, page.lighthouseReport);
     });
     return htmlPerPage;
 };
