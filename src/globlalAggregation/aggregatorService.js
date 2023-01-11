@@ -13,10 +13,10 @@ module.exports = (options, resultsGlobalLighthouse, resultsGlobalEcoindex) => {
     perPages: [],
   };
 
-  if (resultsGlobalLighthouse.perPages.length > 0 && resultsGlobalEcoindex.perPages.length > 0) {
+  if (resultsGlobalLighthouse?.perPages?.length > 0 && resultsGlobalEcoindex?.perPages?.length > 0) {
     globalersults = globalBaseLighthouse(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
   }
-  else if (resultsGlobalLighthouse.perPages.length === 0 && resultsGlobalEcoindex.perPages.length > 0) {
+  else if (resultsGlobalLighthouse?.perPages?.length === 0 && resultsGlobalEcoindex?.perPages?.length > 0) {
     globalersults = globalBaseEcoIndex(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
   }
   return globalersults;
@@ -30,7 +30,7 @@ const globalBaseEcoIndex = (options, resultsGlobalEcoindex) => {
   resultsGlobalEcoindex.perPages.forEach((pageEcoIndex) => {
     resultAggregatePerPage.push({
       pageName: pageEcoIndex.pageName,
-      lighthouseReport: '',
+      lighthouseReport: "",
       accessibility: 0,
       bestPractices: 0,
       performance: 0,
@@ -67,7 +67,7 @@ const globalBaseLighthouse = (options, resultsGlobalLighthouse, resultsGlobalEco
       bestPractices: pageLighthouse.bestPractices ? pageLighthouse.bestPractices : 0,
       performance: pageLighthouse.performance ? pageLighthouse.performance : 0,
       ecoIndex: pageEcoIndexFound ? pageEcoIndexFound.ecoIndex : 0,
-      grade: pageEcoIndexFound ? pageEcoIndexFound?.grade : '',
+      grade: pageEcoIndexFound ? pageEcoIndexFound?.grade : "",
       greenhouseGases: pageEcoIndexFound ? pageEcoIndexFound?.greenhouseGase : 0,
       water: pageEcoIndexFound ? pageEcoIndexFound?.water : 0,
     });

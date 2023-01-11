@@ -22,7 +22,7 @@ module.exports = async (options, results) => {
     const htmlPerPageResult = await populateTemplatePerPage(options, results);
     const htmlResult = await populateTemplate(options, results, htmlPerPageResult);
     fs.writeFileSync("globalReports.html", htmlResult);
-}
+};
 
 const populateTemplate = async (options, results, htmlPerPageResult) => {
     const templatePath = path.join(__dirname, folderTemplate, "template.html");
@@ -32,26 +32,26 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
         .replace(accessibilityTag, results.accessibility)
         .replace(ecoIndexTag, results.ecoIndex)
         .replace(bestPracticesTag, results.bestPractices)
-        .replace(htmlPerPageTag, htmlPerPageResult)
+        .replace(htmlPerPageTag, htmlPerPageResult);
 
-}
+};
 const populateTemplatePerPage = async (options, results) => {
 
     const numberPageTag = "{{numberPageTag}}";
-    const pageNameTag = "{{PageName}}"
+    const pageNameTag = "{{PageName}}";
     let htmlPerPage = "";
     const templatePath = path.join(__dirname, folderTemplate, "templatePerPage.html");
-    const templatePerPage = fs.readFileSync(templatePath).toString()
+    const templatePerPage = fs.readFileSync(templatePath).toString();
     let numberPage = 0;
     results.perPages.forEach((page) => {
         numberPage += 1;
         if (options?.verbose) {
             console.log("Populate reports page:", numberPage);
         }
-        const performanceBlockTemplate = populateTemplatePerformance(options, page.performance,numberPage)
-        const accessibilityBlockTemplate = populateTemplateAccecibility(options, page.accessibility,numberPage)
-        const bestPracticesBlockTemplate = populateTemplateBestPractices(options, page.bestPractices,numberPage)
-        const ecoIndexBlockTemplate = populateTemplateEcoIndex(options, page.ecoIndex,numberPage)
+        const performanceBlockTemplate = populateTemplatePerformance(options, page.performance,numberPage);
+        const accessibilityBlockTemplate = populateTemplateAccecibility(options, page.accessibility,numberPage);
+        const bestPracticesBlockTemplate = populateTemplateBestPractices(options, page.bestPractices,numberPage);
+        const ecoIndexBlockTemplate = populateTemplateEcoIndex(options, page.ecoIndex,numberPage);
         htmlPerPage +=
             templatePerPage
                 .replace(performanceBlock, performanceBlockTemplate)
@@ -59,10 +59,10 @@ const populateTemplatePerPage = async (options, results) => {
                 .replace(bestPracticesBlock, bestPracticesBlockTemplate)
                 .replace(ecoIndexBlock, ecoIndexBlockTemplate)
                 .replace(numberPageTag, numberPage)
-                .replace(pageNameTag, page.pageName)
-    })
+                .replace(pageNameTag, page.pageName);
+    });
     return htmlPerPage;
-}
+};
 
 const populateTemplatePerformance = (options, performance,numberPage) => {
     if (options?.verbose) {
@@ -71,7 +71,7 @@ const populateTemplatePerformance = (options, performance,numberPage) => {
     const templatePath = path.join(__dirname, folderTemplate, "templatePerfomance.html");
     const template = fs.readFileSync(templatePath).toString();
     return defineCssClass(performance, template, performanceTag);
-}
+};
 
 const populateTemplateAccecibility = (options, accessibility,numberPage) => {
     if (options?.verbose) {
@@ -79,8 +79,8 @@ const populateTemplateAccecibility = (options, accessibility,numberPage) => {
     }
     const templatePath = path.join(__dirname, folderTemplate, "templateAccecibility.html");
     const template = fs.readFileSync(templatePath).toString();
-    return defineCssClass(accessibility, template, accessibilityTag)
-}
+    return defineCssClass(accessibility, template, accessibilityTag);
+};
 
 const populateTemplateBestPractices = (options, bestPractices,numberPage) => {
     if (options?.verbose) {
@@ -89,7 +89,7 @@ const populateTemplateBestPractices = (options, bestPractices,numberPage) => {
     const templatePath = path.join(__dirname, folderTemplate, "templateBestPractices.html");
     const template = fs.readFileSync(templatePath).toString();
     return defineCssClass(bestPractices, template, bestPracticesTag);
-}
+};
 
 const populateTemplateEcoIndex = (options, ecoIndex,numberPage) => {
     if (options?.verbose) {
@@ -98,11 +98,11 @@ const populateTemplateEcoIndex = (options, ecoIndex,numberPage) => {
     const templatePath = path.join(__dirname, folderTemplate, "templateEcoIndex.html");
     const template = fs.readFileSync(templatePath).toString();
     return defineCssClass(ecoIndex, template, ecoIndexTag);
-}
+};
 
 const defineCssClass = (value, template, tagReplace) => {
-    const cssPassClass = "lh-gauge__wrapper--pass"
-    const cssAverageClass = "lh-gauge__wrapper--average"
+    const cssPassClass = "lh-gauge__wrapper--pass";
+    const cssAverageClass = "lh-gauge__wrapper--average";
     const cssFailClass = "lh-gauge__wrapper--fail";
     const cssNotApplicableClass = "lh-gauge__wrapper--not-applicable";
     let classUsed = "";
@@ -116,4 +116,4 @@ const defineCssClass = (value, template, tagReplace) => {
     else
         classUsed = cssNotApplicableClass;
     return template.replace(cssClassTag, classUsed).replace(tagReplace, value);
-}
+};
