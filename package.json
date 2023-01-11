@@ -1,0 +1,15 @@
+{
+  "name": "lighthouse-eco-index-aggregator",
+  "version": "1.0.0",
+  "description": "Tool for aggregating lighthouse and eco-index results",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Axa",
+  "license": "ISC",
+  "dependencies": {
+    "command-line-args": "^5.2.1",
+    "command-line-usage" : "^5.0.0"
+  }
+}
