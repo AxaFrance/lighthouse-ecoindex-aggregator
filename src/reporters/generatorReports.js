@@ -14,7 +14,20 @@ const performanceBlock = "{{PerformanceBlock}}";
 const accessibilityBlock = "{{AccecibilityBlock}}";
 const bestPracticesBlock = "{{BestPracticesBlock}}";
 const ecoIndexBlock = "{{EcoIndexBlock}}";
+
 const lighthouseReportPath = "{{LighthouseReportPath}}";
+
+const NumberOfRequest = "{{NumberOfRequest}}";
+const NumberOfRequestRecommendation = "{{NumberOfRequestRecommendation}}";
+const PageSize = "{{PageSize}}";
+const PageSizeRecommendation = "{{PageSizeRecommendation}}";
+const PageComplexity = "{{PageComplexity}}";
+const PageComplexityRecommendation = "{{PageComplexityRecommendation}}";
+
+const GreenhouseGases = "{{GreenhouseGases}}";
+const GreenhouseGasesKm = "{{GreenhouseGasesKm}}";
+const Water = "{{Water}}";
+const WaterShower = "{{WaterShower}}";
 
 module.exports = async (options, results) => {
     if (options?.verbose) {
@@ -36,13 +49,44 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
         .replace(htmlPerPageTag, htmlPerPageResult);
 
 };
+
+const populateMetrics = (options, template, metric) => {
+    if (options?.verbose) {
+        console.log("Populate metrics:", metric);
+    }
+
+    const NumberOfRequestMetric = metric.find(m => m.name === "number_requests");
+    const PageSizeMetric = metric.find(m => m.name === "page_size");
+    const PageComplexityMetric = metric.find(m => m.name === "Page_complexity");
+
+    return template
+        .replace(NumberOfRequest, NumberOfRequestMetric.value)
+        .replace(NumberOfRequestRecommendation, NumberOfRequestMetric.recommandation)
+        .replace(PageSize, PageSizeMetric.value)
+        .replace(PageSizeRecommendation, PageSizeMetric.recommandation)
+        .replace(PageComplexity, PageComplexityMetric.value)
+        .replace(PageComplexityRecommendation, PageComplexityMetric.recommandation);
+};
+
+const populateGreentItMetrics = (options, template, { greenhouseGases, greenhouseGasesKm, water, waterShower }) => {
+    if (options?.verbose) {
+        console.log("Populate GreenIt metrics:", { greenhouseGases, greenhouseGasesKm, water, waterShower });
+    }
+
+    return template
+    .replace(GreenhouseGases, greenhouseGases)
+    .replace(GreenhouseGasesKm, greenhouseGasesKm)
+    .replace(Water, water)
+    .replace(WaterShower, waterShower);
+};
+
 const populateTemplatePerPage = async (options, results) => {
 
     const numberPageTag = "{{numberPageTag}}";
     const pageNameTag = "{{PageName}}";
     let htmlPerPage = "";
     const templatePath = path.join(__dirname, folderTemplate, "templatePerPage.html");
-    const templatePerPage = fs.readFileSync(templatePath).toString();
+    let templatePerPage = fs.readFileSync(templatePath).toString();
     let numberPage = 0;
     results.perPages.forEach((page) => {
         numberPage += 1;
@@ -53,7 +97,8 @@ const populateTemplatePerPage = async (options, results) => {
         const accessibilityBlockTemplate = populateTemplateAccecibility(options, page.accessibility,numberPage);
         const bestPracticesBlockTemplate = populateTemplateBestPractices(options, page.bestPractices,numberPage);
         const ecoIndexBlockTemplate = populateTemplateEcoIndex(options, page.ecoIndex,numberPage);
-        htmlPerPage +=
+        
+        templatePerPage =
             templatePerPage
                 .replace(performanceBlock, performanceBlockTemplate)
                 .replace(accessibilityBlock, accessibilityBlockTemplate)
@@ -62,6 +107,16 @@ const populateTemplatePerPage = async (options, results) => {
                 .replace(numberPageTag, numberPage)
                 .replace(pageNameTag, page.pageName)
                 .replace(lighthouseReportPath, page.lighthouseReport);
+        
+        
+        templatePerPage = populateMetrics(options, templatePerPage, page.metrics);    
+        templatePerPage = populateGreentItMetrics(options, templatePerPage, {
+            greenhouseGasesKm: page.greenhouseGasesKm,
+            waterShower: page.waterShower,
+            greenhouseGases: page.greenhouseGases,
+            water: page.water
+        });    
+        htmlPerPage += templatePerPage;
     });
     return htmlPerPage;
 };

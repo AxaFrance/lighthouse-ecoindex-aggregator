@@ -36,8 +36,11 @@ const globalBaseEcoIndex = (options, resultsGlobalEcoindex) => {
       performance: 0,
       ecoIndex: pageEcoIndex.ecoIndex,
       grade: pageEcoIndex.grade,
-      greenhouseGases: pageEcoIndex.greenhouseGase,
+      greenhouseGases: pageEcoIndex.greenhouseGases,
       water: pageEcoIndex.water,
+      metrics: pageEcoIndex.metrics,
+      greenhouseGasesKm: pageEcoIndex?.greenhouseGasesKm,
+      waterShower: pageEcoIndex?.waterShower
     });
   });
 
@@ -68,8 +71,11 @@ const globalBaseLighthouse = (options, resultsGlobalLighthouse, resultsGlobalEco
       performance: pageLighthouse.performance ? pageLighthouse.performance : 0,
       ecoIndex: pageEcoIndexFound ? pageEcoIndexFound.ecoIndex : 0,
       grade: pageEcoIndexFound ? pageEcoIndexFound?.grade : "",
-      greenhouseGases: pageEcoIndexFound ? pageEcoIndexFound?.greenhouseGase : 0,
+      greenhouseGases: pageEcoIndexFound ? pageEcoIndexFound?.greenhouseGases : 0,
       water: pageEcoIndexFound ? pageEcoIndexFound?.water : 0,
+      metrics: pageEcoIndexFound?.metrics,
+      greenhouseGasesKm: pageEcoIndexFound?.greenhouseGasesKm,
+      waterShower: pageEcoIndexFound?.waterShower
     });
   });
   return {

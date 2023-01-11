@@ -33,6 +33,9 @@ const readFiles = (options, ecoIndexJsonReportsFiles) => {
         grade: page.grade,
         greenhouseGases: page.greenhouseGasesEmission,
         water: page.waterConsumption,
+        greenhouseGasesKm: page.estimatation_co2?.commentDetails?.value_km ?? 0,
+        waterShower: page.estimatation_water?.commentDetails?.value_shower ?? 0,
+        metrics: page.metrics
       });
     }
   });
