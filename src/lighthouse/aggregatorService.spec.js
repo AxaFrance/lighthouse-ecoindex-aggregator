@@ -1,5 +1,6 @@
 const aggregate = require("./aggregatorService");
 const fs = require("fs");
+const path = require("path");
 jest.mock("fs");
 
 describe("AggregatorService", () => {
@@ -45,14 +46,14 @@ describe("AggregatorService", () => {
       perPages: [
         {
           pageName: "foo",
-          lighthouseReport: "test\\foo.html",
+          lighthouseReport: path.join("test", "foo.html"),
           performance: 76,
           accessibility: 60,
           bestPractices: 78,
         },
         {
           pageName: "bar",
-          lighthouseReport: "test\\bar.html",
+          lighthouseReport: path.join("test", "bar.html"),
           performance: 76,
           accessibility: 60,
           bestPractices: 78,
