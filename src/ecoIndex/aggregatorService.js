@@ -3,6 +3,10 @@ const path = require("path");
 
 module.exports = async (options) => {
   if (!options.srcEcoIndex || !fs.existsSync(options.srcEcoIndex)) {
+
+    if(options.verbose){
+      console.log("folder not found!");
+    }
     return { perPages: [] };
   }
   const ecoIndexJsonReportsFiles = listFiles(options);
@@ -15,18 +19,24 @@ const readFiles = (options, ecoIndexJsonReportsFiles) => {
   let ecoIndex = 0;
   let greenhouseGases = 0;
   let water = 0;
-
+  let greenhouseGasesKm = 0;
+  let waterShower = 0;
   ecoIndexJsonReportsFiles.forEach((fileName) => {
     const pageName = fileName.split(".")[0];
     const pathFile = path.join(options.srcEcoIndex, fileName);
     const data = fs.readFileSync(pathFile);
     const result = JSON.parse(data);
-
+    if(options.verbose){
+      console.log("read file:",fileName);
+      console.log(result);
+    }
     if (result.pages[0]) {
       const page = result.pages[0];
       ecoIndex += page.ecoIndex;
       greenhouseGases += page.greenhouseGasesEmission;
       water += page.waterConsumption;
+      greenhouseGasesKm += page.greenhouseGasesKm;
+      waterShower += page.waterShower;
       perPages.push({
         pageName,
         ecoIndex: page.ecoIndex,
@@ -35,7 +45,7 @@ const readFiles = (options, ecoIndexJsonReportsFiles) => {
         water: page.waterConsumption,
         greenhouseGasesKm: page.estimatation_co2?.commentDetails?.value_km ?? 0,
         waterShower: page.estimatation_water?.commentDetails?.value_shower ?? 0,
-        metrics: page.metrics
+        metrics: page.metrics,
       });
     }
   });
@@ -49,8 +59,18 @@ const readFiles = (options, ecoIndexJsonReportsFiles) => {
     console.log("global grade:", grade);
     console.log("global greenhouse gases:", greenhouseGases);
     console.log("global greenhouse water:", water);
+    console.log("global greenhouse gases in km:", greenhouseGasesKm);
+    console.log("global greenhouse water:", waterShower);
   }
-  return { ecoIndex, grade, greenhouseGases, water, perPages };
+  return {
+    ecoIndex,
+    grade,
+    greenhouseGasesKm,
+    greenhouseGases,
+    water,
+    waterShower,
+    perPages,
+  };
 };
 const listFiles = (options) => {
   const ecoIndexJsonReportsFiles = [];

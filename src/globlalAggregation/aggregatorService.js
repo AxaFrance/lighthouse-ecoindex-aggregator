@@ -17,7 +17,7 @@ module.exports = (options, resultsGlobalLighthouse, resultsGlobalEcoindex) => {
     globalersults = globalBaseLighthouse(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
   }
   else if (resultsGlobalLighthouse?.perPages?.length === 0 && resultsGlobalEcoindex?.perPages?.length > 0) {
-    globalersults = globalBaseEcoIndex(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
+    globalersults = globalBaseEcoIndex(options, resultsGlobalEcoindex);
   }
   return globalersults;
 };
@@ -39,16 +39,17 @@ const globalBaseEcoIndex = (options, resultsGlobalEcoindex) => {
       greenhouseGases: pageEcoIndex.greenhouseGases,
       water: pageEcoIndex.water,
       metrics: pageEcoIndex.metrics,
-      greenhouseGasesKm: pageEcoIndex?.greenhouseGasesKm,
+      greenhouseGasesKm: pageEcoIndex.greenhouseGasesKm,
       waterShower: pageEcoIndex?.waterShower
     });
   });
-
   return {
     ecoIndex: resultsGlobalEcoindex.ecoIndex,
     grade: resultsGlobalEcoindex.grade,
     greenhouseGases: resultsGlobalEcoindex.greenhouseGases,
     water: resultsGlobalEcoindex.water,
+    greenhouseGasesKm: resultsGlobalEcoindex.greenhouseGasesKm,
+    waterShower: resultsGlobalEcoindex.waterShower,
     performance: 0,
     accessibility: 0,
     bestPractices: 0,
