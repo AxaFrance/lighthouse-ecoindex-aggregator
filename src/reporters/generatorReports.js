@@ -41,12 +41,17 @@ module.exports = async (options, results) => {
 const populateTemplate = async (options, results, htmlPerPageResult) => {
     const templatePath = path.join(__dirname, folderTemplate, "template.html");
     const template = fs.readFileSync(templatePath);
+
     return template.toString()
         .replace(performanceTag, results.performance)
         .replace(accessibilityTag, results.accessibility)
         .replace(ecoIndexTag, results.ecoIndex)
         .replace(bestPracticesTag, results.bestPractices)
-        .replace(htmlPerPageTag, htmlPerPageResult);
+        .replace(htmlPerPageTag, htmlPerPageResult)
+        .replace(GreenhouseGases, results.greenhouseGases)
+        .replace(GreenhouseGasesKm, results.greenhouseGasesKm)
+        .replace(Water, results.water)
+        .replace(WaterShower, results.waterShower);
 
 };
 

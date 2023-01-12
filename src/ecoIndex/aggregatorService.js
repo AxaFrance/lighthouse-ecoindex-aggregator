@@ -35,8 +35,8 @@ const readFiles = (options, ecoIndexJsonReportsFiles) => {
       ecoIndex += page.ecoIndex;
       greenhouseGases += page.greenhouseGasesEmission;
       water += page.waterConsumption;
-      greenhouseGasesKm += page.greenhouseGasesKm;
-      waterShower += page.waterShower;
+      greenhouseGasesKm += page.estimatation_co2?.commentDetails?.value_km ?? 0;
+      waterShower += page.estimatation_water?.commentDetails?.value_shower ?? 0;
       perPages.push({
         pageName,
         ecoIndex: page.ecoIndex,

@@ -88,5 +88,7 @@ const globalBaseLighthouse = (options, resultsGlobalLighthouse, resultsGlobalEco
     accessibility: resultsGlobalLighthouse.accessibility,
     bestPractices: resultsGlobalLighthouse.bestPractices,
     perPages: resultAggregatePerPage,
+    greenhouseGasesKm: resultsGlobalEcoindex.greenhouseGasesKm,
+    waterShower: resultsGlobalEcoindex.waterShower,
   };
 };
