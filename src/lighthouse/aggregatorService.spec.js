@@ -36,7 +36,7 @@ describe("AggregatorService", () => {
     expect(result).toEqual(output);
   });
 
-  it("should return global ecoIndex", async () => {
+  it("should return the lightouse output", async () => {
     const options = { srcLighthouse: "test", verbose: true };
     const output =
     {

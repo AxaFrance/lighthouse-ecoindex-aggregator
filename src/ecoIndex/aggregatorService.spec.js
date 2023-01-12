@@ -80,7 +80,7 @@ describe("AggregatorService", () => {
             "ecoIndex": 71,
             "grade": "B",
             "greenhouseGases": 3.16,
-            "greenhouseGasesKm": NaN,
+            "greenhouseGasesKm": 0,
             "perPages":  [
                   {
                    "ecoIndex": 71,
@@ -150,7 +150,7 @@ describe("AggregatorService", () => {
                  },
                ],
                "water": 4.74,
-               "waterShower": NaN,
+               "waterShower": 0,
              };
         jest.spyOn(fs, 'readdirSync').mockImplementation(() => {
             return ['foo.json', 'bar.json'];
