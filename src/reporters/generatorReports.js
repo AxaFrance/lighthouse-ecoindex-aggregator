@@ -17,7 +17,6 @@ const {
  accessibilityTag ,
  bestPracticesTag ,
  ecoIndexTag ,
- iconPerPageTag,
  cssClassTag ,
  PageSizeTag ,
  PageSizeRecommendationTag,
@@ -33,7 +32,9 @@ const {
  greenItMetricsBlock,
  pageMetricsBlock 
 } = require("./pageTag");
+const computeCssClassForMetrics = require("./utils/computeCssClassForMetrics");
 
+const pageInErrorOrWarning = require("./utils/displayPageErrorIcon");
 const folderTemplate = "templates";
 const generateReports = async (options, results) => {
   if (options?.verbose) {
@@ -99,17 +100,20 @@ const populateMetrics = (options,metric) => {
   );
   const PageSizeMetric = metric.find((m) => m.name === "page_size");
   const PageComplexityMetric = metric.find((m) => m.name === "Page_complexity");
-
+  
   return template
     .replace(NumberOfRequestTag, NumberOfRequestMetric.value)
     .replace(
       NumberOfRequestRecommendationTag,
       NumberOfRequestMetric.recommandation
     )
+    .replace("{{NumberOfRequestCssClass}}", computeCssClassForMetrics(NumberOfRequestMetric))
     .replace(PageSizeTag, PageSizeMetric.value)
     .replace(PageSizeRecommendationTag, PageSizeMetric.recommandation)
+    .replace("{{PageSizeCssClass}}", computeCssClassForMetrics(PageSizeMetric))
     .replace(PageComplexityTag, PageComplexityMetric.value)
-    .replace(PageComplexityRecommendationTag, PageComplexityMetric.recommandation);
+    .replace(PageComplexityRecommendationTag, PageComplexityMetric.recommandation)
+    .replace("{{PageComplexityCssClass}}", computeCssClassForMetrics(PageComplexityMetric));
 };
 
 const populateGreentItMetrics = (
@@ -272,19 +276,6 @@ const defineCssClass = (value, template, tagReplace) => {
   return template.replace(cssClassTag, classUsed).replace(tagReplace, value);
 };
 
-const pageInErrorOrWarning = (page, template) => {
-  const htmlIcon = "<span class='lh-audit__score-icon'></span>";
-  if (
-    page.ecoIndex < 66 ||
-    page.performance < 66 ||
-    page.accessibility < 66 ||
-    page.bestPractices < 66
-  ) {
-    console.log("value lesser than 66")
-    return template.replace(iconPerPageTag, htmlIcon);
-  }
-  return template.replace(iconPerPageTag, "");
-};
 
 module.exports = {
   generateReports,

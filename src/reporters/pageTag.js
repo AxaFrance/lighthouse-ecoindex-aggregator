@@ -2,7 +2,6 @@ const performanceTag = "{{Performance}}";
 const accessibilityTag = "{{Accessibility}}";
 const bestPracticesTag = "{{BestPractices}}";
 const ecoIndexTag = "{{EcoIndex}}";
-const iconPerPageTag = "{{IconPerPageTag}}";
 const cssClassTag = "{{Class}}";
 const PageSizeTag = "{{PageSize}}";
 const PageSizeRecommendationTag = "{{PageSizeRecommendation}}";
@@ -24,7 +23,6 @@ module.exports ={
     accessibilityTag ,
     bestPracticesTag ,
     ecoIndexTag ,
-    iconPerPageTag,
     cssClassTag ,
     PageSizeTag ,
     PageSizeRecommendationTag,
