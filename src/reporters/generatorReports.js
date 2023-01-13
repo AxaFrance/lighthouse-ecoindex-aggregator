@@ -278,8 +278,9 @@ const pageInErrorOrWarning = (page, template) => {
     page.ecoIndex < 66 ||
     page.performance < 66 ||
     page.accessibility < 66 ||
-    page.bestPractices
+    page.bestPractices < 66
   ) {
+    console.log("value lesser than 66")
     return template.replace(iconPerPageTag, htmlIcon);
   }
   return template.replace(iconPerPageTag, "");
