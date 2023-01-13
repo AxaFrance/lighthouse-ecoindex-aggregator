@@ -1,4 +1,4 @@
-# Contributing to @axa-fr/react-oidc
+# Contributing to lighthouse-eco-index-aggregator
 
 First, ensure you have the [latest `npm`](https://docs.npmjs.com/).
 
