@@ -3,7 +3,7 @@ const commandLineUsage = require("command-line-usage");
 const aggregatorServiceLighthouse = require("./lighthouse/aggregatorService");
 const aggregatorServiceEcoIndex = require("./ecoIndex/aggregatorService");
 const aggregatorGlobalService = require("./globlalAggregation/aggregatorService");
-const generatorReports = require("./reporters/generatorReports");
+const { generateReports }= require("./reporters/generatorReports");
 
 const optionDefinitions = [
   { name: "verbose", alias: "v", type: Boolean },
@@ -65,10 +65,10 @@ const sections = [
   }
   const resultsGlobalLighthouse = await aggregatorServiceLighthouse(options);
   const resultsGlobalEcoindex = await aggregatorServiceEcoIndex(options);
-  const resultsGlobal = await aggregatorGlobalService(options,resultsGlobalLighthouse, resultsGlobalEcoindex);
+  const resultsGlobal = await aggregatorGlobalService(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
 
   if (options.reports === "html") {
-    generatorReports(options,resultsGlobal);
+    generateReports(options, resultsGlobal);
   }
   if (options.returnResult) {
     // eslint-disable-next-line consistent-return

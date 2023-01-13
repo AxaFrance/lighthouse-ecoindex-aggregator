@@ -28,7 +28,6 @@ const readFiles = (options, ecoIndexJsonReportsFiles) => {
     const result = JSON.parse(data);
     if(options.verbose){
       console.log("read file:",fileName);
-      console.log(result);
     }
     if (result.pages[0]) {
       const page = result.pages[0];

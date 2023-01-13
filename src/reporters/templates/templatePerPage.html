@@ -4,7 +4,7 @@
             <div class="lh-audit__header">
                 <div class="lh-load-opportunity__cols">
                     <div class="lh-load-opportunity__col lh-load-opportunity__col--one">
-                        <span class="lh-audit__score-icon"></span>
+                        {{IconPerPageTag}}
                         <div class="lh-audit__title">
                             <span>Page {{numberPageTag}}</span>
                             <span>{{PageName}}</span></div>
@@ -33,101 +33,9 @@
         <div class="lh-audit__description">Pour calculer l'ecoindex, nous nous basons sur trois propriétés : le nombre
             de requetes HTTP, le poid de la page, ainsi que la complexité du DOM. Voici les résultats pour cette page
         </div>
-        <table class="lh-table lh-details">
-            <thead>
-                <tr>
-                    <th class="lh-table-column--url">
-                        <div class="lh-text">Métrique</div>
-                    </th>
-                    <th class="lh-table-column--bytes">
-                        <div class="lh-text">Valeur </div>
-                    </th>
-                    <th class="lh-table-column--bytes">
-                        <div class="lh-text">Valeur Préconisée Maximale</div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="lh-row--even">
-                    <td class="lh-table-column--url">
-                        <div class="lh-text">Nombre de Requetes</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-                        <div class="lh-text">{{NumberOfRequest}}</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-                        <div class="lh-text">{{NumberOfRequestRecommendation}}</div>
-                    </td>
-                </tr>
-
-                <tr class="lh-row--odd">
-                    <td class="lh-table-column--url">
-                        <div class="lh-text">Poid de la page</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-
-                        <div class="lh-text lh-audit--fail lh-audit__display-text">{{PageSize}}</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-                        <div class="lh-text">{{PageSizeRecommendation}}</div>
-                    </td>
-                </tr>
-
-                <tr class="lh-row--even">
-                    <td class="lh-table-column--url">
-                        <div class="lh-text">Complexité du DOM</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-                        <div class="lh-text">{{PageComplexity}}</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-                        <div class="lh-text">{{PageComplexityRecommendation}}</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        {{PageMetricsBlock}}
         <div class="lh-audit__description">A partir des métriques précédente, une estimation des emissions de gaz à
             effet de serre ainsi que la consommation d'eau est calculée. Voici le résultat pour cette page:</div>
-
-        <table class="lh-table lh-details">
-            <thead>
-                <tr>
-                    <th class="lh-table-column--url">
-                        <div class="lh-text">Métrique</div>
-                    </th>
-                    <th class="lh-table-column--bytes">
-                        <div class="lh-text">Valeur </div>
-                    </th>
-                    <th class="lh-table-column--bytes">
-                        <div class="lh-text">Valeur convertie</div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="lh-row--even">
-                    <td class="lh-table-column--url">
-                        <div class="lh-text">Gaz a effet de serre</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-                        <div class="lh-text">{{GreenhouseGases}}</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-                        <div class="lh-text">{{GreenhouseGasesKm}}km</div>
-                    </td>
-                </tr>
-
-                <tr class="lh-row--odd">
-                    <td class="lh-table-column--url">
-                        <div class="lh-text">Consommation eau</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-                        <div class="lh-text">{{Water}}</div>
-                    </td>
-                    <td class="lh-table-column--bytes">
-                        <div class="lh-text">{{WaterShower}} douches</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        {{GreenItMetricsBlock}}
     </details>
 </div>

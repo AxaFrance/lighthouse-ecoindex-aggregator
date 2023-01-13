@@ -68,7 +68,6 @@ describe("AggregatorService", () => {
     });
 
     const result = await aggregate(options);
-    console.log(result);
     expect(result).toEqual(output);
   });
 });
