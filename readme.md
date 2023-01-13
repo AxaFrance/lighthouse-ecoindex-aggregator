@@ -3,7 +3,9 @@
 this tools is the cli version of v1.0.0
 this tools is used for aggragate reports lighthoure and reports ecoIndex in unique reports. 
 ----
-#  options
+
+##  Options
+
 **_--srcLighthouse_**
    
 _type:_ string
@@ -52,7 +54,8 @@ _description:_
 
   options is used for verbose task
 ----
-# example usage
+
+## Example usage
 
 ```bash
 node ./index.js  --srcLighthouse="C:\Workspace\reports\lighthouse" --srcEcoIndex="C:\Workspace\reports\ecoindex" -r --reports="html"
