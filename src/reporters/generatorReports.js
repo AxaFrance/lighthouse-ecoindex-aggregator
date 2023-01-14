@@ -25,14 +25,12 @@ const {
  lighthouseReportPathTag ,
  NumberOfRequestTag ,
  NumberOfRequestRecommendationTag ,
- GreenhouseGasesTag ,
- GreenhouseGasesKmTag,
- WaterTag ,
- WaterShowerTag,
  greenItMetricsBlock,
  pageMetricsBlock 
 } = require("./pageTag");
 const computeCssClassForMetrics = require("./utils/computeCssClassForMetrics");
+const ejs = require("ejs");
+
 
 const pageInErrorOrWarning = require("./utils/displayPageErrorIcon");
 const folderTemplate = "templates";
@@ -72,6 +70,14 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
     results.ecoIndex,
     "global"
   );
+  
+  const GlobalGreenItMetricsTemplate = populateGreentItMetrics(options, {
+    greenhouseGases: results.greenhouseGases,
+    greenhouseGasesKm: results.greenhouseGasesKm,
+    water: results.water,
+    waterShower: results.waterShower
+  });
+
   return template
     .toString()
     .replace(globalPerformanceTag, performanceBlockTemplate)
@@ -79,10 +85,7 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
     .replace(globalEcoIndexTag, ecoIndexBlockTemplate)
     .replace(globalBestPracticesTag, bestPracticesBlockTemplate)
     .replace(htmlPerPageBlock, htmlPerPageResult)
-    .replace(GreenhouseGasesTag, results.greenhouseGases)
-    .replace(GreenhouseGasesKmTag, results.greenhouseGasesKm)
-    .replace(WaterTag, results.water)
-    .replace(WaterShowerTag, results.waterShower);
+    .replace("{{GlobalGreenItMetrics}}", GlobalGreenItMetricsTemplate);
 };
 
 const populateMetrics = (options,metric) => {
@@ -116,6 +119,15 @@ const populateMetrics = (options,metric) => {
     .replace("{{PageComplexityCssClass}}", computeCssClassForMetrics(PageComplexityMetric));
 };
 
+const readTemplate = templateFile => {
+  const templatePath = path.join(
+    __dirname,
+    folderTemplate,
+    templateFile
+  );
+  return fs.readFileSync(templatePath).toString();
+};
+
 const populateGreentItMetrics = (
   options,
   { greenhouseGases, greenhouseGasesKm, water, waterShower }
@@ -128,18 +140,15 @@ const populateGreentItMetrics = (
       waterShower,
     });
   }
-  const templatePath = path.join(
-    __dirname,
-    folderTemplate,
-    "templateGreenItMetrics.html"
-  );
-  const template = fs.readFileSync(templatePath).toString();
   
-  return template
-    .replace(GreenhouseGasesTag, greenhouseGases)
-    .replace(GreenhouseGasesKmTag, greenhouseGasesKm)
-    .replace(WaterTag, water)
-    .replace(WaterShowerTag, waterShower);
+  const template = readTemplate("templateGreenItMetrics.html");
+  
+  return ejs.render(template, {
+    greenhouseGases,
+    greenhouseGasesKm,
+    water,
+    waterShower
+  });
 };
 
 const populateTemplatePerPage = async (options, results) => {
