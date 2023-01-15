@@ -13,11 +13,6 @@ const {
 } = require("./globalTag");
 
 const {
- performanceTag ,
- accessibilityTag ,
- bestPracticesTag ,
- ecoIndexTag ,
- cssClassTag ,
  PageSizeTag ,
  PageSizeRecommendationTag,
  PageComplexityTag ,
@@ -223,7 +218,7 @@ const populateTemplatePerformance = (options, performance, numberPage) => {
     "templatePerfomance.html"
   );
   const template = fs.readFileSync(templatePath).toString();
-  return defineCssClass(performance, template, performanceTag);
+  return defineCssClass(performance, template);
 };
 
 const populateTemplateAccecibility = (options, accessibility, numberPage) => {
@@ -238,7 +233,7 @@ const populateTemplateAccecibility = (options, accessibility, numberPage) => {
     "templateAccecibility.html"
   );
   const template = fs.readFileSync(templatePath).toString();
-  return defineCssClass(accessibility, template, accessibilityTag);
+  return defineCssClass(accessibility, template);
 };
 
 const populateTemplateBestPractices = (options, bestPractices, numberPage) => {
@@ -253,7 +248,7 @@ const populateTemplateBestPractices = (options, bestPractices, numberPage) => {
     "templateBestPractices.html"
   );
   const template = fs.readFileSync(templatePath).toString();
-  return defineCssClass(bestPractices, template, bestPracticesTag);
+  return defineCssClass(bestPractices, template);
 };
 
 const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
@@ -268,7 +263,7 @@ const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
     "templateEcoIndex.html"
   );
   const template = fs.readFileSync(templatePath).toString();
-  return defineCssClass(ecoIndex, template, ecoIndexTag);
+  return defineCssClass(ecoIndex, template);
 };
 
 const defineCssClass = (value, template, tagReplace) => {
@@ -282,7 +277,11 @@ const defineCssClass = (value, template, tagReplace) => {
   else if (value < 66 && value > 33) classUsed = cssAverageClass;
   else if (value < 33 && value !== 0) classUsed = cssFailClass;
   else classUsed = cssNotApplicableClass;
-  return template.replace(cssClassTag, classUsed).replace(tagReplace, value);
+
+  return ejs.render(template, {
+    "Class": classUsed,
+    "Value": value,
+  });
 };
 
 

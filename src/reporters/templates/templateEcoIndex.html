@@ -1,11 +1,11 @@
-<a class="lh-gauge__wrapper {{Class}}" href="#ecoIndex">
+<a class="lh-gauge__wrapper <%= Class %>" href="#ecoIndex">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
             <circle class="lh-gauge-arc" r="56" cx="60" cy="60" stroke-width="8"
-                style="transform: rotate(-87.9537deg); stroke-dasharray: 309.154, 351.858"></circle>
+                style="transform: rotate(-87.9537deg); stroke-dasharray: <%= 351.858 * Value / 100; %>, 351.858"></circle>
         </svg>
     </div>
-    <div class="lh-gauge__percentage">{{EcoIndex}}</div>
+    <div class="lh-gauge__percentage"><%= Value %></div>
     <div class="lh-gauge__label">EcoIndex</div>
 </a>
