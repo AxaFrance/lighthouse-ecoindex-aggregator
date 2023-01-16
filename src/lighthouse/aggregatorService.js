@@ -21,7 +21,7 @@ const readFiles = (options, lighthouseJsonReportsFiles) => {
     const pageName = fileName.split(".")[0];
     const pathFile = path.join(options.srcLighthouse, fileName);
     const data = fs.readFileSync(pathFile);
-    const result = JSON.parse(JSON.parse(data));
+    const result = JSON.parse(data);
     const performance = Math.round(result.categories.performance.score * 100);
     const accessibility = Math.round(result.categories.accessibility.score * 100);
     const bestPractices = Math.round(result.categories["best-practices"].score * 100);

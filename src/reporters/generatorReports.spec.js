@@ -55,7 +55,7 @@ describe("generatorReports", () => {
   xit("replace all tag", async () => {
     await generateReports(options, output);
     var result = fs.readFileSync("globalReports.html").toString();
-    var expected = fs.readFileSync(path.join(__dirname,"test","globalReports.html")).toString();
+    var expected = fs.readFileSync(path.join(__dirname,"test","globalReportsTest.html")).toString();
     expect(result).toEqual(expected);
   });
 });
