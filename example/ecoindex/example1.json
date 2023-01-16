@@ -1,0 +1,61 @@
+{
+  "score": 80,
+  "grade": "A",
+  "estimatation_co2": {
+    "comment": "Pour un total de 2000 visites par mois, ceci correspond à 31km en voiture (Peugeot 208 5P 1.6 BlueHDi FAP (75ch) BVM5)",
+    "commentDetails": {
+      "numberOfVisit": 2000,
+      "value_km": 31
+    }
+  },
+  "estimatation_water": {
+    "comment": "Pour un total de 2000 visites par mois, ceci correspond à 1 douche",
+    "commentDetails": {
+      "numberOfVisit": 2000,
+      "value_shower": 1
+    }
+  },
+  "pages": [
+    {
+      "url": "https://devfest.gdglille.org/",
+      "ecoIndex": 80,
+      "grade": "A",
+      "greenhouseGasesEmission": 1.4,
+      "waterConsumption": 2.1,
+      "metrics": [
+        {
+          "name": "number_requests",
+          "value": 18,
+          "status": "info",
+          "recommandation": "< 30 requests"
+        },
+        {
+          "name": "page_size",
+          "value": 277,
+          "status": "warning",
+          "recommandation": "< 1000kb"
+        },
+        {
+          "name": "Page_complexity",
+          "value": 190,
+          "status": "error",
+          "recommandation": "Between 300 and 500 nodes"
+        }
+      ],
+      "estimatation_co2": {
+        "comment": "Pour un total de 2000 visites par mois, ceci correspond à 31km en voiture (Peugeot 208 5P 1.6 BlueHDi FAP (75ch) BVM5)",
+        "commentDetails": {
+          "numberOfVisit": 2000,
+          "value_km": 31
+        }
+      },
+      "estimatation_water": {
+        "comment": "Pour un total de 2000 visites par mois, ceci correspond à 1 douche",
+        "commentDetails": {
+          "numberOfVisit": 2000,
+          "value_shower": 1
+        }
+      }
+    }
+  ]
+}

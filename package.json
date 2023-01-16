@@ -2,7 +2,7 @@
   "name": "lighthouse-eco-index-aggregator",
   "version": "1.0.0",
   "description": "Tool for aggregating lighthouse and eco-index results",
-  "main": "src/index.js",
+  "main": "src/cli.js",
   "scripts": {
     "lint": "eslint",
     "test": "jest --coverage",

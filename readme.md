@@ -39,14 +39,6 @@ _description:_
  options is used for defined format reports after task 
  unique value possible used is "html"
 
-**_-r_**
-   
-_type:_ boolean
-
-_description:_
-
- options is used for returns json results
-
 **_-v_**
 _type:_ boolean
 
@@ -58,5 +50,16 @@ _description:_
 ## Example usage
 
 ```bash
-node ./index.js  --srcLighthouse="C:\Workspace\reports\lighthouse" --srcEcoIndex="C:\Workspace\reports\ecoindex" -r --reports="html"
+node ./index.js  --srcLighthouse="C:\Workspace\reports\lighthouse" --srcEcoIndex="C:\Workspace\reports\ecoindex" --reports="html"
+```
+
+You can also used this module programmatically
+
+```js
+const aggregate = require('lighthouse-eco-index-aggregator/src/main');
+
+console.log(aggregate({
+  srcLighthouse: './reports/lighthouse',
+  srcEcoIndex: './reports/ecoindex'
+}))
 ```

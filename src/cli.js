@@ -1,13 +1,9 @@
 const commandLineArgs = require("command-line-args");
 const commandLineUsage = require("command-line-usage");
-const aggregatorServiceLighthouse = require("./lighthouse/aggregatorService");
-const aggregatorServiceEcoIndex = require("./ecoIndex/aggregatorService");
-const aggregatorGlobalService = require("./globlalAggregation/aggregatorService");
-const { generateReports }= require("./reporters/generatorReports");
+const aggregate = require("./main");
 
 const optionDefinitions = [
   { name: "verbose", alias: "v", type: Boolean },
-  { name: "returnResult", alias: "r", type: Boolean },
   { name: "reports", type: String, multiple: false },
   { name: "srcLighthouse", type: String, multiple: false },
   { name: "srcEcoIndex", type: String, multiple: false },
@@ -34,11 +30,6 @@ const sections = [
         description: "Print this usage guide.",
       },
       {
-        name: "returnResult",
-        typeLabel: "{underline bool}",
-        description: "Return the results",
-      },
-      {
         name: "srcLighthouse",
         typeLabel: "{underline string}",
         description: "folder with json reports lighthouse",
@@ -63,15 +54,6 @@ const sections = [
   if (options?.verbose) {
     console.log(options);
   }
-  const resultsGlobalLighthouse = await aggregatorServiceLighthouse(options);
-  const resultsGlobalEcoindex = await aggregatorServiceEcoIndex(options);
-  const resultsGlobal = await aggregatorGlobalService(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
-
-  if (options.reports === "html") {
-    generateReports(options, resultsGlobal);
-  }
-  if (options.returnResult) {
-    // eslint-disable-next-line consistent-return
-    return resultsGlobal;
-  }
+  
+  await aggregate(options);
 })();
