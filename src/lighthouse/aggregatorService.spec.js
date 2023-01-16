@@ -64,7 +64,7 @@ describe("AggregatorService", () => {
     });
     jest.spyOn(fs, "existsSync").mockImplementation(() => true);
     jest.spyOn(fs, "readFileSync").mockImplementation(() => {
-      return JSON.stringify(JSON.stringify(inputValue));
+      return JSON.stringify(inputValue);
     });
 
     const result = await aggregate(options);
