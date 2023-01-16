@@ -39,7 +39,13 @@ const generateReports = async (options, results) => {
     results,
     htmlPerPageResult
   );
-  fs.writeFileSync("globalReports.html", htmlResult);
+
+  let outputPath = "globalReports.html";
+  if(!!options.outputPath){
+    outputPath = path.join(process.cwd(), options.outputPath);
+    fs.mkdirSync(path.dirname(outputPath), { recursive: true});
+  }
+  fs.writeFileSync(outputPath, htmlResult);
 };
 
 const populateTemplate = async (options, results, htmlPerPageResult) => {
@@ -87,11 +93,11 @@ const populateMetrics = (options,metric) => {
     console.log("Populate metrics:", metric);
   }
   const template = readTemplate("templatePageMetrics.html");
-  const NumberOfRequestMetric = metric.find(
+  const NumberOfRequestMetric = metric?.find(
     (m) => m.name === "number_requests"
-  );
-  const PageSizeMetric = metric.find((m) => m.name === "page_size");
-  const PageComplexityMetric = metric.find((m) => m.name === "Page_complexity");
+  ) ?? {};
+  const PageSizeMetric = metric?.find((m) => m.name === "page_size") ?? {};
+  const PageComplexityMetric = metric?.find((m) => m.name === "Page_complexity") ?? {};
   
   return template
     .replace(NumberOfRequestTag, NumberOfRequestMetric.value)
@@ -235,7 +241,7 @@ const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
   return defineCssClass(ecoIndex, template);
 };
 
-const defineCssClass = (value, template, tagReplace) => {
+const defineCssClass = (value, template) => {
   const cssPassClass = "lh-gauge__wrapper--pass";
   const cssAverageClass = "lh-gauge__wrapper--average";
   const cssFailClass = "lh-gauge__wrapper--fail";
