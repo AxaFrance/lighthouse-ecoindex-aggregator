@@ -43,8 +43,7 @@ const generateReports = async (options, results) => {
 };
 
 const populateTemplate = async (options, results, htmlPerPageResult) => {
-  const templatePath = path.join(__dirname, folderTemplate, "template.html");
-  const template = fs.readFileSync(templatePath);
+  const template = readTemplate("template.html");
   const performanceBlockTemplate = populateTemplatePerformance(
     options,
     results.performance,
@@ -87,12 +86,7 @@ const populateMetrics = (options,metric) => {
   if (options?.verbose) {
     console.log("Populate metrics:", metric);
   }
-  const templatePath = path.join(
-    __dirname,
-    folderTemplate,
-    "templatePageMetrics.html"
-  );
-  const template = fs.readFileSync(templatePath).toString();
+  const template = readTemplate("templatePageMetrics.html");
   const NumberOfRequestMetric = metric.find(
     (m) => m.name === "number_requests"
   );
@@ -150,12 +144,7 @@ const populateTemplatePerPage = async (options, results) => {
   const numberPageTag = "{{numberPageTag}}";
   const pageNameTag = "{{PageName}}";
   let htmlPerPage = "";
-  const templatePath = path.join(
-    __dirname,
-    folderTemplate,
-    "templatePerPage.html"
-  );
-  let defaultTemplatePerPage = fs.readFileSync(templatePath).toString();
+  const defaultTemplatePerPage = readTemplate("templatePerPage.html");
   let numberPage = 0;
   results.perPages.forEach((page) => {
     numberPage += 1;
@@ -212,12 +201,7 @@ const populateTemplatePerformance = (options, performance, numberPage) => {
       `populate performance with value:${performance} for page ${numberPage}`
     );
   }
-  const templatePath = path.join(
-    __dirname,
-    folderTemplate,
-    "templatePerfomance.html"
-  );
-  const template = fs.readFileSync(templatePath).toString();
+  const template = readTemplate("templatePerfomance.html");
   return defineCssClass(performance, template);
 };
 
@@ -227,12 +211,7 @@ const populateTemplateAccecibility = (options, accessibility, numberPage) => {
       `populate accessibility with value: ${accessibility} for page ${numberPage}`
     );
   }
-  const templatePath = path.join(
-    __dirname,
-    folderTemplate,
-    "templateAccecibility.html"
-  );
-  const template = fs.readFileSync(templatePath).toString();
+  const template = readTemplate( "templateAccecibility.html");
   return defineCssClass(accessibility, template);
 };
 
@@ -242,12 +221,7 @@ const populateTemplateBestPractices = (options, bestPractices, numberPage) => {
       `populate bestPractices with value ${bestPractices} for page ${numberPage}`
     );
   }
-  const templatePath = path.join(
-    __dirname,
-    folderTemplate,
-    "templateBestPractices.html"
-  );
-  const template = fs.readFileSync(templatePath).toString();
+  const template = readTemplate("templateBestPractices.html");
   return defineCssClass(bestPractices, template);
 };
 
@@ -257,12 +231,7 @@ const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
       `populate ecoIndex with value: ${ecoIndex} for page: ${numberPage}`
     );
   }
-  const templatePath = path.join(
-    __dirname,
-    folderTemplate,
-    "templateEcoIndex.html"
-  );
-  const template = fs.readFileSync(templatePath).toString();
+  const template = readTemplate("templateEcoIndex.html");
   return defineCssClass(ecoIndex, template);
 };
 
