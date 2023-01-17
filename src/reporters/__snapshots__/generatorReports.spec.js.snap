@@ -2228,7 +2228,7 @@ exports[`generatorReports replace all tag 1`] = `
   <div class="lh-gauge__percentage">30</div>
   <div class="lh-gauge__label">Bonnes pratiques</div>
 </a>
- <a class="lh-gauge__wrapper lh-gauge__wrapper--pass" href="#ecoIndex">
+ <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#ecoIndex">
   <div class="lh-gauge__svg-wrapper">
     <svg class="lh-gauge" viewBox="0 0 120 120">
       <circle
@@ -2353,7 +2353,7 @@ exports[`generatorReports replace all tag 1`] = `
           <div class="lh-pyro-after"></div>
         </div>
         <div class="lh-scores-header">
-          <a class="lh-gauge__wrapper lh-gauge__wrapper--pass" href="#performance">
+          <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#performance">
   <div class="lh-gauge__svg-wrapper">
     <svg class="lh-gauge" viewBox="0 0 120 120">
       <circle
@@ -2376,7 +2376,7 @@ exports[`generatorReports replace all tag 1`] = `
   <div class="lh-gauge__percentage">70</div>
   <div class="lh-gauge__label">Performances</div>
 </a>
- <a class="lh-gauge__wrapper lh-gauge__wrapper--pass" href="#accessibility">
+ <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#accessibility">
   <div class="lh-gauge__svg-wrapper">
     <svg class="lh-gauge" viewBox="0 0 120 120">
       <circle
@@ -2399,7 +2399,7 @@ exports[`generatorReports replace all tag 1`] = `
   <div class="lh-gauge__percentage">70</div>
   <div class="lh-gauge__label">Accessibilité</div>
 </a>
- <a class="lh-gauge__wrapper lh-gauge__wrapper--pass" href="#best-practices">
+ <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#best-practices">
   <div class="lh-gauge__svg-wrapper">
     <svg class="lh-gauge" viewBox="0 0 120 120">
       <circle
@@ -2423,7 +2423,7 @@ exports[`generatorReports replace all tag 1`] = `
   <div class="lh-gauge__label">Bonnes pratiques</div>
 </a>
 
-          <a class="lh-gauge__wrapper lh-gauge__wrapper--pass" href="#ecoIndex">
+          <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#ecoIndex">
   <div class="lh-gauge__svg-wrapper">
     <svg class="lh-gauge" viewBox="0 0 120 120">
       <circle
