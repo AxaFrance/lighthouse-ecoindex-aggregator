@@ -1,11 +1,11 @@
 <html>
   <head>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Meta, title, CSS, favicons, etc. -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Cache-control" content="public">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-control" content="public" />
   </head>
   <body>
     <article class="lh-root lh-vars lh-screenshot-overlay--enabled">
@@ -84,14 +84,16 @@
           --color-not-applicable: var(--color-gray-600);
           /* Component variables */
           --audit-description-padding-left: calc(
-            var(--score-icon-size) + var(--score-icon-margin-left) + var(--score-icon-margin-right)
+            var(--score-icon-size) + var(--score-icon-margin-left) +
+              var(--score-icon-margin-right)
           );
           --audit-explanation-line-height: 16px;
           --audit-group-margin-bottom: calc(var(--default-padding) * 6);
           --audit-group-padding-vertical: 8px;
           --audit-margin-horizontal: 5px;
           --audit-padding-vertical: 8px;
-          --category-padding: calc(var(--default-padding) * 6) var(--edge-gap-padding) calc(var(--default-padding) * 4);
+          --category-padding: calc(var(--default-padding) * 6)
+            var(--edge-gap-padding) calc(var(--default-padding) * 4);
           --chevron-line-stroke: var(--color-gray-600);
           --chevron-size: 12px;
           --default-padding: 8px;
@@ -129,8 +131,8 @@
           --pwa-icon-size: var(--topbar-logo-size);
           --report-background-color: #fff;
           --report-border-color-secondary: #ebebeb;
-          --report-font-family-monospace: "Roboto Mono", "Menlo", "dejavu sans mono", "Consolas", "Lucida Console",
-            monospace;
+          --report-font-family-monospace: "Roboto Mono", "Menlo",
+            "dejavu sans mono", "Consolas", "Lucida Console", monospace;
           --report-font-family: Roboto, Helvetica, Arial, sans-serif;
           --report-font-size: 14px;
           --report-font-size-secondary: 12px;
@@ -143,12 +145,15 @@
           --report-content-max-width: calc(60 * var(--report-font-size));
           /* defaults to 840px */
           --report-content-min-width: 360px;
-          --report-content-max-width-minus-edge-gap: calc(var(--report-content-max-width) - var(--edge-gap-padding) * 2);
+          --report-content-max-width-minus-edge-gap: calc(
+            var(--report-content-max-width) - var(--edge-gap-padding) * 2
+          );
           --score-container-padding: 8px;
           --score-icon-background-size: 24px;
           --score-icon-margin-left: 6px;
           --score-icon-margin-right: 14px;
-          --score-icon-margin: 0 var(--score-icon-margin-right) 0 var(--score-icon-margin-left);
+          --score-icon-margin: 0 var(--score-icon-margin-right) 0
+            var(--score-icon-margin-left);
           --score-icon-size: 12px;
           --score-icon-size-big: 16px;
           --screenshot-overlay-background: rgba(0, 0, 0, 0.3);
@@ -183,14 +188,15 @@
           --swap-locale-icon-url: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>');
         }
         .lh-footer {
-              padding: var(--footer-padding-vertical) calc(var(--default-padding) * 2);
-              max-width: var(--report-content-max-width);
-              margin: 0 auto;
-            }
+          padding: var(--footer-padding-vertical)
+            calc(var(--default-padding) * 2);
+          max-width: var(--report-content-max-width);
+          margin: 0 auto;
+        }
 
-            .lh-footer .lh-generated {
-              text-align: center;
-            }
+        .lh-footer .lh-generated {
+          text-align: center;
+        }
         @media not print {
           .lh-dark {
             /* Pallete */
@@ -283,8 +289,10 @@
           --screenshot-overlay-background: transparent;
           --plugin-icon-size: 75%;
           --pwa-icon-margin: 0 7px 0 -3px;
-          --report-font-family-monospace: "Menlo", "dejavu sans mono", "Consolas", "Lucida Console", monospace;
-          --report-font-family: ".SFNSDisplay-Regular", "Helvetica Neue", "Lucida Grande", sans-serif;
+          --report-font-family-monospace: "Menlo", "dejavu sans mono",
+            "Consolas", "Lucida Console", monospace;
+          --report-font-family: ".SFNSDisplay-Regular", "Helvetica Neue",
+            "Lucida Grande", sans-serif;
           --report-font-size: 12px;
           --report-line-height: 20px;
           --score-icon-margin-left: 2px;
@@ -646,7 +654,8 @@
           margin-right: var(--audit-margin-horizontal);
         }
 
-        .lh-audit-group.lh-audit-group--load-opportunities .lh-audit__display-text:not(:empty):before {
+        .lh-audit-group.lh-audit-group--load-opportunities
+          .lh-audit__display-text:not(:empty):before {
           display: none;
         }
 
@@ -749,9 +758,12 @@
       * Icon -- Metric Name
       *      -- Metric Value
       */
-          grid-template-columns: calc(
-              var(--score-icon-size) + var(--score-icon-margin-left) + var(--score-icon-margin-right)
-            ) 1fr;
+          grid-template-columns:
+            calc(
+              var(--score-icon-size) + var(--score-icon-margin-left) +
+                var(--score-icon-margin-right)
+            )
+            1fr;
           align-items: center;
           padding: var(--default-padding);
         }
@@ -801,9 +813,12 @@
             /**
       * Icon -- Metric Name -- Metric Value
       */
-            grid-template-columns: calc(
-                var(--score-icon-size) + var(--score-icon-margin-left) + var(--score-icon-margin-right)
-              ) 2fr 1fr;
+            grid-template-columns:
+              calc(
+                var(--score-icon-size) + var(--score-icon-margin-left) +
+                  var(--score-icon-margin-right)
+              )
+              2fr 1fr;
           }
 
           .lh-metric__value {
@@ -814,7 +829,9 @@
 
         /* No-JS toggle switch */
         /* Keep this selector sync'd w/ `magicSelector` in report-ui-features-test.js */
-        .lh-metrics-toggle__input:checked ~ .lh-metrics-container .lh-metric__description {
+        .lh-metrics-toggle__input:checked
+          ~ .lh-metrics-container
+          .lh-metric__description {
           display: block;
         }
 
@@ -826,12 +843,21 @@
           top: 0px;
         }
 
-        .lh-metrics-toggle__input + div > label > .lh-metrics-toggle__labeltext--hide,
-        .lh-metrics-toggle__input:checked + div > label > .lh-metrics-toggle__labeltext--show {
+        .lh-metrics-toggle__input
+          + div
+          > label
+          > .lh-metrics-toggle__labeltext--hide,
+        .lh-metrics-toggle__input:checked
+          + div
+          > label
+          > .lh-metrics-toggle__labeltext--show {
           display: none;
         }
 
-        .lh-metrics-toggle__input:checked + div > label > .lh-metrics-toggle__labeltext--hide {
+        .lh-metrics-toggle__input:checked
+          + div
+          > label
+          > .lh-metrics-toggle__labeltext--hide {
           display: inline;
         }
 
@@ -931,7 +957,9 @@
         /* Sparkline */
         .lh-load-opportunity__sparkline {
           flex: 1;
-          margin-top: calc((var(--report-line-height) - var(--sparkline-height)) / 2);
+          margin-top: calc(
+            (var(--report-line-height) - var(--sparkline-height)) / 2
+          );
         }
 
         .lh-sparkline {
@@ -1046,11 +1074,13 @@
           background-image: var(--pwa-optimized-gray-url);
         }
 
-        .lh-audit-group--pwa-installable.lh-badged .lh-audit-group__header::before {
+        .lh-audit-group--pwa-installable.lh-badged
+          .lh-audit-group__header::before {
           background-image: var(--pwa-installable-color-url);
         }
 
-        .lh-audit-group--pwa-optimized.lh-badged .lh-audit-group__header::before {
+        .lh-audit-group--pwa-optimized.lh-badged
+          .lh-audit-group__header::before {
           background-image: var(--pwa-optimized-color-url);
         }
 
@@ -1106,7 +1136,9 @@
         }
 
         .lh-audit-explanation {
-          margin: var(--audit-padding-vertical) 0 calc(var(--audit-padding-vertical) / 2) var(--audit-margin-horizontal);
+          margin: var(--audit-padding-vertical) 0
+            calc(var(--audit-padding-vertical) / 2)
+            var(--audit-margin-horizontal);
           line-height: var(--audit-explanation-line-height);
           display: inline-block;
         }
@@ -1150,8 +1182,8 @@
           --item-margin: calc(var(--report-line-height) / 6);
           color: var(--color-average-secondary);
           margin: var(--audit-padding-vertical) 0;
-          padding: var(--default-padding) var(--default-padding) var(--default-padding)
-            calc(var(--audit-description-padding-left));
+          padding: var(--default-padding) var(--default-padding)
+            var(--default-padding) calc(var(--audit-description-padding-left));
           background-color: var(--toplevel-warning-background-color);
         }
 
@@ -1303,7 +1335,8 @@
           line-height: calc(0.4 * var(--gauge-circle-size));
           width: max-content;
           min-width: calc(1.5 * var(--gauge-circle-size));
-          padding: calc(0.1 * var(--gauge-circle-size)) calc(0.2 * var(--gauge-circle-size));
+          padding: calc(0.1 * var(--gauge-circle-size))
+            calc(0.2 * var(--gauge-circle-size));
           --score-icon-size: calc(0.21 * var(--gauge-circle-size));
           --score-icon-margin: 0 calc(0.15 * var(--gauge-circle-size)) 0 0;
         }
@@ -1377,7 +1410,9 @@
           font-size: calc(var(--gauge-circle-size) * 0.34 + 1.3px);
           line-height: 0;
           text-align: center;
-          top: calc(var(--score-container-padding) + var(--gauge-circle-size) / 2);
+          top: calc(
+            var(--score-container-padding) + var(--gauge-circle-size) / 2
+          );
         }
 
         .lh-category .lh-gauge__percentage {
@@ -1422,8 +1457,6 @@
         .lh-scores-header .lh-gauge__wrapper,
         .lh-scores-header .lh-fraction__wrapper,
         .lh-scores-header .lh-gauge--pwa__wrapper,
-      
-
         .lh-scorescale {
           display: inline-flex;
           gap: calc(var(--default-padding) * 4);
@@ -1468,8 +1501,12 @@
           padding: var(--category-padding);
           max-width: var(--report-content-max-width);
           margin: 0 auto;
-          --sticky-header-height: calc(var(--gauge-circle-size-sm) + var(--score-container-padding) * 2);
-          --topbar-plus-sticky-header: calc(var(--topbar-height) + var(--sticky-header-height));
+          --sticky-header-height: calc(
+            var(--gauge-circle-size-sm) + var(--score-container-padding) * 2
+          );
+          --topbar-plus-sticky-header: calc(
+            var(--topbar-height) + var(--sticky-header-height)
+          );
           scroll-margin-top: var(--topbar-plus-sticky-header);
           /* Faster recalc style & layout of the report. https://web.dev/content-visibility/ */
           content-visibility: auto;
@@ -1557,7 +1594,10 @@
         .lh-table {
           border-collapse: collapse;
           /* Can't assign padding to table, so shorten the width instead. */
-          width: calc(100% - var(--audit-description-padding-left) - var(--stackpack-padding-horizontal));
+          width: calc(
+            100% - var(--audit-description-padding-left) -
+              var(--stackpack-padding-horizontal)
+          );
           border: 1px solid var(--report-border-color-secondary);
         }
 
@@ -1623,10 +1663,16 @@
         /* Keep columns narrow if they follow the URL column */
         /* 12% was determined to be a decent narrow width, but wide enough for column headings */
         .lh-table-column--url + th.lh-table-column--bytes,
-        .lh-table-column--url + .lh-table-column--bytes + th.lh-table-column--bytes,
+        .lh-table-column--url
+          + .lh-table-column--bytes
+          + th.lh-table-column--bytes,
         .lh-table-column--url + .lh-table-column--ms,
-        .lh-table-column--url + .lh-table-column--ms + th.lh-table-column--bytes,
-        .lh-table-column--url + .lh-table-column--bytes + th.lh-table-column--timespanMs {
+        .lh-table-column--url
+          + .lh-table-column--ms
+          + th.lh-table-column--bytes,
+        .lh-table-column--url
+          + .lh-table-column--bytes
+          + th.lh-table-column--timespanMs {
           width: 12%;
         }
 
@@ -1819,7 +1865,8 @@
 
           100% {
             opacity: 1;
-            filter: drop-shadow(1px 0px 1px #aaa) drop-shadow(0px 2px 4px hsla(206, 6%, 25%, 0.15));
+            filter: drop-shadow(1px 0px 1px #aaa)
+              drop-shadow(0px 2px 4px hsla(206, 6%, 25%, 0.15));
             pointer-events: auto;
           }
         }
@@ -1901,7 +1948,8 @@
           display: block;
           list-style-type: none;
           position: relative;
-          padding: 0 0 0 calc(var(--meta-icon-size) + var(--default-padding) * 2);
+          padding: 0 0 0
+            calc(var(--meta-icon-size) + var(--default-padding) * 2);
           cursor: unset;
           /* disable pointer cursor from report-icon */
         }
@@ -1948,183 +1996,201 @@
         /*# sourceURL=report-styles.css */
       </style>
 
-          <style>
-            /* CSS Fireworks. Originally by Eddie Lin
+      <style>
+        /* CSS Fireworks. Originally by Eddie Lin
           https://codepen.io/paulirish/pen/yEVMbP
         */
-            .lh-pyro {
-              display: none;
-              z-index: 1;
-              pointer-events: none;
-            }
+        .lh-pyro {
+          display: none;
+          z-index: 1;
+          pointer-events: none;
+        }
 
-            .lh-score100 .lh-pyro {
-              display: block;
-            }
+        .lh-score100 .lh-pyro {
+          display: block;
+        }
 
-            .lh-score100 .lh-lighthouse stop:first-child {
-              stop-color: hsla(200, 12%, 95%, 0);
-            }
+        .lh-score100 .lh-lighthouse stop:first-child {
+          stop-color: hsla(200, 12%, 95%, 0);
+        }
 
-            .lh-score100 .lh-lighthouse stop:last-child {
-              stop-color: hsla(65, 81%, 76%, 1);
-            }
+        .lh-score100 .lh-lighthouse stop:last-child {
+          stop-color: hsla(65, 81%, 76%, 1);
+        }
 
-            .lh-pyro > .lh-pyro-before,
-            .lh-pyro > .lh-pyro-after {
-              position: absolute;
-              width: 5px;
-              height: 5px;
-              border-radius: 2.5px;
-              box-shadow: 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-                0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-                0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-                0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-                0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff;
-              animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards,
-                5s position linear infinite backwards;
-              animation-delay: 1s, 1s, 1s;
-            }
+        .lh-pyro > .lh-pyro-before,
+        .lh-pyro > .lh-pyro-after {
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          border-radius: 2.5px;
+          box-shadow: 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
+            0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
+            0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
+            0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
+            0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
+            0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
+            0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
+            0 0 #fff, 0 0 #fff, 0 0 #fff;
+          animation: 1s bang ease-out infinite backwards,
+            1s gravity ease-in infinite backwards,
+            5s position linear infinite backwards;
+          animation-delay: 1s, 1s, 1s;
+        }
 
-            .lh-pyro > .lh-pyro-after {
-              animation-delay: 2.25s, 2.25s, 2.25s;
-              animation-duration: 1.25s, 1.25s, 6.25s;
-            }
+        .lh-pyro > .lh-pyro-after {
+          animation-delay: 2.25s, 2.25s, 2.25s;
+          animation-duration: 1.25s, 1.25s, 6.25s;
+        }
 
-            @keyframes bang {
-              to {
-                box-shadow: -70px -115.67px #47ebbc, -28px -99.67px #eb47a4, 58px -31.67px #7eeb47, 13px -141.67px #eb47c5,
-                  -19px 6.33px #7347eb, -2px -74.67px #ebd247, 24px -151.67px #eb47e0, 57px -138.67px #b4eb47,
-                  -51px -104.67px #479eeb, 62px 8.33px #ebcf47, -93px 0.33px #d547eb, -16px -118.67px #47bfeb,
-                  53px -84.67px #47eb83, 66px -57.67px #eb47bf, -93px -65.67px #91eb47, 30px -13.67px #86eb47,
-                  -2px -59.67px #83eb47, -44px 1.33px #eb47eb, 61px -58.67px #47eb73, 5px -22.67px #47e8eb,
-                  -66px -28.67px #ebe247, 42px -123.67px #eb5547, -75px 26.33px #7beb47, 15px -52.67px #a147eb,
-                  36px -51.67px #eb8347, -38px -12.67px #eb5547, -46px -59.67px #47eb81, 78px -114.67px #eb47ba,
-                  15px -156.67px #eb47bf, -36px 1.33px #eb4783, -72px -86.67px #eba147, 31px -46.67px #ebe247,
-                  -68px 29.33px #47e2eb, -55px 19.33px #ebe047, -56px 27.33px #4776eb, -13px -91.67px #eb5547,
-                  -47px -138.67px #47ebc7, -18px -96.67px #eb47ac, 11px -88.67px #4783eb, -67px -28.67px #47baeb,
-                  53px 10.33px #ba47eb, 11px 19.33px #5247eb, -5px -11.67px #eb4791, -68px -4.67px #47eba7,
-                  95px -37.67px #eb478b, -67px -162.67px #eb5d47, -54px -120.67px #eb6847, 49px -12.67px #ebe047,
-                  88px 8.33px #47ebda, 97px 33.33px #eb8147, 6px -71.67px #ebbc47;
-              }
-            }
+        @keyframes bang {
+          to {
+            box-shadow: -70px -115.67px #47ebbc, -28px -99.67px #eb47a4,
+              58px -31.67px #7eeb47, 13px -141.67px #eb47c5,
+              -19px 6.33px #7347eb, -2px -74.67px #ebd247,
+              24px -151.67px #eb47e0, 57px -138.67px #b4eb47,
+              -51px -104.67px #479eeb, 62px 8.33px #ebcf47, -93px 0.33px #d547eb,
+              -16px -118.67px #47bfeb, 53px -84.67px #47eb83,
+              66px -57.67px #eb47bf, -93px -65.67px #91eb47,
+              30px -13.67px #86eb47, -2px -59.67px #83eb47, -44px 1.33px #eb47eb,
+              61px -58.67px #47eb73, 5px -22.67px #47e8eb,
+              -66px -28.67px #ebe247, 42px -123.67px #eb5547,
+              -75px 26.33px #7beb47, 15px -52.67px #a147eb,
+              36px -51.67px #eb8347, -38px -12.67px #eb5547,
+              -46px -59.67px #47eb81, 78px -114.67px #eb47ba,
+              15px -156.67px #eb47bf, -36px 1.33px #eb4783,
+              -72px -86.67px #eba147, 31px -46.67px #ebe247,
+              -68px 29.33px #47e2eb, -55px 19.33px #ebe047,
+              -56px 27.33px #4776eb, -13px -91.67px #eb5547,
+              -47px -138.67px #47ebc7, -18px -96.67px #eb47ac,
+              11px -88.67px #4783eb, -67px -28.67px #47baeb,
+              53px 10.33px #ba47eb, 11px 19.33px #5247eb, -5px -11.67px #eb4791,
+              -68px -4.67px #47eba7, 95px -37.67px #eb478b,
+              -67px -162.67px #eb5d47, -54px -120.67px #eb6847,
+              49px -12.67px #ebe047, 88px 8.33px #47ebda, 97px 33.33px #eb8147,
+              6px -71.67px #ebbc47;
+          }
+        }
 
-            @keyframes gravity {
-              to {
-                transform: translateY(80px);
-                opacity: 0;
-              }
-            }
+        @keyframes gravity {
+          to {
+            transform: translateY(80px);
+            opacity: 0;
+          }
+        }
 
-            @keyframes position {
-              0%,
-              19.9% {
-                margin-top: 4%;
-                margin-left: 47%;
-              }
+        @keyframes position {
+          0%,
+          19.9% {
+            margin-top: 4%;
+            margin-left: 47%;
+          }
 
-              20%,
-              39.9% {
-                margin-top: 7%;
-                margin-left: 30%;
-              }
+          20%,
+          39.9% {
+            margin-top: 7%;
+            margin-left: 30%;
+          }
 
-              40%,
-              59.9% {
-                margin-top: 6%;
-                margin-left: 70%;
-              }
+          40%,
+          59.9% {
+            margin-top: 6%;
+            margin-left: 70%;
+          }
 
-              60%,
-              79.9% {
-                margin-top: 3%;
-                margin-left: 20%;
-              }
+          60%,
+          79.9% {
+            margin-top: 3%;
+            margin-left: 20%;
+          }
 
-              80%,
-              99.9% {
-                margin-top: 3%;
-                margin-left: 80%;
-              }
-            }
-          </style>
-          <div class="lh-header-container">
-            <style>
-              .lh-scores-container {
-                display: flex;
-                flex-direction: column;
-                padding: var(--default-padding) 0;
-                position: relative;
-                width: 100%;
-              }
+          80%,
+          99.9% {
+            margin-top: 3%;
+            margin-left: 80%;
+          }
+        }
+      </style>
+      <div class="lh-header-container">
+        <style>
+          .lh-scores-container {
+            display: flex;
+            flex-direction: column;
+            padding: var(--default-padding) 0;
+            position: relative;
+            width: 100%;
+          }
 
-              
+          .lh-highlighter {
+            width: var(--gauge-wrapper-width);
+            height: 1px;
+            background-color: var(--highlighter-background-color);
+            /* Position at bottom of first gauge in sticky header. */
+            position: absolute;
+            grid-column: 1;
+            bottom: -1px;
+          }
 
-              .lh-highlighter {
-                width: var(--gauge-wrapper-width);
-                height: 1px;
-                background-color: var(--highlighter-background-color);
-                /* Position at bottom of first gauge in sticky header. */
-                position: absolute;
-                grid-column: 1;
-                bottom: -1px;
-              }
+          .lh-gauge__wrapper:first-of-type {
+            contain: none;
+          }
 
-              .lh-gauge__wrapper:first-of-type {
-                contain: none;
-              }
+          details .lh-scores-wrapper {
+            width: 100%;
+          }
 
-              details .lh-scores-wrapper {
-                width: 100%;
-              }
-
-              #performance > .lh-audit__description {
-                padding: 0;
-              }
-              #performance > table {
-                margin: 0;
-                margin-bottom: 2rem;
-                width: 100%
-              }
-            </style>
-            <div class="lh-scores-wrapper">
-              <div class="lh-scores-container">
-                <div class="lh-pyro">
-                  <div class="lh-pyro-before"></div>
-                  <div class="lh-pyro-after"></div>
-                </div>
-                <div class="lh-scores-header">
-                  {{GlobalPerformance}}
-                  {{GlobalAccessibility}}
-                  {{GlobalBestPractices}}
-                  {{GlobalEcoIndex}}
-                </div>
-              </div>
+          #performance > .lh-audit__description {
+            padding: 0;
+          }
+          #performance > table {
+            margin: 0;
+            margin-bottom: 2rem;
+            width: 100%;
+          }
+        </style>
+        <div class="lh-scores-wrapper">
+          <div class="lh-scores-container">
+            <div class="lh-pyro">
+              <div class="lh-pyro-before"></div>
+              <div class="lh-pyro-after"></div>
+            </div>
+            <div class="lh-scores-header">
+              {{GlobalPerformance}} {{GlobalAccessibility}}
+              {{GlobalBestPractices}} {{GlobalEcoIndex}}
             </div>
           </div>
         </div>
-        <div class="lh-report">
-          <div class="lh-categories">
-            <div class="lh-category-wrapper">
-              <div class="lh-category lh--hoisted-meta" id="performance">
-                <div class="lh-audit__description">Voici les estimations d'emission de Gaz à effet de serre et de consomation d'eau pour l'ensemble du site audité. </div>
-                
-                {{GlobalGreenItMetrics}}
-              
-                <div class="lh-audit-group lh-audit-group--load-opportunities">
-                  <div class="lh-audit-group__header"><span class="lh-audit-group__title">Résultats par page</span></div>
-                  <div class="lh-load-opportunity__header lh-load-opportunity__cols">
-                    <div class="lh-load-opportunity__col lh-load-opportunity__col--one">Pages</div>
+      </div>
+      <div class="lh-report">
+        <div class="lh-categories">
+          <div class="lh-category-wrapper">
+            <div class="lh-category lh--hoisted-meta" id="performance">
+              <div class="lh-audit__description">
+                Voici les estimations d'emission de Gaz à effet de serre et de
+                consomation d'eau pour l'ensemble du site audité.
+              </div>
+
+              {{GlobalGreenItMetrics}}
+
+              <div class="lh-audit-group lh-audit-group--load-opportunities">
+                <div class="lh-audit-group__header">
+                  <span class="lh-audit-group__title">Résultats par page</span>
+                </div>
+                <div
+                  class="lh-load-opportunity__header lh-load-opportunity__cols"
+                >
+                  <div
+                    class="lh-load-opportunity__col lh-load-opportunity__col--one"
+                  >
+                    Pages
                   </div>
-                  {{PerPages}}
                 </div>
+                {{PerPages}}
               </div>
             </div>
           </div>
-          <footer class="lh-footer" style="display: none">
-        
-          </footer>
         </div>
+        <footer class="lh-footer" style="display: none"></footer>
       </div>
     </article>
   </body>

@@ -1,53 +1,54 @@
 <table class="lh-table lh-details">
-    <thead>
-        <tr>
-            <th class="lh-table-column--url">
-                <div class="lh-text">Métrique</div>
-            </th>
-            <th class="lh-table-column--bytes">
-                <div class="lh-text">Valeur </div>
-            </th>
-            <th class="lh-table-column--bytes">
-                <div class="lh-text">Valeur Préconisée Maximale</div>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="lh-row--even">
-            <td class="lh-table-column--url">
-                <div class="lh-text">Nombre de Requetes</div>
-            </td>
-            <td class="lh-table-column--bytes">
-                <div class="lh-text {{NumberOfRequestCssClass}}">{{NumberOfRequest}}</div>
-            </td>
-            <td class="lh-table-column--bytes">
-                <div class="lh-text">{{NumberOfRequestRecommendation}}</div>
-            </td>
-        </tr>
+  <thead>
+    <tr>
+      <th class="lh-table-column--url">
+        <div class="lh-text">Métrique</div>
+      </th>
+      <th class="lh-table-column--bytes">
+        <div class="lh-text">Valeur</div>
+      </th>
+      <th class="lh-table-column--bytes">
+        <div class="lh-text">Valeur Préconisée Maximale</div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="lh-row--even">
+      <td class="lh-table-column--url">
+        <div class="lh-text">Nombre de Requetes</div>
+      </td>
+      <td class="lh-table-column--bytes">
+        <div class="lh-text {{NumberOfRequestCssClass}}">
+          {{NumberOfRequest}}
+        </div>
+      </td>
+      <td class="lh-table-column--bytes">
+        <div class="lh-text">{{NumberOfRequestRecommendation}}</div>
+      </td>
+    </tr>
 
-        <tr class="lh-row--odd">
-            <td class="lh-table-column--url">
-                <div class="lh-text">Poid de la page</div>
-            </td>
-            <td class="lh-table-column--bytes">
+    <tr class="lh-row--odd">
+      <td class="lh-table-column--url">
+        <div class="lh-text">Poid de la page</div>
+      </td>
+      <td class="lh-table-column--bytes">
+        <div class="lh-text {{PageSizeCssClass}}">{{PageSize}}</div>
+      </td>
+      <td class="lh-table-column--bytes">
+        <div class="lh-text">{{PageSizeRecommendation}}</div>
+      </td>
+    </tr>
 
-                <div class="lh-text {{PageSizeCssClass}}">{{PageSize}}</div>
-            </td>
-            <td class="lh-table-column--bytes">
-                <div class="lh-text">{{PageSizeRecommendation}}</div>
-            </td>
-        </tr>
-
-        <tr class="lh-row--even">
-            <td class="lh-table-column--url">
-                <div class="lh-text">Complexité du DOM</div>
-            </td>
-            <td class="lh-table-column--bytes">
-                <div class="lh-text {{PageComplexityCssClass}}">{{PageComplexity}}</div>
-            </td>
-            <td class="lh-table-column--bytes">
-                <div class="lh-text">{{PageComplexityRecommendation}}</div>
-            </td>
-        </tr>
-    </tbody>
+    <tr class="lh-row--even">
+      <td class="lh-table-column--url">
+        <div class="lh-text">Complexité du DOM</div>
+      </td>
+      <td class="lh-table-column--bytes">
+        <div class="lh-text {{PageComplexityCssClass}}">{{PageComplexity}}</div>
+      </td>
+      <td class="lh-table-column--bytes">
+        <div class="lh-text">{{PageComplexityRecommendation}}</div>
+      </td>
+    </tr>
+  </tbody>
 </table>

@@ -1,6 +1,4 @@
-const {
-  generateReports
-} = require("./generatorReports");
+const { generateReports } = require("./generatorReports");
 const fs = require("fs");
 const path = require("path");
 
@@ -55,7 +53,6 @@ describe("generatorReports", () => {
   it("replace all tag", async () => {
     await generateReports(options, output);
     var result = fs.readFileSync("globalReports.html").toString();
-    var expected = fs.readFileSync(path.join(__dirname,"test","globalReportsTest.html")).toString();
-    expect(result).toEqual(expected);
+    expect(result).toMatchSnapshot();
   });
 });

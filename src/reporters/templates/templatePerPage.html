@@ -1,41 +1,52 @@
-<div class="lh-audit lh-audit--load-opportunity lh-audit--numeric lh-audit--fail" id="render-blocking-resources">
-    <details class="lh-expandable-details">
-        <summary>
-            <div class="lh-audit__header">
-                <div class="lh-load-opportunity__cols">
-                    <div class="lh-load-opportunity__col lh-load-opportunity__col--one">
-                        {{IconPerPageTag}}
-                        <div class="lh-audit__title">
-                            <span>Page {{numberPageTag}}</span>
-                            <span>{{PageName}}</span></div>
-                    </div>
-                </div>
+<div
+  class="lh-audit lh-audit--load-opportunity lh-audit--numeric lh-audit--fail"
+  id="render-blocking-resources"
+>
+  <details class="lh-expandable-details">
+    <summary>
+      <div class="lh-audit__header">
+        <div class="lh-load-opportunity__cols">
+          <div class="lh-load-opportunity__col lh-load-opportunity__col--one">
+            {{IconPerPageTag}}
+            <div class="lh-audit__title">
+              <span>Page {{numberPageTag}}</span>
+              <span>{{PageName}}</span>
             </div>
-        </summary>
-        <div class="lh-audit__description"><span>Pour voir le rapport complet Lighthouse de cette page, veuillez visiter
-                <a rel="noopener" target="_blank"
-                    href="{{LighthouseReportPath}}">Ce
-                    rapport</a></span></div>
-        <div class="lh-scores-wrapper">
-            <div class="lh-scores-container">
-                <div class="lh-pyro">
-                    <div class="lh-pyro-before"></div>
-                    <div class="lh-pyro-after"></div>
-                </div>
-                <div class="lh-scores-header">
-                    {{PerformanceBlock}}
-                    {{AccecibilityBlock}}
-                    {{BestPracticesBlock}}
-                    {{EcoIndexBlock}}
-                </div>
-            </div>
+          </div>
         </div>
-        <div class="lh-audit__description">Pour calculer l'ecoindex, nous nous basons sur trois propriétés : le nombre
-            de requetes HTTP, le poid de la page, ainsi que la complexité du DOM. Voici les résultats pour cette page
+      </div>
+    </summary>
+    <div class="lh-audit__description">
+      <span
+        >Pour voir le rapport complet Lighthouse de cette page, veuillez visiter
+        <a rel="noopener" target="_blank" href="{{LighthouseReportPath}}"
+          >Ce rapport</a
+        ></span
+      >
+    </div>
+    <div class="lh-scores-wrapper">
+      <div class="lh-scores-container">
+        <div class="lh-pyro">
+          <div class="lh-pyro-before"></div>
+          <div class="lh-pyro-after"></div>
         </div>
-        {{PageMetricsBlock}}
-        <div class="lh-audit__description">A partir des métriques précédente, une estimation des emissions de gaz à
-            effet de serre ainsi que la consommation d'eau est calculée. Voici le résultat pour cette page:</div>
-        {{GreenItMetricsBlock}}
-    </details>
+        <div class="lh-scores-header">
+          {{PerformanceBlock}} {{AccecibilityBlock}} {{BestPracticesBlock}}
+          {{EcoIndexBlock}}
+        </div>
+      </div>
+    </div>
+    <div class="lh-audit__description">
+      Pour calculer l'ecoindex, nous nous basons sur trois propriétés : le
+      nombre de requetes HTTP, le poid de la page, ainsi que la complexité du
+      DOM. Voici les résultats pour cette page
+    </div>
+    {{PageMetricsBlock}}
+    <div class="lh-audit__description">
+      A partir des métriques précédente, une estimation des emissions de gaz à
+      effet de serre ainsi que la consommation d'eau est calculée. Voici le
+      résultat pour cette page:
+    </div>
+    {{GreenItMetricsBlock}}
+  </details>
 </div>
