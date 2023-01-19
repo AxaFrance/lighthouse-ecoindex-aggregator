@@ -1,5 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+
+const folderTemplate = "templates";
+const folderTranslate = "translate";
+
 const {
   globalPerformanceTag,
   globalAccessibilityTag,
@@ -22,33 +26,34 @@ const {
   NumberOfRequestRecommendationTag,
   greenItMetricsBlock,
   pageMetricsBlock,
+  IconPerPageTag,
+  numberPageTag,
+  pageNameTag
 } = require("./pageTag");
-const computeCssClassForMetrics = require("./utils/computeCssClassForMetrics");
-const ejs = require("ejs");
 
+const ejs = require("ejs");
+const computeCssClassForMetrics = require("./utils/computeCssClassForMetrics");
 const pageInErrorOrWarning = require("./utils/displayPageErrorIcon");
-const folderTemplate = "templates";
+
 const generateReports = async (options, results) => {
   if (options?.verbose) {
     console.log("Generate reports html.");
   }
+  options.translations = populateTranslation(options);
   const htmlPerPageResult = await populateTemplatePerPage(options, results);
-  const htmlResult = await populateTemplate(
-    options,
-    results,
-    htmlPerPageResult
-  );
+  let htmlResult = await populateTemplate(options, results, htmlPerPageResult);
 
   let outputPath = "globalReports.html";
   if (!!options.outputPath) {
     outputPath = path.join(process.cwd(), options.outputPath);
     fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   }
+
   fs.writeFileSync(outputPath, htmlResult);
 };
 
 const populateTemplate = async (options, results, htmlPerPageResult) => {
-  const template = readTemplate("template.html");
+  let template = readTemplate("template.html");
   const performanceBlockTemplate = populateTemplatePerformance(
     options,
     results.performance,
@@ -76,15 +81,15 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
     water: results.water,
     waterShower: results.waterShower,
   });
-
-  return template
-    .toString()
-    .replace(globalPerformanceTag, performanceBlockTemplate)
-    .replace(globalAccessibilityTag, accessibilityBlockTemplate)
-    .replace(globalEcoIndexTag, ecoIndexBlockTemplate)
-    .replace(globalBestPracticesTag, bestPracticesBlockTemplate)
-    .replace(htmlPerPageBlock, htmlPerPageResult)
-    .replace("{{GlobalGreenItMetrics}}", GlobalGreenItMetricsTemplate);
+  return ejs.render(template, {
+    [globalPerformanceTag]:performanceBlockTemplate,
+    [globalAccessibilityTag]: accessibilityBlockTemplate,
+    [globalEcoIndexTag]: ecoIndexBlockTemplate,
+    [globalBestPracticesTag]: bestPracticesBlockTemplate,
+    [htmlPerPageBlock]: htmlPerPageResult,
+    GlobalGreenItMetrics: GlobalGreenItMetricsTemplate,
+    Translations:options.translations
+  });
 };
 
 const populateMetrics = (options, metric) => {
@@ -93,36 +98,26 @@ const populateMetrics = (options, metric) => {
   }
   const template = readTemplate("templatePageMetrics.html");
   const NumberOfRequestMetric =
-    metric?.find(m => m.name === "number_requests") ?? {};
-  const PageSizeMetric = metric?.find(m => m.name === "page_size") ?? {};
+    metric?.find((m) => m.name === "number_requests") ?? {};
+  const PageSizeMetric = metric?.find((m) => m.name === "page_size") ?? {};
   const PageComplexityMetric =
-    metric?.find(m => m.name === "Page_complexity") ?? {};
+    metric?.find((m) => m.name === "Page_complexity") ?? {};
 
-  return template
-    .replace(NumberOfRequestTag, NumberOfRequestMetric.value)
-    .replace(
-      NumberOfRequestRecommendationTag,
-      NumberOfRequestMetric.recommandation
-    )
-    .replace(
-      "{{NumberOfRequestCssClass}}",
-      computeCssClassForMetrics(NumberOfRequestMetric)
-    )
-    .replace(PageSizeTag, PageSizeMetric.value)
-    .replace(PageSizeRecommendationTag, PageSizeMetric.recommandation)
-    .replace("{{PageSizeCssClass}}", computeCssClassForMetrics(PageSizeMetric))
-    .replace(PageComplexityTag, PageComplexityMetric.value)
-    .replace(
-      PageComplexityRecommendationTag,
-      PageComplexityMetric.recommandation
-    )
-    .replace(
-      "{{PageComplexityCssClass}}",
-      computeCssClassForMetrics(PageComplexityMetric)
-    );
+  return ejs.render(template, {
+    [NumberOfRequestTag]: NumberOfRequestMetric.value,
+    [NumberOfRequestRecommendationTag]: NumberOfRequestMetric.recommandation,
+    NumberOfRequestCssClass: computeCssClassForMetrics(NumberOfRequestMetric),
+    [PageSizeTag]: PageSizeMetric.value,
+    [PageSizeRecommendationTag]: PageSizeMetric.recommandation,
+    PageSizeCssClass: computeCssClassForMetrics(PageSizeMetric),
+    [PageComplexityTag]: PageComplexityMetric.value,
+    [PageComplexityRecommendationTag]: PageComplexityMetric.recommandation,
+    PageComplexityCssClass: computeCssClassForMetrics(PageComplexityMetric),
+    Translations: options.translations,
+  });
 };
 
-const readTemplate = templateFile => {
+const readTemplate = (templateFile) => {
   const templatePath = path.join(__dirname, folderTemplate, templateFile);
   return fs.readFileSync(templatePath).toString();
 };
@@ -147,12 +142,12 @@ const populateGreentItMetrics = (
     greenhouseGasesKm,
     water,
     waterShower,
+    Translations : options.translations
   });
 };
 
 const populateTemplatePerPage = async (options, results) => {
-  const numberPageTag = "{{numberPageTag}}";
-  const pageNameTag = "{{PageName}}";
+
   let htmlPerPage = "";
   const defaultTemplatePerPage = readTemplate("templatePerPage.html");
   let numberPage = 0;
@@ -161,7 +156,7 @@ const populateTemplatePerPage = async (options, results) => {
     if (options?.verbose) {
       console.log("Populate reports page:", numberPage);
     }
-    let templatePerPage = pageInErrorOrWarning(page, defaultTemplatePerPage);
+    
     const performanceBlockTemplate = populateTemplatePerformance(
       options,
       page.performance,
@@ -189,17 +184,20 @@ const populateTemplatePerPage = async (options, results) => {
       greenhouseGases: page.greenhouseGases,
       water: page.water,
     });
-    templatePerPage = templatePerPage
-      .replace(performanceBlock, performanceBlockTemplate)
-      .replace(accessibilityBlock, accessibilityBlockTemplate)
-      .replace(bestPracticesBlock, bestPracticesBlockTemplate)
-      .replace(ecoIndexBlock, ecoIndexBlockTemplate)
-      .replace(numberPageTag, numberPage)
-      .replace(pageNameTag, page.pageName)
-      .replace(lighthouseReportPathTag, page.lighthouseReport)
-      .replace(pageMetricsBlock, metricsTemplate)
-      .replace(greenItMetricsBlock, greenItMetricsTemplate);
 
+    const templatePerPage = ejs.render(defaultTemplatePerPage, {
+      [performanceBlock]: performanceBlockTemplate,
+      [accessibilityBlock]: accessibilityBlockTemplate,
+      [bestPracticesBlock]: bestPracticesBlockTemplate,
+      [ecoIndexBlock]: ecoIndexBlockTemplate,
+      [pageMetricsBlock]: metricsTemplate,
+      [greenItMetricsBlock]: greenItMetricsTemplate,
+      [numberPageTag]: numberPage,
+      [pageNameTag]: page.pageName,
+      [lighthouseReportPathTag]: page.lighthouseReport,
+      [IconPerPageTag]:pageInErrorOrWarning(page),
+      Translations : options.translations
+    });
     htmlPerPage += templatePerPage;
   });
   return htmlPerPage;
@@ -212,7 +210,7 @@ const populateTemplatePerformance = (options, performance, numberPage) => {
     );
   }
   const template = readTemplate("templatePerfomance.html");
-  return defineCssClass(performance, template);
+  return defineCssClass(performance, template, options);
 };
 
 const populateTemplateAccecibility = (options, accessibility, numberPage) => {
@@ -222,7 +220,7 @@ const populateTemplateAccecibility = (options, accessibility, numberPage) => {
     );
   }
   const template = readTemplate("templateAccecibility.html");
-  return defineCssClass(accessibility, template);
+  return defineCssClass(accessibility, template, options);
 };
 
 const populateTemplateBestPractices = (options, bestPractices, numberPage) => {
@@ -232,7 +230,7 @@ const populateTemplateBestPractices = (options, bestPractices, numberPage) => {
     );
   }
   const template = readTemplate("templateBestPractices.html");
-  return defineCssClass(bestPractices, template);
+  return defineCssClass(bestPractices, template, options);
 };
 
 const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
@@ -242,10 +240,27 @@ const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
     );
   }
   const template = readTemplate("templateEcoIndex.html");
-  return defineCssClass(ecoIndex, template);
+  return defineCssClass(ecoIndex, template, options);
 };
 
-const defineCssClass = (value, template) => {
+const populateTranslation = (options) => {
+  let templateFile = "En-en.json";
+  switch (options?.lang) {
+    case "Fr":
+      templateFile = "Fr-fr.json";
+      break;
+    case "En":
+    default:
+      templateFile = "En-en.json";
+  }
+  if (options?.verbose) {
+    console.log("Translate by files:", templateFile);
+  }
+  const templatePath = path.join(__dirname, folderTranslate, templateFile);
+  return require(templatePath);
+};
+
+const defineCssClass = (value, template, options) => {
   const cssPassClass = "lh-gauge__wrapper--pass";
   const cssAverageClass = "lh-gauge__wrapper--average";
   const cssFailClass = "lh-gauge__wrapper--fail";
@@ -256,11 +271,12 @@ const defineCssClass = (value, template) => {
   else if (value <= 89 && value > 49) classUsed = cssAverageClass;
   else if (value <= 49 && value > 0) classUsed = cssFailClass;
   else classUsed = cssNotApplicableClass;
-
-  return ejs.render(template, {
+  let variables = {
     Class: classUsed,
     Value: value,
-  });
+    Translations: options.translations,
+  };
+  return ejs.render(template, variables);
 };
 
 module.exports = {

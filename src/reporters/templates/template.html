@@ -2155,43 +2155,36 @@
               <div class="lh-pyro-after"></div>
             </div>
             <div class="lh-scores-header">
-              {{GlobalPerformance}} {{GlobalAccessibility}}
-              {{GlobalBestPractices}} {{GlobalEcoIndex}}
+              <%- GlobalPerformance %>
+              <%- GlobalAccessibility %>
+              <%- GlobalBestPractices %>
+              <%- GlobalEcoIndex %>
             </div>
           </div>
         </div>
       </div>
-      <div class="lh-report">
-        <div class="lh-categories">
-          <div class="lh-category-wrapper">
-            <div class="lh-category lh--hoisted-meta" id="performance">
-              <div class="lh-audit__description">
-                Voici les estimations d'emission de Gaz à effet de serre et de
-                consomation d'eau pour l'ensemble du site audité.
+    </div>
+    <div class="lh-report">
+      <div class="lh-categories">
+        <div class="lh-category-wrapper">
+          <div class="lh-category lh--hoisted-meta" id="performance">
+            <div class="lh-audit__description"><%- Translations.LabelDescriptionAudit %></div>
+            
+            <%- GlobalGreenItMetrics %>
+          
+            <div class="lh-audit-group lh-audit-group--load-opportunities">
+              <div class="lh-audit-group__header"><span class="lh-audit-group__title"><%= Translations.LabelResultByPage %></span></div>
+              <div class="lh-load-opportunity__header lh-load-opportunity__cols">
+                <div class="lh-load-opportunity__col lh-load-opportunity__col--one"><%= Translations.LabelPage %></div>
               </div>
-
-              {{GlobalGreenItMetrics}}
-
-              <div class="lh-audit-group lh-audit-group--load-opportunities">
-                <div class="lh-audit-group__header">
-                  <span class="lh-audit-group__title">Résultats par page</span>
-                </div>
-                <div
-                  class="lh-load-opportunity__header lh-load-opportunity__cols"
-                >
-                  <div
-                    class="lh-load-opportunity__col lh-load-opportunity__col--one"
-                  >
-                    Pages
-                  </div>
-                </div>
-                {{PerPages}}
-              </div>
+              <%- PerPages %>
             </div>
           </div>
         </div>
         <footer class="lh-footer" style="display: none"></footer>
       </div>
-    </article>
-  </body>
-</html>
+      <footer class="lh-footer" style="display: none">
+      </footer>
+    </div>
+  </div>
+</article>

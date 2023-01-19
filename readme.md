@@ -39,6 +39,16 @@ _description:_
  options is used for defined format reports after task 
  unique value possible used is "html"
 
+**_--lang_**
+   
+_type:_ string
+
+_description:_
+
+ options is used for translated report 
+ values possible used is "Fr" or "En"
+ default is "En" 
+
 **_-v_**
 _type:_ boolean
 
@@ -50,7 +60,7 @@ _description:_
 ## Example usage
 
 ```bash
-node ./index.js  --srcLighthouse="C:\Workspace\reports\lighthouse" --srcEcoIndex="C:\Workspace\reports\ecoindex" --reports="html"
+node ./cli.js  --srcLighthouse="C:\Workspace\reports\lighthouse" --srcEcoIndex="C:\Workspace\reports\ecoindex" --reports="html"
 ```
 
 You can also used this module programmatically
