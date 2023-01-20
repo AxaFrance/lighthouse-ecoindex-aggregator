@@ -8,7 +8,7 @@ const optionDefinitions = [
   { name: "srcLighthouse", type: String, multiple: false },
   { name: "srcEcoIndex", type: String, multiple: false },
   { name: "outputPath", type: String, multiple: false },
-  { name: "timeout", alias: "t", type: Number },
+  { name: "lang",  type: String,multiple: false },
   { name: "help", alias: "h", type: Boolean },
 ];
 
@@ -45,6 +45,12 @@ const sections = [
         typeLabel: "{underline string}",
         description: "folder with json reports ecoIndex",
       },
+      {
+        name: "lang",
+        typeLabel: "{underline string}",
+        description: "define language report",
+        value : "En_en"
+      }
     ],
   },
 ];

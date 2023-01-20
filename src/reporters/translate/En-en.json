@@ -1,0 +1,23 @@
+{
+    "SeeReport":"To view the full Lighthouse report on this page, please visit",
+    "DescriptionEcoIndex":"To calculate the ecoindex, we rely on three properties: the number of HTTP requests, the weight of the page, and the complexity of the DOM. Here are the results for this page",
+    "DescriptionMetrics" : "From the previous metrics, an estimate of greenhouse gas emissions and water consumption is calculated. Here is the result for this page:",
+    "LabelDescriptionAudit":"Here are the estimates of greenhouse gas emissions and water consumption for the entire audited site.",
+    "LabelResultByPage":"Résults per page",
+    "LabelPage":"Page",
+    "LabelMetrics": "Metrics",
+    "LabelTheReport": "The Report",
+    "LabelValue": "Value",
+    "LabelMaxRecommandedValue": "Maximum recommended value",
+    "LabelNumberRequest": "Number of requests",
+    "LabelWeightPage": "Weight page",
+    "LabelComplexityDom": "DOM Complexity",
+    "LabelGases": "Greenhouse gases",
+    "LabelWaterConsummation": "Water consumption",
+    "LabelConvertedValue" : "Converted value",
+    "LabelAccessibility":"Accessibility",
+    "LabelBestPractices" : "Best Practices",
+    "LabelEcoIndex" : "EcoIndex",
+    "LabelPerformance" : "Performances",
+    "LabelShowers":"Showers"
+}

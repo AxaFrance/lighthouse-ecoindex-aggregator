@@ -1,9 +1,8 @@
-const PAGE_ERROR_ICON = "{{IconPerPageTag}}";
 const HTML_ICON = "<span class='lh-audit__score-icon' aria-label='Page à améliorer'></span>";
 
 const THRESHOLD = 66;
 
-const pageInErrorOrWarning = (page, template) => {
+const pageInErrorOrWarning = (page) => {
   
   if (
     page.ecoIndex < THRESHOLD ||
@@ -12,9 +11,9 @@ const pageInErrorOrWarning = (page, template) => {
     page.bestPractices < THRESHOLD
   ) {
     console.log("value lesser than 66");
-    return template.replace(PAGE_ERROR_ICON, HTML_ICON);
+    return HTML_ICON;
   }
-  return template.replace(PAGE_ERROR_ICON, "");
+  return "";
 };
 
 module.exports = pageInErrorOrWarning;

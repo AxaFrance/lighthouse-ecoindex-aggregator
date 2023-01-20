@@ -1,17 +1,21 @@
-const PageSizeTag = "{{PageSize}}";
-const PageSizeRecommendationTag = "{{PageSizeRecommendation}}";
-const PageComplexityTag = "{{PageComplexity}}";
-const PageComplexityRecommendationTag = "{{PageComplexityRecommendation}}";
-const lighthouseReportPathTag = "{{LighthouseReportPath}}";
-const NumberOfRequestTag = "{{NumberOfRequest}}";
-const NumberOfRequestRecommendationTag = "{{NumberOfRequestRecommendation}}";
-const GreenhouseGasesTag = "{{GreenhouseGases}}";
-const GreenhouseGasesKmTag = "{{GreenhouseGasesKm}}";
-const WaterTag = "{{Water}}";
-const WaterShowerTag = "{{WaterShower}}";   
+const PageSizeTag = "PageSize";
+const PageSizeRecommendationTag = "PageSizeRecommendation";
+const PageComplexityTag = "PageComplexity";
+const PageComplexityRecommendationTag = "PageComplexityRecommendation";
+const lighthouseReportPathTag = "LighthouseReportPath";
+const NumberOfRequestTag = "NumberOfRequest";
+const NumberOfRequestRecommendationTag = "NumberOfRequestRecommendation";
+const GreenhouseGasesTag = "GreenhouseGases";
+const GreenhouseGasesKmTag = "GreenhouseGasesKm";
+const WaterTag = "Water";
+const WaterShowerTag = "WaterShower";   
 
-const greenItMetricsBlock = "{{GreenItMetricsBlock}}";
-const pageMetricsBlock = "{{PageMetricsBlock}}";
+const greenItMetricsBlock = "GreenItMetricsBlock";
+const pageMetricsBlock = "PageMetricsBlock";
+const IconPerPageTag = "IconPerPageTag";
+
+const numberPageTag = "numberPageTag";
+const pageNameTag = "PageName";
 
 module.exports ={
     PageSizeTag ,
@@ -26,7 +30,10 @@ module.exports ={
     WaterTag ,
     WaterShowerTag,
     greenItMetricsBlock,
-    pageMetricsBlock 
+    pageMetricsBlock ,
+    IconPerPageTag,
+    numberPageTag,
+    pageNameTag
 };
 
 
