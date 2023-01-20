@@ -4,7 +4,7 @@ const globalBestPracticesTag = "GlobalBestPractices";
 const globalEcoIndexTag = "GlobalEcoIndex";
 const htmlPerPageBlock = "PerPages";
 const performanceBlock = "PerformanceBlock";
-const accessibilityBlock = "AccecibilityBlock";
+const accessibilityBlock = "AccessibilityBlock";
 const bestPracticesBlock = "BestPracticesBlock";
 const ecoIndexBlock = "EcoIndexBlock";
 
