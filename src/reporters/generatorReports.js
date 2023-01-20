@@ -59,7 +59,7 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
     results.performance,
     "global"
   );
-  const accessibilityBlockTemplate = populateTemplateAccecibility(
+  const accessibilityBlockTemplate = populateTemplateAccessibility(
     options,
     results.accessibility,
     "global"
@@ -162,7 +162,7 @@ const populateTemplatePerPage = async (options, results) => {
       page.performance,
       numberPage
     );
-    const accessibilityBlockTemplate = populateTemplateAccecibility(
+    const accessibilityBlockTemplate = populateTemplateAccessibility(
       options,
       page.accessibility,
       numberPage
@@ -209,17 +209,17 @@ const populateTemplatePerformance = (options, performance, numberPage) => {
       `populate performance with value:${performance} for page ${numberPage}`
     );
   }
-  const template = readTemplate("templatePerfomance.html");
+  const template = readTemplate("templatePerformance.html");
   return defineCssClass(performance, template, options);
 };
 
-const populateTemplateAccecibility = (options, accessibility, numberPage) => {
+const populateTemplateAccessibility = (options, accessibility, numberPage) => {
   if (options?.verbose) {
     console.log(
       `populate accessibility with value: ${accessibility} for page ${numberPage}`
     );
   }
-  const template = readTemplate("templateAccecibility.html");
+  const template = readTemplate("templateAccessibility.html");
   return defineCssClass(accessibility, template, options);
 };
 
@@ -282,7 +282,7 @@ const defineCssClass = (value, template, options) => {
 module.exports = {
   generateReports,
   populateTemplatePerformance,
-  populateTemplateAccecibility,
+  populateTemplateAccessibility,
   populateTemplateBestPractices,
   populateTemplateEcoIndex,
 };
