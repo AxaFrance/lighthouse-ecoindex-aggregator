@@ -203,14 +203,22 @@ const populateTemplatePerPage = async (options, results) => {
   return htmlPerPage;
 };
 
+const populateDoughnut = (value, label) => {
+  const template = readTemplate("templateDoughnut.html");
+  return ejs.render(template, {
+    Class: generateCSSClassBasedOnValue(value),
+    Value: value,
+    Label: label,
+  });
+};
+
 const populateTemplatePerformance = (options, performance, numberPage) => {
   if (options?.verbose) {
     console.log(
       `populate performance with value:${performance} for page ${numberPage}`
     );
   }
-  const template = readTemplate("templatePerformance.html");
-  return defineCssClass(performance, template, options);
+  return populateDoughnut(performance, options.translations.LabelPerformance);
 };
 
 const populateTemplateAccessibility = (options, accessibility, numberPage) => {
@@ -219,8 +227,7 @@ const populateTemplateAccessibility = (options, accessibility, numberPage) => {
       `populate accessibility with value: ${accessibility} for page ${numberPage}`
     );
   }
-  const template = readTemplate("templateAccessibility.html");
-  return defineCssClass(accessibility, template, options);
+  return populateDoughnut(accessibility, options.translations.LabelAccessibility);
 };
 
 const populateTemplateBestPractices = (options, bestPractices, numberPage) => {
@@ -229,8 +236,7 @@ const populateTemplateBestPractices = (options, bestPractices, numberPage) => {
       `populate bestPractices with value ${bestPractices} for page ${numberPage}`
     );
   }
-  const template = readTemplate("templateBestPractices.html");
-  return defineCssClass(bestPractices, template, options);
+  return populateDoughnut(bestPractices, options.translations.LabelBestPractices);
 };
 
 const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
@@ -239,8 +245,7 @@ const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
       `populate ecoIndex with value: ${ecoIndex} for page: ${numberPage}`
     );
   }
-  const template = readTemplate("templateEcoIndex.html");
-  return defineCssClass(ecoIndex, template, options);
+  return populateDoughnut(ecoIndex, options.translations.LabelEcoIndex);
 };
 
 const populateTranslation = (options) => {
@@ -260,24 +265,19 @@ const populateTranslation = (options) => {
   return require(templatePath);
 };
 
-const defineCssClass = (value, template, options) => {
+const generateCSSClassBasedOnValue = value => {
   const cssPassClass = "lh-gauge__wrapper--pass";
   const cssAverageClass = "lh-gauge__wrapper--average";
   const cssFailClass = "lh-gauge__wrapper--fail";
   const cssNotApplicableClass = "lh-gauge__wrapper--not-applicable";
-  let classUsed = "";
 
-  if (value > 89) classUsed = cssPassClass;
-  else if (value <= 89 && value > 49) classUsed = cssAverageClass;
-  else if (value <= 49 && value > 0) classUsed = cssFailClass;
-  else classUsed = cssNotApplicableClass;
-  let variables = {
-    Class: classUsed,
-    Value: value,
-    Translations: options.translations,
-  };
-  return ejs.render(template, variables);
+  if (value > 89) return cssPassClass;
+  else if (value <= 89 && value > 49) return cssAverageClass;
+  else if (value <= 49 && value > 0) return cssFailClass;
+  
+  return cssNotApplicableClass;
 };
+
 
 module.exports = {
   generateReports,
