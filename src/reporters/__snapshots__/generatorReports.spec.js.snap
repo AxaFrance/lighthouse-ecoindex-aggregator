@@ -2158,7 +2158,7 @@ exports[`generatorReports replace all tag 1`] = `
               <div class="lh-pyro-after"></div>
             </div>
             <div class="lh-scores-header">
-              <a class="lh-gauge__wrapper lh-gauge__wrapper--fail" href="#performance">
+              <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2170,7 +2170,7 @@ exports[`generatorReports replace all tag 1`] = `
     <div class="lh-gauge__label">Performances</div>
 </a>
 
-              <a class="lh-gauge__wrapper lh-gauge__wrapper--fail" href="#accessibility">
+              <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2182,7 +2182,7 @@ exports[`generatorReports replace all tag 1`] = `
     <div class="lh-gauge__label">Accessibilité</div>
 </a>
 
-              <a class="lh-gauge__wrapper lh-gauge__wrapper--fail" href="#best-practices">
+              <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2194,7 +2194,7 @@ exports[`generatorReports replace all tag 1`] = `
     <div class="lh-gauge__label">Bonnes pratiques</div>
 </a>
 
-              <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#ecoIndex">
+              <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2289,7 +2289,7 @@ exports[`generatorReports replace all tag 1`] = `
                     <div class="lh-pyro-after"></div>
                 </div>
                 <div class="lh-scores-header">
-                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#performance">
+                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2301,7 +2301,7 @@ exports[`generatorReports replace all tag 1`] = `
     <div class="lh-gauge__label">Performances</div>
 </a>
 
-                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#accessibility">
+                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2313,7 +2313,7 @@ exports[`generatorReports replace all tag 1`] = `
     <div class="lh-gauge__label">Accessibilité</div>
 </a>
 
-                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#best-practices">
+                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2325,7 +2325,7 @@ exports[`generatorReports replace all tag 1`] = `
     <div class="lh-gauge__label">Bonnes pratiques</div>
 </a>
 
-                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average" href="#ecoIndex">
+                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2340,7 +2340,6 @@ exports[`generatorReports replace all tag 1`] = `
                 </div>
             </div>
           </div>
-        </div>
         <div class="lh-audit__description">
             Pour calculer l'ecoindex, nous nous basons sur trois propriétés : le nombre de requetes HTTP, le poid de la page, ainsi que la complexité du DOM. Voici les résultats pour cette page
         </div>
