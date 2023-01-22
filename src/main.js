@@ -6,10 +6,10 @@ const { generateReports } = require("./reporters/generatorReports");
 module.exports = async (options) => {
   const resultsGlobalLighthouse = await aggregatorServiceLighthouse(options);
   const resultsGlobalEcoindex = await aggregatorServiceEcoIndex(options);
-  const resultsGlobal = await aggregatorGlobalService(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
+  const resultsGlobal = aggregatorGlobalService(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
 
   if (options.reports === "html") {
-    generateReports(options, resultsGlobal);
+    await generateReports(options, resultsGlobal);
   }
 
   return resultsGlobal;
