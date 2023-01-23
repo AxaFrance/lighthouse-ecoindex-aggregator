@@ -3,12 +3,11 @@ const path = require("path");
 
 module.exports = async (options) => {
   if (!options.srcLighthouse || !fs.existsSync(options.srcLighthouse)) {
-    return {perPages:[]};;
+    return {perPages:[]};
   }
 
   const lighthouseReportsFiles = listFiles(options);
-  const results = readFiles(options, lighthouseReportsFiles);
-  return results;
+  return readFiles(options, lighthouseReportsFiles);
 };
 
 const readFiles = (options, lighthouseJsonReportsFiles) => {
