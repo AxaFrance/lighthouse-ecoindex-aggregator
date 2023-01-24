@@ -29,7 +29,7 @@ const {
   IconPerPageTag,
   numberPageTag,
   pageNameTag,
-  statusClassPerPageTag
+  statusClassPerPageTag,
 } = require("./pageTag");
 
 const ejs = require("ejs");
@@ -204,12 +204,20 @@ const populateTemplatePerPage = async (options, results) => {
       [pageNameTag]: page.pageName,
       [lighthouseReportPathTag]: page.lighthouseReport,
       [IconPerPageTag]: pageInErrorOrWarning(page),
-      [statusClassPerPageTag]:statusPerPage(page),
+      [statusClassPerPageTag]: statusPerPage(page),
       Translations: options.translations,
     });
-    htmlPerPage +=templatePerPage;
-});
-return htmlPerPage;
+    return htmlPerPage;
+  });
+};
+
+const populateDoughnut = (value, label) => {
+  const template = readTemplate("templateDoughnut.html");
+  return ejs.render(template, {
+    Class: generateCSSClassBasedOnValue(value),
+    Value: value,
+    Label: label,
+  });
 };
 
 const populateTemplatePerformance = (options, performance, numberPage) => {
@@ -277,7 +285,6 @@ const generateCSSClassBasedOnValue = value => {
 
     return cssNotApplicableClass;
 };
-
 
 module.exports = {
     generateReports,
