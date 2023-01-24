@@ -3,7 +3,8 @@ const path = require("path");
 
 module.exports = async (options) => {
   if (!options.srcLighthouse || !fs.existsSync(options.srcLighthouse)) {
-    return {perPages:[]};
+    console.error("lighthouse folder not found!");
+    process.exit(1);
   }
 
   const lighthouseReportsFiles = listFiles(options);
@@ -17,7 +18,7 @@ const readFiles = (options, lighthouseJsonReportsFiles) => {
   const perPages = [];
 
   lighthouseJsonReportsFiles.forEach((fileName) => {
-    const pageName = fileName.split(".")[0];
+    const pageName = fileName.replace(".json", "");
     const pathFile = path.join(options.srcLighthouse, fileName);
     const data = fs.readFileSync(pathFile);
     const result = JSON.parse(data);
