@@ -3,11 +3,8 @@ const path = require("path");
 
 module.exports = async (options) => {
   if (!options.srcEcoIndex || !fs.existsSync(options.srcEcoIndex)) {
-
-    if(options.verbose){
-      console.log("folder not found!");
-    }
-    return { perPages: [] };
+    console.error("ecoindex folder not found!");
+    process.exit(1);
   }
   const ecoIndexJsonReportsFiles = listFiles(options);
   const results = readFiles(options, ecoIndexJsonReportsFiles);
@@ -22,7 +19,7 @@ const readFiles = (options, ecoIndexJsonReportsFiles) => {
   let greenhouseGasesKm = 0;
   let waterShower = 0;
   ecoIndexJsonReportsFiles.forEach((fileName) => {
-    const pageName = fileName.split(".")[0];
+    const pageName = fileName.replace(".json", "");
     const pathFile = path.join(options.srcEcoIndex, fileName);
     const data = fs.readFileSync(pathFile);
     const result = JSON.parse(data);

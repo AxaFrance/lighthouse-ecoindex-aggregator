@@ -64,14 +64,6 @@ describe("AggregatorService", () => {
         const result = await aggregate(options);
         expect(result).toEqual(output);
     });
-    it("should return the default output if not found folder", async () => {
-        const options = {
-            srcEcoIndex: "",
-        };
-        const output = { perPages: [] };
-        const result = await aggregate(options);
-        expect(result).toEqual(output);
-    });
 
     it("should return global ecoIndex", async () => {
         const options = {srcEcoIndex:"test",verbose:true};

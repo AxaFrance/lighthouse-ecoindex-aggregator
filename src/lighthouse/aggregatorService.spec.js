@@ -27,14 +27,6 @@ describe("AggregatorService", () => {
     const result = await aggregate(options);
     expect(result).toEqual(output);
   });
-  it("should return the default output if not found folder", async () => {
-    const options = {
-      srcLighthouse: "",
-    };
-    const output = { perPages: [] };
-    const result = await aggregate(options);
-    expect(result).toEqual(output);
-  });
 
   it("should return the lightouse output", async () => {
     const options = { srcLighthouse: "test", verbose: true };
