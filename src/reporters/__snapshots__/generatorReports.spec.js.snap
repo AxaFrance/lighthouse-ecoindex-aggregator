@@ -633,12 +633,13 @@ we'd be happy for the URL column to wrap if the URLs are particularly long.
 
 .lh-audit__title {
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: var(--default-padding);
 }
 
 .lh-audit__title span {
-  margin: auto;
+  margin-right: auto;
 }
 
 .lh-audit--load-opportunity .lh-audit__header {
@@ -2085,7 +2086,7 @@ details .lh-scores-wrapper {
             <div class="lh-pyro-after"></div>
           </div>
           <div class="lh-scores-header">
-                <a class="lh-gauge__wrapper lh-gauge__wrapper--fail" href="#performance">
+                <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2097,7 +2098,7 @@ details .lh-scores-wrapper {
     <div class="lh-gauge__label">Performances</div>
 </a>
 
-              <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
+                <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2109,7 +2110,7 @@ details .lh-scores-wrapper {
     <div class="lh-gauge__label">Accessibilité</div>
 </a>
 
-              <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
+                <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2121,7 +2122,7 @@ details .lh-scores-wrapper {
     <div class="lh-gauge__label">Bonnes pratiques</div>
 </a>
 
-              <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
+                <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2220,7 +2221,8 @@ details .lh-scores-wrapper {
                     <a rel="noopener" target="_blank" href="reports/test1.html">
                         
                     </a>
-            </span></div>
+            </span>
+        </div>
         <div class="lh-scores-wrapper">
             <div class="lh-scores-container">
                 <div class="lh-pyro">
@@ -2240,7 +2242,7 @@ details .lh-scores-wrapper {
     <div class="lh-gauge__label">Performances</div>
 </a>
 
-                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
+                        <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2252,7 +2254,7 @@ details .lh-scores-wrapper {
     <div class="lh-gauge__label">Accessibilité</div>
 </a>
 
-                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
+                            <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2264,7 +2266,7 @@ details .lh-scores-wrapper {
     <div class="lh-gauge__label">Bonnes pratiques</div>
 </a>
 
-                    <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
+                                <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2278,11 +2280,11 @@ details .lh-scores-wrapper {
 
                 </div>
             </div>
-          </div>
-        <div class="lh-audit__description">
-            Pour calculer l'ecoindex, nous nous basons sur trois propriétés : le nombre de requetes HTTP, le poid de la page, ainsi que la complexité du DOM. Voici les résultats pour cette page
         </div>
-        <table class="lh-table lh-details">
+            <div class="lh-audit__description">
+    Pour calculer l&#39;ecoindex, nous nous basons sur trois propriétés : le nombre de requetes HTTP, le poid de la page, ainsi que la complexité du DOM. Voici les résultats pour cette page
+</div>
+<table class="lh-table lh-details">
     <thead>
         <tr>
             <th class="lh-table-column--url">

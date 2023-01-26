@@ -10,7 +10,6 @@ const pageInErrorOrWarning = (page) => {
     page.accessibility < THRESHOLD ||
     page.bestPractices < THRESHOLD
   ) {
-    console.log("value lesser than 66");
     return HTML_ICON_FAIL;
   }
   return HTML_ICON_PASS;

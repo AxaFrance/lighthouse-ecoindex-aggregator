@@ -207,8 +207,9 @@ const populateTemplatePerPage = async (options, results) => {
       [statusClassPerPageTag]: statusPerPage(page),
       Translations: options.translations,
     });
-    return htmlPerPage;
+    htmlPerPage += templatePerPage;
   });
+  return htmlPerPage;
 };
 
 const populateDoughnut = (value, label) => {

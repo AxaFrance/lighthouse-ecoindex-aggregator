@@ -12,7 +12,6 @@ const globalBaseEcoIndex = (options, ecoindex, lighthouse = {}) => {
     }
     const resultAggregatePerPage = [];
     ecoindex?.perPages?.forEach((pageEcoIndex) => {
-        console.log(pageEcoIndex, lighthouse.perPages);
         const pageLighthouse = lighthouse.perPages.find((pageLighthouse) => pageEcoIndex.pageName === pageLighthouse.pageName);
 
         resultAggregatePerPage.push({
