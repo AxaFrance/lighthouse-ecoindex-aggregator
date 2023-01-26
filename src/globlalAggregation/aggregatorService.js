@@ -33,6 +33,7 @@ const globalBaseEcoIndex = (options, ecoindex, lighthouse = {}) => {
 
 
     return {
+        globalNote: Math.round(((ecoindex.ecoIndex ?? 0) + (lighthouse.performance ?? 0) + (lighthouse.accessibility) + (lighthouse.bestPractices)) / 4),
         ecoIndex: ecoindex.ecoIndex ?? 0,
         grade: ecoindex.grade ?? "G",
         greenhouseGases:ecoindex.greenhouseGases?Math.round(ecoindex.greenhouseGases * 100) /100 : 0,
