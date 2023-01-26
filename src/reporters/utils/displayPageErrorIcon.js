@@ -1,5 +1,5 @@
-const HTML_ICON = "<span class='lh-audit__score-icon' aria-label='Page à améliorer'></span>";
-
+const HTML_ICON_FAIL = "<span class='lh-audit__score-icon' aria-label='Page à améliorer'></span>";
+const HTML_ICON_PASS = "<span class='lh-audit__score-icon' aria-label='Page correcte'></span>";
 const THRESHOLD = 66;
 
 const pageInErrorOrWarning = (page) => {
@@ -11,9 +11,9 @@ const pageInErrorOrWarning = (page) => {
     page.bestPractices < THRESHOLD
   ) {
     console.log("value lesser than 66");
-    return HTML_ICON;
+    return HTML_ICON_FAIL;
   }
-  return "";
+  return HTML_ICON_PASS;
 };
 
 module.exports = pageInErrorOrWarning;

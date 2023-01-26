@@ -1,4 +1,5 @@
 {
+    "LabelGlobalTitle": "Global synthesis",
     "SeeReport":"To view the full Lighthouse report on this page, please visit",
     "DescriptionEcoIndex":"To calculate the ecoindex, we rely on three properties: the number of HTTP requests, the weight of the page, and the complexity of the DOM. Here are the results for this page",
     "DescriptionMetrics" : "From the previous metrics, an estimate of greenhouse gas emissions and water consumption is calculated. Here is the result for this page:",
