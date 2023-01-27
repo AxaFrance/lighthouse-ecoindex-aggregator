@@ -1,4 +1,5 @@
 {
+  "LabelGlobalTitle": "Synthèse Globale",
   "SeeReport": "Pour voir le rapport complet Lighthouse de cette page, veuillez visiter",
   "DescriptionEcoIndex": "Pour calculer l'ecoindex, nous nous basons sur trois propriétés : le nombre de requetes HTTP, le poid de la page, ainsi que la complexité du DOM. Voici les résultats pour cette page",
   "DescriptionMetrics": "A partir des métriques précédente, une estimation des emissions de gaz à effet de serre ainsi que la consommation d'eau est calculée. Voici le résultat pour cette page:",

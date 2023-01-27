@@ -17,24 +17,25 @@ const {
 } = require("./globalTag");
 
 const {
-    PageSizeTag,
-    PageSizeRecommendationTag,
-    PageComplexityTag,
-    PageComplexityRecommendationTag,
-    lighthouseReportPathTag,
-    NumberOfRequestTag,
-    NumberOfRequestRecommendationTag,
-    greenItMetricsBlock,
-    pageMetricsBlock,
-    IconPerPageTag,
-    numberPageTag,
-    pageNameTag
+  PageSizeTag,
+  PageSizeRecommendationTag,
+  PageComplexityTag,
+  PageComplexityRecommendationTag,
+  lighthouseReportPathTag,
+  NumberOfRequestTag,
+  NumberOfRequestRecommendationTag,
+  greenItMetricsBlock,
+  pageMetricsBlock,
+  IconPerPageTag,
+  numberPageTag,
+  pageNameTag,
+  statusClassPerPageTag,
 } = require("./pageTag");
 
 const ejs = require("ejs");
 const computeCssClassForMetrics = require("./utils/computeCssClassForMetrics");
 const pageInErrorOrWarning = require("./utils/displayPageErrorIcon");
-
+const { statusPerPage } = require("./utils/statusPerPage");
 const generateReports = async (options, results) => {
     if (options?.verbose) {
         console.log("Generate reports html.");
@@ -75,21 +76,29 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
         "global"
     );
 
-    const GlobalGreenItMetricsTemplate = populateGreentItMetrics(options, {
-        greenhouseGases: results.greenhouseGases,
-        greenhouseGasesKm: results.greenhouseGasesKm,
-        water: results.water,
-        waterShower: results.waterShower,
-    });
-    return ejs.render(template, {
-        [globalPerformanceTag]: performanceBlockTemplate,
-        [globalAccessibilityTag]: accessibilityBlockTemplate,
-        [globalEcoIndexTag]: ecoIndexBlockTemplate,
-        [globalBestPracticesTag]: bestPracticesBlockTemplate,
-        [htmlPerPageBlock]: htmlPerPageResult,
-        GlobalGreenItMetrics: GlobalGreenItMetricsTemplate,
-        Translations: options.translations
-    });
+  const GlobalGreenItMetricsTemplate = populateGreentItMetrics(options, {
+    greenhouseGases: results.greenhouseGases,
+    greenhouseGasesKm: results.greenhouseGasesKm,
+    water: results.water,
+    waterShower: results.waterShower,
+  });
+
+  const myCss = {
+    style: fs.readFileSync(
+      path.join(__dirname, folderTemplate, "./style.css"),
+      "utf8"
+    ),
+  };
+  return ejs.render(template, {
+    [globalPerformanceTag]: performanceBlockTemplate,
+    [globalAccessibilityTag]: accessibilityBlockTemplate,
+    [globalEcoIndexTag]: ecoIndexBlockTemplate,
+    [globalBestPracticesTag]: bestPracticesBlockTemplate,
+    [htmlPerPageBlock]: htmlPerPageResult,
+    GlobalGreenItMetrics: GlobalGreenItMetricsTemplate,
+    Translations: options.translations,
+    myCss: myCss,
+  });
 };
 
 const populateMetrics = (options, metric) => {
@@ -144,72 +153,72 @@ const populateGreentItMetrics = (
         waterShower,
         Translations: options.translations
     });
-};
+  }
 
 const populateTemplatePerPage = async (options, results) => {
+  let htmlPerPage = "";
+  const defaultTemplatePerPage = readTemplate("templatePerPage.html");
+  let numberPage = 0;
+  results.perPages.forEach((page) => {
+    numberPage += 1;
+    if (options?.verbose) {
+      console.log("Populate reports page:", numberPage);
+    }
 
-    let htmlPerPage = "";
-    const defaultTemplatePerPage = readTemplate("templatePerPage.html");
-    let numberPage = 0;
-    results.perPages.forEach(page => {
-        numberPage += 1;
-        if (options?.verbose) {
-            console.log("Populate reports page:", numberPage);
-        }
+    const performanceBlockTemplate = populateTemplatePerformance(
+      options,
+      page.performance,
+      numberPage
+    );
+    const accessibilityBlockTemplate = populateTemplateAccessibility(
+      options,
+      page.accessibility,
+      numberPage
+    );
+    const bestPracticesBlockTemplate = populateTemplateBestPractices(
+      options,
+      page.bestPractices,
+      numberPage
+    );
+    const ecoIndexBlockTemplate = populateTemplateEcoIndex(
+      options,
+      page.ecoIndex,
+      numberPage
+    );
+    const metricsTemplate = populateMetrics(options, page.metrics);
 
-        const performanceBlockTemplate = populateTemplatePerformance(
-            options,
-            page.performance,
-            numberPage
-        );
-        const accessibilityBlockTemplate = populateTemplateAccessibility(
-            options,
-            page.accessibility,
-            numberPage
-        );
-        const bestPracticesBlockTemplate = populateTemplateBestPractices(
-            options,
-            page.bestPractices,
-            numberPage
-        );
-        const ecoIndexBlockTemplate = populateTemplateEcoIndex(
-            options,
-            page.ecoIndex,
-            numberPage
-        );
-        const metricsTemplate = populateMetrics(options, page.metrics);
-        const greenItMetricsTemplate = populateGreentItMetrics(options, {
-            greenhouseGasesKm: page.greenhouseGasesKm,
-            waterShower: page.waterShower,
-            greenhouseGases: page.greenhouseGases,
-            water: page.water,
-        });
-
-        const templatePerPage = ejs.render(defaultTemplatePerPage, {
-            [performanceBlock]: performanceBlockTemplate,
-            [accessibilityBlock]: accessibilityBlockTemplate,
-            [bestPracticesBlock]: bestPracticesBlockTemplate,
-            [ecoIndexBlock]: ecoIndexBlockTemplate,
-            [pageMetricsBlock]: metricsTemplate,
-            [greenItMetricsBlock]: greenItMetricsTemplate,
-            [numberPageTag]: numberPage,
-            [pageNameTag]: page.pageName,
-            [lighthouseReportPathTag]: page.lighthouseReport,
-            [IconPerPageTag]: pageInErrorOrWarning(page),
-            Translations: options.translations
-        });
-        htmlPerPage += templatePerPage;
+    const greenItMetricsTemplate = populateGreentItMetrics(options, {
+      greenhouseGasesKm: page.greenhouseGasesKm,
+      waterShower: page.waterShower,
+      greenhouseGases: page.greenhouseGases,
+      water: page.water,
     });
-    return htmlPerPage;
+    const templatePerPage = ejs.render(defaultTemplatePerPage, {
+      [performanceBlock]: performanceBlockTemplate,
+      [accessibilityBlock]: accessibilityBlockTemplate,
+      [bestPracticesBlock]: bestPracticesBlockTemplate,
+      [ecoIndexBlock]: ecoIndexBlockTemplate,
+      [pageMetricsBlock]: metricsTemplate,
+      [greenItMetricsBlock]: greenItMetricsTemplate,
+      [numberPageTag]: numberPage,
+      [pageNameTag]: page.pageName,
+      [lighthouseReportPathTag]: page.lighthouseReport,
+      [IconPerPageTag]: pageInErrorOrWarning(page),
+      [statusClassPerPageTag]: statusPerPage(page),
+      Translations: options.translations,
+    });
+    htmlPerPage += templatePerPage;
+  });
+  return htmlPerPage;
 };
 
 const populateDoughnut = (value, label) => {
-    const template = readTemplate("templateDoughnut.html");
-    return ejs.render(template, {
-        Class: generateCSSClassBasedOnValue(value),
-        Value: value,
-        Label: label,
-    });
+  const template = readTemplate("templateDoughnut.html");
+  return ejs.render(template, {
+    Class: generateCSSClassBasedOnValue(value),
+    Value: value,
+    Label: label,
+  });
 };
 
 const populateTemplatePerformance = (options, performance, numberPage) => {
@@ -277,7 +286,6 @@ const generateCSSClassBasedOnValue = value => {
 
     return cssNotApplicableClass;
 };
-
 
 module.exports = {
     generateReports,
