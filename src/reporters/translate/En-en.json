@@ -20,5 +20,6 @@
     "LabelBestPractices" : "Best Practices",
     "LabelEcoIndex" : "EcoIndex",
     "LabelPerformance" : "Performances",
-    "LabelShowers":"Showers"
+    "LabelShowers":"Showers",
+    "LabelStep":"Step"
 }

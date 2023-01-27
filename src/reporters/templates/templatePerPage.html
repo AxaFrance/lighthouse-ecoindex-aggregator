@@ -6,7 +6,9 @@
                     <div class="lh-load-opportunity__col lh-load-opportunity__col--one">
                         <%- IconPerPageTag %>
                             <div class="lh-audit__title">
-                                <span>Page <%= numberPageTag %></span>
+                                <div>
+                                <span><%= Translations.LabelStep %></span>
+                                <span><%= numberPageTag %></span></div>
                                 <span>
                                     <%= PageName %>
                                 </span>
@@ -18,7 +20,7 @@
         <div class="lh-audit__description"><span>
                 <%= Translations.SeeReport %>
                     <a rel="noopener" target="_blank" href="<%= LighthouseReportPath %>">
-                        <% Translations.LabelTheReport %>
+                        <%= Translations.LabelTheReport %>
                     </a>
             </span>
         </div>
