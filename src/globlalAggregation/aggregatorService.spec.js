@@ -16,6 +16,7 @@ describe("AggregatorService", () => {
             performance: 0,
             accessibility: 0,
             bestPractices: 0,
+            globalNote: 0,
             perPages: [],
         };
 
@@ -62,6 +63,7 @@ describe("AggregatorService", () => {
 
         const output = {
             ecoIndex: 86,
+            globalNote: 74,
             grade: "A",
             greenhouseGases: 1.56,
             greenhouseGasesKm: 2500,
@@ -120,6 +122,7 @@ describe("AggregatorService", () => {
 
         const output = {
             ecoIndex: 86,
+            globalNote: 22,
             grade: "A",
             greenhouseGases: 1.56,
             water: 2,

@@ -9,11 +9,10 @@ const globalBaseEcoIndex = (options, ecoindex, lighthouse = {}) => {
     if (options?.verbose) {
         console.log("Aggregate lighthouse and ecoindex results");
     }
-    const resultAggregatePerPage = [];
-    ecoindex?.perPages?.forEach((pageEcoIndex) => {
+    const resultAggregatePerPage = (ecoindex?.perPages ?? []).map((pageEcoIndex) => {
         const pageLighthouse = lighthouse.perPages.find((pageLighthouse) => pageEcoIndex.pageName === pageLighthouse.pageName);
 
-        resultAggregatePerPage.push({
+        return {
             pageName: pageEcoIndex.pageName,
             lighthouseReport: pageLighthouse?.lighthouseReport ?? "",
             accessibility: pageLighthouse?.accessibility ?? 0,
@@ -27,12 +26,11 @@ const globalBaseEcoIndex = (options, ecoindex, lighthouse = {}) => {
             metrics: pageEcoIndex.metrics,
             greenhouseGasesKm: pageEcoIndex.greenhouseGasesKm,
             waterShower: pageEcoIndex?.waterShower
-        });
+        };
     });
 
-
-
     return {
+        globalNote: Math.round(((ecoindex.ecoIndex ?? 0) + (lighthouse.performance ?? 0) + (lighthouse.accessibility ?? 0) + (lighthouse.bestPractices ?? 0)) / 4),
         ecoIndex: ecoindex.ecoIndex ?? 0,
         grade: ecoindex.grade ?? "G",
         greenhouseGases:ecoindex.greenhouseGases?Math.round(ecoindex.greenhouseGases * 100) /100 : 0,

@@ -2086,6 +2086,26 @@ details .lh-scores-wrapper {
             <div class="lh-pyro-after"></div>
           </div>
           <div class="lh-scores-header">
+                <a class="lh-gauge__wrapper lh-gauge__wrapper--not-applicable">
+    <div class="lh-gauge__svg-wrapper">
+        <svg class="lh-gauge" viewBox="0 0 120 120">
+            <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
+            <circle class="lh-gauge-arc" r="56" cx="60" cy="60" stroke-width="8"
+                style="transform: rotate(-87.9537deg); stroke-dasharray: NaN, 351.858"></circle>
+        </svg>
+    </div>
+    <div class="lh-gauge__percentage"></div>
+    <div class="lh-gauge__label">Performances</div>
+</a>
+
+          </div>
+        </div>
+        <div class="lh-scores-container">
+          <div class="lh-pyro">
+            <div class="lh-pyro-before"></div>
+            <div class="lh-pyro-after"></div>
+          </div>
+          <div class="lh-scores-header">
                 <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">

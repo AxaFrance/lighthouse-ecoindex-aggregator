@@ -5,6 +5,7 @@ const folderTemplate = "templates";
 const folderTranslate = "translate";
 
 const {
+  globalNoteTag,
   globalPerformanceTag,
   globalAccessibilityTag,
   globalBestPracticesTag,
@@ -37,7 +38,6 @@ const computeCssClassForMetrics = require("./utils/computeCssClassForMetrics");
 const pageInErrorOrWarning = require("./utils/displayPageErrorIcon");
 const { statusPerPage } = require("./utils/statusPerPage");
 const generateReports = async (options, results) => {
-    
   if (!options?.pass) {
     options.pass = 90;
   }
@@ -64,26 +64,12 @@ const generateReports = async (options, results) => {
 
 const populateTemplate = async (options, results, htmlPerPageResult) => {
   let template = readTemplate("template.html");
-  const performanceBlockTemplate = populateTemplatePerformance(
-    options,
-    results.performance,
-    "global"
-  );
-  const accessibilityBlockTemplate = populateTemplateAccessibility(
-    options,
-    results.accessibility,
-    "global"
-  );
-  const bestPracticesBlockTemplate = populateTemplateBestPractices(
-    options,
-    results.bestPractices,
-    "global"
-  );
-  const ecoIndexBlockTemplate = populateTemplateEcoIndex(
-    options,
-    results.ecoIndex,
-    "global"
-  );
+  const globalNoteBlockTemplate = populateTemplatePerformance(options, results.globalNote, "global");
+
+  const performanceBlockTemplate = populateTemplatePerformance(options, results.performance, "global");
+  const accessibilityBlockTemplate = populateTemplateAccessibility(options, results.accessibility, "global");
+  const bestPracticesBlockTemplate = populateTemplateBestPractices(options, results.bestPractices, "global");
+  const ecoIndexBlockTemplate = populateTemplateEcoIndex(options, results.ecoIndex, "global");
 
   const GlobalGreenItMetricsTemplate = populateGreentItMetrics(options, {
     greenhouseGases: results.greenhouseGases,
@@ -93,12 +79,10 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
   });
 
   const myCss = {
-    style: fs.readFileSync(
-      path.join(__dirname, folderTemplate, "./style.css"),
-      "utf8"
-    ),
+    style: fs.readFileSync(path.join(__dirname, folderTemplate, "./style.css"), "utf8"),
   };
   return ejs.render(template, {
+    [globalNoteTag]: globalNoteBlockTemplate,
     [globalPerformanceTag]: performanceBlockTemplate,
     [globalAccessibilityTag]: accessibilityBlockTemplate,
     [globalEcoIndexTag]: ecoIndexBlockTemplate,
@@ -115,11 +99,9 @@ const populateMetrics = (options, metric) => {
     console.log("Populate metrics:", metric);
   }
   const template = readTemplate("templatePageMetrics.html");
-  const NumberOfRequestMetric =
-    metric?.find((m) => m.name === "number_requests") ?? {};
+  const NumberOfRequestMetric = metric?.find((m) => m.name === "number_requests") ?? {};
   const PageSizeMetric = metric?.find((m) => m.name === "page_size") ?? {};
-  const PageComplexityMetric =
-    metric?.find((m) => m.name === "Page_complexity") ?? {};
+  const PageComplexityMetric = metric?.find((m) => m.name === "Page_complexity") ?? {};
 
   return ejs.render(template, {
     [NumberOfRequestTag]: NumberOfRequestMetric.value,
@@ -140,10 +122,7 @@ const readTemplate = (templateFile) => {
   return fs.readFileSync(templatePath).toString();
 };
 
-const populateGreentItMetrics = (
-  options,
-  { greenhouseGases, greenhouseGasesKm, water, waterShower }
-) => {
+const populateGreentItMetrics = (options, { greenhouseGases, greenhouseGasesKm, water, waterShower }) => {
   if (options?.verbose) {
     console.log("Populate GreenIt metrics:", {
       greenhouseGases,
@@ -174,26 +153,10 @@ const populateTemplatePerPage = async (options, results) => {
       console.log("Populate reports page:", numberPage);
     }
 
-    const performanceBlockTemplate = populateTemplatePerformance(
-      options,
-      page.performance,
-      numberPage
-    );
-    const accessibilityBlockTemplate = populateTemplateAccessibility(
-      options,
-      page.accessibility,
-      numberPage
-    );
-    const bestPracticesBlockTemplate = populateTemplateBestPractices(
-      options,
-      page.bestPractices,
-      numberPage
-    );
-    const ecoIndexBlockTemplate = populateTemplateEcoIndex(
-      options,
-      page.ecoIndex,
-      numberPage
-    );
+    const performanceBlockTemplate = populateTemplatePerformance(options, page.performance, numberPage);
+    const accessibilityBlockTemplate = populateTemplateAccessibility(options, page.accessibility, numberPage);
+    const bestPracticesBlockTemplate = populateTemplateBestPractices(options, page.bestPractices, numberPage);
+    const ecoIndexBlockTemplate = populateTemplateEcoIndex(options, page.ecoIndex, numberPage);
     const metricsTemplate = populateMetrics(options, page.metrics);
 
     const greenItMetricsTemplate = populateGreentItMetrics(options, {
@@ -233,54 +196,30 @@ const populateDoughnut = (value, label, options) => {
 
 const populateTemplatePerformance = (options, performance, numberPage) => {
   if (options?.verbose) {
-    console.log(
-      `populate performance with value:${performance} for page ${numberPage}`
-    );
+    console.log(`populate performance with value:${performance} for page ${numberPage}`);
   }
-  return populateDoughnut(
-    performance,
-    options.translations.LabelPerformance,
-    options
-  );
+  return populateDoughnut(performance, options.translations.LabelPerformance, options);
 };
 
 const populateTemplateAccessibility = (options, accessibility, numberPage) => {
   if (options?.verbose) {
-    console.log(
-      `populate accessibility with value: ${accessibility} for page ${numberPage}`
-    );
+    console.log(`populate accessibility with value: ${accessibility} for page ${numberPage}`);
   }
-  return populateDoughnut(
-    accessibility,
-    options.translations.LabelAccessibility,
-    options
-  );
+  return populateDoughnut(accessibility, options.translations.LabelAccessibility, options);
 };
 
 const populateTemplateBestPractices = (options, bestPractices, numberPage) => {
   if (options?.verbose) {
-    console.log(
-      `populate bestPractices with value ${bestPractices} for page ${numberPage}`
-    );
+    console.log(`populate bestPractices with value ${bestPractices} for page ${numberPage}`);
   }
-  return populateDoughnut(
-    bestPractices,
-    options.translations.LabelBestPractices,
-    options
-  );
+  return populateDoughnut(bestPractices, options.translations.LabelBestPractices, options);
 };
 
 const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
   if (options?.verbose) {
-    console.log(
-      `populate ecoIndex with value: ${ecoIndex} for page: ${numberPage}`
-    );
+    console.log(`populate ecoIndex with value: ${ecoIndex} for page: ${numberPage}`);
   }
-  return populateDoughnut(
-    ecoIndex,
-    options.translations.LabelEcoIndex,
-    options
-  );
+  return populateDoughnut(ecoIndex, options.translations.LabelEcoIndex, options);
 };
 
 const populateTranslation = (options) => {

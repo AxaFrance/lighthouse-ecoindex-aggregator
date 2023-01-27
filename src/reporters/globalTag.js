@@ -1,3 +1,4 @@
+const globalNoteTag = "GlobalNote";
 const globalPerformanceTag = "GlobalPerformance";
 const globalAccessibilityTag = "GlobalAccessibility";
 const globalBestPracticesTag = "GlobalBestPractices";
@@ -10,6 +11,7 @@ const ecoIndexBlock = "EcoIndexBlock";
 
 
 module.exports = {
+    globalNoteTag,
     globalPerformanceTag,
     globalAccessibilityTag,
     globalBestPracticesTag,
