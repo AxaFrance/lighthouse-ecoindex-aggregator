@@ -6,14 +6,16 @@ const {
 } = require("./statusPerPage");
 
 describe("statusPerPage", () => {
+  const options = { pass: 90, fail: 35 };
+
   it("All pass", () => {
     const input = {
       performance: 96,
       accessibility: 96,
       ecoIndex: 96,
-      bestPractises: 96,
+      bestPractices: 96,
     };
-    const result = statusPerPage(input);
+    const result = statusPerPage(input, options);
     expect(result).toEqual(ClassPass);
   });
 
@@ -22,9 +24,9 @@ describe("statusPerPage", () => {
       performance: 30,
       accessibility: 96,
       ecoIndex: 96,
-      bestPractises: 96,
+      bestPractices: 96,
     };
-    const result = statusPerPage(input);
+    const result = statusPerPage(input, options);
     expect(result).toEqual(ClassFail);
   });
 
@@ -33,9 +35,9 @@ describe("statusPerPage", () => {
       performance: 96,
       accessibility: 30,
       ecoIndex: 96,
-      bestPractises: 96,
+      bestPractices: 96,
     };
-    const result = statusPerPage(input);
+    const result = statusPerPage(input, options);
     expect(result).toEqual(ClassFail);
   });
 
@@ -44,9 +46,9 @@ describe("statusPerPage", () => {
       performance: 96,
       accessibility: 96,
       ecoIndex: 96,
-      bestPractises: 30,
+      bestPractices: 30,
     };
-    const result = statusPerPage(input);
+    const result = statusPerPage(input, options);
     expect(result).toEqual(ClassFail);
   });
   it("EcoIndex Fail", () => {
@@ -54,9 +56,9 @@ describe("statusPerPage", () => {
       performance: 96,
       accessibility: 96,
       ecoIndex: 96,
-      bestPractises: 30,
+      bestPractices: 30,
     };
-    const result = statusPerPage(input);
+    const result = statusPerPage(input, options);
     expect(result).toEqual(ClassFail);
   });
   it("PerforMance Average", () => {
@@ -64,9 +66,9 @@ describe("statusPerPage", () => {
       performance: 56,
       accessibility: 96,
       ecoIndex: 96,
-      bestPractises: 30,
+      bestPractices: 30,
     };
-    const result = statusPerPage(input);
+    const result = statusPerPage(input, options);
     expect(result).toEqual(ClassAverage);
   });
   it("Accessibility Average", () => {
@@ -74,9 +76,9 @@ describe("statusPerPage", () => {
       performance: 96,
       accessibility: 56,
       ecoIndex: 96,
-      bestPractises: 30,
+      bestPractices: 30,
     };
-    const result = statusPerPage(input);
+    const result = statusPerPage(input, options);
     expect(result).toEqual(ClassAverage);
   });
   it("BestPractices Average", () => {
@@ -84,9 +86,9 @@ describe("statusPerPage", () => {
       performance: 96,
       accessibility: 96,
       ecoIndex: 96,
-      bestPractises: 56,
+      bestPractices: 56,
     };
-    const result = statusPerPage(input);
+    const result = statusPerPage(input, options);
     expect(result).toEqual(ClassAverage);
   });
   it("EcoIndex Average", () => {
@@ -94,16 +96,15 @@ describe("statusPerPage", () => {
       performance: 96,
       accessibility: 96,
       ecoIndex: 60,
-      bestPractises: 96,
+      bestPractices: 96,
     };
-    const result = statusPerPage(input);
+    const result = statusPerPage(input, options);
     expect(result).toEqual(ClassAverage);
   });
 
   it("No Applicable", () => {
-    const input = {
-    };
-    const result = statusPerPage(input);
+    const input = {};
+    const result = statusPerPage(input, options);
     expect(result).toEqual("");
   });
 });

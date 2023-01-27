@@ -2,7 +2,6 @@ module.exports = (options, resultsGlobalLighthouse, resultsGlobalEcoindex) => {
     if (options?.verbose) {
         console.log("Global aggregations.");
     }
-
     return globalBaseEcoIndex(options, resultsGlobalEcoindex, resultsGlobalLighthouse);
 };
 
@@ -30,13 +29,16 @@ const globalBaseEcoIndex = (options, ecoindex, lighthouse = {}) => {
             waterShower: pageEcoIndex?.waterShower
         });
     });
+
+
+
     return {
         ecoIndex: ecoindex.ecoIndex ?? 0,
         grade: ecoindex.grade ?? "G",
-        greenhouseGases: ecoindex.greenhouseGases ?? 0,
-        water: ecoindex.water ?? 0,
+        greenhouseGases:ecoindex.greenhouseGases?Math.round(ecoindex.greenhouseGases * 100) /100 : 0,
+        water:  ecoindex.water ? Math.round( ecoindex.water *100 ) / 100 : 0,
         greenhouseGasesKm: ecoindex.greenhouseGasesKm ?? 0,
-        waterShower: ecoindex.waterShower ?? 0,
+        waterShower: ecoindex.waterShower? ecoindex.waterShower : 0,
         performance: lighthouse.performance ?? 0,
         accessibility: lighthouse.accessibility ?? 0,
         bestPractices: lighthouse.bestPractices ?? 0,

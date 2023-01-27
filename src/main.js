@@ -4,6 +4,12 @@ const aggregatorGlobalService = require("./globlalAggregation/aggregatorService"
 const { generateReports } = require("./reporters/generatorReports");
 
 module.exports = async (options) => {
+  if (!options?.pass) {
+    options.pass = 90;
+  }
+  if (!options?.fail) {
+    options.fail = 30;
+  }
   const resultsGlobalLighthouse = await aggregatorServiceLighthouse(options);
   const resultsGlobalEcoindex = await aggregatorServiceEcoIndex(options);
   const resultsGlobal = aggregatorGlobalService(options, resultsGlobalLighthouse, resultsGlobalEcoindex);

@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 describe("generatorReports", () => {
-  const options = { verbose: true,lang:"Fr" };
+  const options = { verbose: true, lang: "Fr-fr", pass: 90, fail: 20 };
 
   const output = {
     ecoIndex: 86,
