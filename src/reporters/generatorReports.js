@@ -5,15 +5,15 @@ const folderTemplate = "templates";
 const folderTranslate = "translate";
 
 const {
-    globalPerformanceTag,
-    globalAccessibilityTag,
-    globalBestPracticesTag,
-    globalEcoIndexTag,
-    performanceBlock,
-    accessibilityBlock,
-    bestPracticesBlock,
-    ecoIndexBlock,
-    htmlPerPageBlock,
+  globalPerformanceTag,
+  globalAccessibilityTag,
+  globalBestPracticesTag,
+  globalEcoIndexTag,
+  performanceBlock,
+  accessibilityBlock,
+  bestPracticesBlock,
+  ecoIndexBlock,
+  htmlPerPageBlock,
 } = require("./globalTag");
 
 const {
@@ -37,44 +37,53 @@ const computeCssClassForMetrics = require("./utils/computeCssClassForMetrics");
 const pageInErrorOrWarning = require("./utils/displayPageErrorIcon");
 const { statusPerPage } = require("./utils/statusPerPage");
 const generateReports = async (options, results) => {
-    if (options?.verbose) {
-        console.log("Generate reports html.");
-    }
-    options.translations = populateTranslation(options);
-    const htmlPerPageResult = await populateTemplatePerPage(options, results);
-    let htmlResult = await populateTemplate(options, results, htmlPerPageResult);
+    
+  if (!options?.pass) {
+    options.pass = 90;
+  }
 
-    let outputPath = "globalReports.html";
-    if (!!options.outputPath) {
-        outputPath = options.outputPath;
-        fs.mkdirSync(path.dirname(outputPath), {recursive: true});
-    }
+  if (!options?.fail) {
+    options.fail = 30;
+  }
 
-    fs.writeFileSync(outputPath, htmlResult);
+  if (options?.verbose) {
+    console.log("Generate reports html.");
+  }
+  options.translations = populateTranslation(options);
+  const htmlPerPageResult = await populateTemplatePerPage(options, results);
+  let htmlResult = await populateTemplate(options, results, htmlPerPageResult);
+
+  let outputPath = "globalReports.html";
+  if (!!options.outputPath) {
+    outputPath = options.outputPath;
+    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  }
+
+  fs.writeFileSync(outputPath, htmlResult);
 };
 
 const populateTemplate = async (options, results, htmlPerPageResult) => {
-    let template = readTemplate("template.html");
-    const performanceBlockTemplate = populateTemplatePerformance(
-        options,
-        results.performance,
-        "global"
-    );
-    const accessibilityBlockTemplate = populateTemplateAccessibility(
-        options,
-        results.accessibility,
-        "global"
-    );
-    const bestPracticesBlockTemplate = populateTemplateBestPractices(
-        options,
-        results.bestPractices,
-        "global"
-    );
-    const ecoIndexBlockTemplate = populateTemplateEcoIndex(
-        options,
-        results.ecoIndex,
-        "global"
-    );
+  let template = readTemplate("template.html");
+  const performanceBlockTemplate = populateTemplatePerformance(
+    options,
+    results.performance,
+    "global"
+  );
+  const accessibilityBlockTemplate = populateTemplateAccessibility(
+    options,
+    results.accessibility,
+    "global"
+  );
+  const bestPracticesBlockTemplate = populateTemplateBestPractices(
+    options,
+    results.bestPractices,
+    "global"
+  );
+  const ecoIndexBlockTemplate = populateTemplateEcoIndex(
+    options,
+    results.ecoIndex,
+    "global"
+  );
 
   const GlobalGreenItMetricsTemplate = populateGreentItMetrics(options, {
     greenhouseGases: results.greenhouseGases,
@@ -102,58 +111,58 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
 };
 
 const populateMetrics = (options, metric) => {
-    if (options?.verbose) {
-        console.log("Populate metrics:", metric);
-    }
-    const template = readTemplate("templatePageMetrics.html");
-    const NumberOfRequestMetric =
-        metric?.find((m) => m.name === "number_requests") ?? {};
-    const PageSizeMetric = metric?.find((m) => m.name === "page_size") ?? {};
-    const PageComplexityMetric =
-        metric?.find((m) => m.name === "Page_complexity") ?? {};
+  if (options?.verbose) {
+    console.log("Populate metrics:", metric);
+  }
+  const template = readTemplate("templatePageMetrics.html");
+  const NumberOfRequestMetric =
+    metric?.find((m) => m.name === "number_requests") ?? {};
+  const PageSizeMetric = metric?.find((m) => m.name === "page_size") ?? {};
+  const PageComplexityMetric =
+    metric?.find((m) => m.name === "Page_complexity") ?? {};
 
-    return ejs.render(template, {
-        [NumberOfRequestTag]: NumberOfRequestMetric.value,
-        [NumberOfRequestRecommendationTag]: NumberOfRequestMetric.recommandation,
-        NumberOfRequestCssClass: computeCssClassForMetrics(NumberOfRequestMetric),
-        [PageSizeTag]: PageSizeMetric.value,
-        [PageSizeRecommendationTag]: PageSizeMetric.recommandation,
-        PageSizeCssClass: computeCssClassForMetrics(PageSizeMetric),
-        [PageComplexityTag]: PageComplexityMetric.value,
-        [PageComplexityRecommendationTag]: PageComplexityMetric.recommandation,
-        PageComplexityCssClass: computeCssClassForMetrics(PageComplexityMetric),
-        Translations: options.translations,
-    });
+  return ejs.render(template, {
+    [NumberOfRequestTag]: NumberOfRequestMetric.value,
+    [NumberOfRequestRecommendationTag]: NumberOfRequestMetric.recommandation,
+    NumberOfRequestCssClass: computeCssClassForMetrics(NumberOfRequestMetric),
+    [PageSizeTag]: PageSizeMetric.value,
+    [PageSizeRecommendationTag]: PageSizeMetric.recommandation,
+    PageSizeCssClass: computeCssClassForMetrics(PageSizeMetric),
+    [PageComplexityTag]: PageComplexityMetric.value,
+    [PageComplexityRecommendationTag]: PageComplexityMetric.recommandation,
+    PageComplexityCssClass: computeCssClassForMetrics(PageComplexityMetric),
+    Translations: options.translations,
+  });
 };
 
 const readTemplate = (templateFile) => {
-    const templatePath = path.join(__dirname, folderTemplate, templateFile);
-    return fs.readFileSync(templatePath).toString();
+  const templatePath = path.join(__dirname, folderTemplate, templateFile);
+  return fs.readFileSync(templatePath).toString();
 };
 
 const populateGreentItMetrics = (
-    options,
-    {greenhouseGases, greenhouseGasesKm, water, waterShower}
+  options,
+  { greenhouseGases, greenhouseGasesKm, water, waterShower }
 ) => {
-    if (options?.verbose) {
-        console.log("Populate GreenIt metrics:", {
-            greenhouseGases,
-            greenhouseGasesKm,
-            water,
-            waterShower,
-        });
-    }
-
-    const template = readTemplate("templateGreenItMetrics.html");
-
-    return ejs.render(template, {
-        greenhouseGases,
-        greenhouseGasesKm,
-        water,
-        waterShower,
-        Translations: options.translations
+  if (options?.verbose) {
+    console.log("Populate GreenIt metrics:", {
+      greenhouseGases,
+      greenhouseGasesKm,
+      water,
+      waterShower,
     });
   }
+
+  const template = readTemplate("templateGreenItMetrics.html");
+
+  return ejs.render(template, {
+    greenhouseGases,
+    greenhouseGasesKm,
+    water,
+    waterShower,
+    Translations: options.translations,
+  });
+};
 
 const populateTemplatePerPage = async (options, results) => {
   let htmlPerPage = "";
@@ -203,8 +212,8 @@ const populateTemplatePerPage = async (options, results) => {
       [numberPageTag]: numberPage,
       [pageNameTag]: page.pageName,
       [lighthouseReportPathTag]: page.lighthouseReport,
-      [IconPerPageTag]: pageInErrorOrWarning(page),
-      [statusClassPerPageTag]: statusPerPage(page),
+      [IconPerPageTag]: pageInErrorOrWarning(page, options),
+      [statusClassPerPageTag]: statusPerPage(page, options),
       Translations: options.translations,
     });
     htmlPerPage += templatePerPage;
@@ -212,85 +221,99 @@ const populateTemplatePerPage = async (options, results) => {
   return htmlPerPage;
 };
 
-const populateDoughnut = (value, label) => {
+const populateDoughnut = (value, label, options) => {
+  console.log(options);
   const template = readTemplate("templateDoughnut.html");
   return ejs.render(template, {
-    Class: generateCSSClassBasedOnValue(value),
+    Class: generateCSSClassBasedOnValue(value, options),
     Value: value,
     Label: label,
   });
 };
 
 const populateTemplatePerformance = (options, performance, numberPage) => {
-    if (options?.verbose) {
-        console.log(
-            `populate performance with value:${performance} for page ${numberPage}`
-        );
-    }
-    return populateDoughnut(performance, options.translations.LabelPerformance);
+  if (options?.verbose) {
+    console.log(
+      `populate performance with value:${performance} for page ${numberPage}`
+    );
+  }
+  return populateDoughnut(
+    performance,
+    options.translations.LabelPerformance,
+    options
+  );
 };
 
 const populateTemplateAccessibility = (options, accessibility, numberPage) => {
-    if (options?.verbose) {
-        console.log(
-            `populate accessibility with value: ${accessibility} for page ${numberPage}`
-        );
-    }
-    return populateDoughnut(accessibility, options.translations.LabelAccessibility);
+  if (options?.verbose) {
+    console.log(
+      `populate accessibility with value: ${accessibility} for page ${numberPage}`
+    );
+  }
+  return populateDoughnut(
+    accessibility,
+    options.translations.LabelAccessibility,
+    options
+  );
 };
 
 const populateTemplateBestPractices = (options, bestPractices, numberPage) => {
-    if (options?.verbose) {
-        console.log(
-            `populate bestPractices with value ${bestPractices} for page ${numberPage}`
-        );
-    }
-    return populateDoughnut(bestPractices, options.translations.LabelBestPractices);
+  if (options?.verbose) {
+    console.log(
+      `populate bestPractices with value ${bestPractices} for page ${numberPage}`
+    );
+  }
+  return populateDoughnut(
+    bestPractices,
+    options.translations.LabelBestPractices,
+    options
+  );
 };
 
 const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
-    if (options?.verbose) {
-        console.log(
-            `populate ecoIndex with value: ${ecoIndex} for page: ${numberPage}`
-        );
-    }
-    return populateDoughnut(ecoIndex, options.translations.LabelEcoIndex);
+  if (options?.verbose) {
+    console.log(
+      `populate ecoIndex with value: ${ecoIndex} for page: ${numberPage}`
+    );
+  }
+  return populateDoughnut(
+    ecoIndex,
+    options.translations.LabelEcoIndex,
+    options
+  );
 };
 
 const populateTranslation = (options) => {
-    let templateFile = "En-en.json";
-    switch (options?.lang) {
-        case "Fr":
-            templateFile = "Fr-fr.json";
-            break;
-        case "En":
-        default:
-            templateFile = "En-en.json";
-    }
-    if (options?.verbose) {
-        console.log("Translate by files:", templateFile);
-    }
-    const templatePath = path.join(__dirname, folderTranslate, templateFile);
+  let templateFile = "En-en.json";
+  const dafaultPath = path.join(__dirname, folderTranslate, templateFile);
+  if (options?.lang) templateFile = `${options.lang}.json`;
+
+  if (options?.verbose) {
+    console.log("Translate by files:", templateFile);
+  }
+  const templatePath = path.join(__dirname, folderTranslate, templateFile);
+  if (fs.existsSync(templatePath)) {
     return require(templatePath);
+  }
+  return require(dafaultPath);
 };
 
-const generateCSSClassBasedOnValue = value => {
-    const cssPassClass = "lh-gauge__wrapper--pass";
-    const cssAverageClass = "lh-gauge__wrapper--average";
-    const cssFailClass = "lh-gauge__wrapper--fail";
-    const cssNotApplicableClass = "lh-gauge__wrapper--not-applicable";
+const generateCSSClassBasedOnValue = (value, { pass, fail }) => {
+  const cssPassClass = "lh-gauge__wrapper--pass";
+  const cssAverageClass = "lh-gauge__wrapper--average";
+  const cssFailClass = "lh-gauge__wrapper--fail";
+  const cssNotApplicableClass = "lh-gauge__wrapper--not-applicable";
 
-    if (value > 89) return cssPassClass;
-    else if (value <= 89 && value > 49) return cssAverageClass;
-    else if (value <= 49 && value > 0) return cssFailClass;
-
-    return cssNotApplicableClass;
+  if (value >= pass) return cssPassClass;
+  else if (value < pass && value >= fail) return cssAverageClass;
+  else if (value < fail) return cssFailClass;
+  return cssNotApplicableClass;
 };
 
 module.exports = {
-    generateReports,
-    populateTemplatePerformance,
-    populateTemplateAccessibility,
-    populateTemplateBestPractices,
-    populateTemplateEcoIndex,
+  generateReports,
+  populateTemplatePerformance,
+  populateTemplateAccessibility,
+  populateTemplateBestPractices,
+  populateTemplateEcoIndex,
 };

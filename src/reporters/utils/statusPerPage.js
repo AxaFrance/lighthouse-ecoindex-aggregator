@@ -2,28 +2,31 @@ const ClassFail = "lh-audit--fail";
 const ClassPass = "lh-audit--pass";
 const ClassAverage = "lh-audit--average";
 
-const statusPerPage = (page) => {
+const statusPerPage = (page,{pass,fail}) => {
   if (
-    page.performance > 89 &&
-    page.bestPractises > 89 &&
-    page.accessibility > 89 &&
-    page.ecoIndex > 66
-  )
+    page?.performance > pass &&
+    page?.bestPractices > pass &&
+    page?.accessibility > pass &&
+    page?.ecoIndex > pass
+  ){
     return ClassPass;
+  }
   else if (
-    (page.performance < 89 && page.performance > 49) ||
-    (page.bestPractises < 89 && page.bestPractises > 49) ||
-    (page.accessibility < 89 && page.accessibility > 49) ||
-    (page.ecoIndex < 66 && page.ecoIndex > 33)
-  )
+    (page?.performance <= pass && page?.performance > fail) ||
+    (page?.bestPractices <= pass && page?.bestPractices > fail) ||
+    (page?.accessibility <= pass && page?.accessibility > fail) ||
+    (page?.ecoIndex <= pass && page?.ecoIndex > fail)
+  ){
     return ClassAverage;
+  }
   else if (
-    page.performance < 49 ||
-    page.bestPractises < 49 ||
-    page.accessibility < 49 ||
-    page.ecoIndex < 33
-  )
+    (page?.performance <= fail) ||
+    (page?.bestPractices <= fail) ||
+    (page?.accessibility <=  fail) ||
+    (page?.ecoIndex <= fail)
+  ){
     return ClassFail;
+  }
   else return "";
 };
 

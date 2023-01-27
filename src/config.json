@@ -1,0 +1,9 @@
+{
+    "srcEcoIndex": "C:\\Workspace\\reports\\ecoindex",
+    "srcLighthouse": "C:\\Workspace\\reports\\lighthouse",
+    "reports": "html",
+    "lang": "Ft-fr",
+    "pass": 66,
+    "fail": 50,
+    "verbose": false
+}

@@ -8,8 +8,11 @@ const optionDefinitions = [
   { name: "srcLighthouse", type: String, multiple: false },
   { name: "srcEcoIndex", type: String, multiple: false },
   { name: "outputPath", type: String, multiple: false },
-  { name: "lang",  type: String,multiple: false },
+  { name: "lang", type: String, multiple: false },
   { name: "help", alias: "h", type: Boolean },
+  { name: "config", type: String, multiple: false },
+  { name: "pass", type: Number, multiple: false },
+  { name: "fail", type: Number, multiple: false },
 ];
 
 const sections = [
@@ -49,23 +52,53 @@ const sections = [
         name: "lang",
         typeLabel: "{underline string}",
         description: "define language report",
-        value : "En_en"
-      }
+        value: "En_en",
+      },
+      {
+        name: "config",
+        typeLabel: "{underline string}",
+        description: "define path config",
+      },
+      {
+        name: "pass",
+        typeLabel: "{underline num}",
+        description: "define limit pass",
+      },
+      {
+        name: "fail",
+        typeLabel: "{underline num}",
+        description: "define limit fail",
+      },
     ],
   },
 ];
 
 (async () => {
   const usage = commandLineUsage(sections);
-  const options = commandLineArgs(optionDefinitions);
-  if (options?.help || (!options?.srcLighthouse && !options?.srcEcoIndex)) {
+  let options = commandLineArgs(optionDefinitions);
+
+  if (
+    options?.help ||
+    (!options?.srcLighthouse && !options?.srcEcoIndex && !options?.config)
+  ) {
     console.log(usage);
     return;
+  }
+
+  if (options?.config) {
+    options = require(options.config);
+  }
+
+  if (!options?.pass) {
+    options.pass = 90;
+  }
+  if (!options?.fail) {
+    options.fail = 30;
   }
 
   if (options?.verbose) {
     console.log(options);
   }
-  
+
   await aggregate(options);
 })();

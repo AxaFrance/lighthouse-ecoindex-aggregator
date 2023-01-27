@@ -2098,7 +2098,7 @@ details .lh-scores-wrapper {
     <div class="lh-gauge__label">Performances</div>
 </a>
 
-                <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
+                <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2110,7 +2110,7 @@ details .lh-scores-wrapper {
     <div class="lh-gauge__label">Accessibilité</div>
 </a>
 
-                <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
+                <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
         <svg class="lh-gauge" viewBox="0 0 120 120">
             <circle class="lh-gauge-base" r="56" cx="60" cy="60" stroke-width="8"></circle>
@@ -2172,7 +2172,7 @@ details .lh-scores-wrapper {
                 <div class="lh-text">1.56</div>
             </td>
             <td class="lh-table-column--bytes">
-                <div class="lh-text">km</div>
+                <div class="lh-text"> km</div>
             </td>
         </tr>
 
@@ -2372,7 +2372,7 @@ details .lh-scores-wrapper {
                 <div class="lh-text">2500</div>
             </td>
             <td class="lh-table-column--bytes">
-                <div class="lh-text">2500km</div>
+                <div class="lh-text">2500 km</div>
             </td>
         </tr>
 

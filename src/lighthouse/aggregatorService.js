@@ -22,9 +22,9 @@ const readFiles = (options, lighthouseJsonReportsFiles) => {
     const pathFile = path.join(options.srcLighthouse, fileName);
     const data = fs.readFileSync(pathFile);
     const result = JSON.parse(data);
-    const performance = Math.round(result.categories.performance.score * 100);
-    const accessibility = Math.round(result.categories.accessibility.score * 100);
-    const bestPractices = Math.round(result.categories["best-practices"].score * 100);
+    const performance =   result?.categories?.performance?.score ? Math.round(result.categories.performance.score * 100) : 0;
+    const accessibility = result?.categories?.accessibility?.score ? Math.round(result?.categories.accessibility.score * 100) : 0;
+    const bestPractices = result?.categories["best-practices"]?.score ? Math.round(result?.categories["best-practices"].score * 100) : 0;
 
     globalPerformance += performance;
     globalAccessibility += accessibility;
