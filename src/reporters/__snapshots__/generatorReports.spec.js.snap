@@ -634,7 +634,7 @@ we'd be happy for the URL column to wrap if the URLs are particularly long.
 .lh-audit__title {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   padding: var(--default-padding);
 }
 
@@ -2227,7 +2227,9 @@ details .lh-scores-wrapper {
                     <div class="lh-load-opportunity__col lh-load-opportunity__col--one">
                         <span class='lh-audit__score-icon' aria-label='Page correcte'></span>
                             <div class="lh-audit__title">
-                                <span>Page 1</span>
+                                <div>
+                                <span>Contrôle</span>
+                                <span>1</span></div>
                                 <span>
                                     test1
                                 </span>
@@ -2239,7 +2241,7 @@ details .lh-scores-wrapper {
         <div class="lh-audit__description"><span>
                 Pour voir le rapport complet Lighthouse de cette page, veuillez visiter
                     <a rel="noopener" target="_blank" href="reports/test1.html">
-                        
+                        Ce Rapport
                     </a>
             </span>
         </div>

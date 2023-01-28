@@ -618,7 +618,7 @@ we'd be happy for the URL column to wrap if the URLs are particularly long.
 .lh-audit__title {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   padding: var(--default-padding);
 }
 
