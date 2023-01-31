@@ -85,7 +85,6 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
     style: fs.readFileSync(path.join(__dirname, folderTemplate, "./style.css"), "utf8"),
   };
 
-  console.log(options)
   return ejs.render(template, {
     [globalNoteTag]: globalNoteBlockTemplate,
     [globalPerformanceTag]: performanceBlockTemplate,
