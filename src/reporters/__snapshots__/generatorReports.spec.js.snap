@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`generatorReports replace all tag 1`] = `
-"<html>
+"<html lang="Fr-fr">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -1926,16 +1926,6 @@ details[open] .lh-clump-toggletext--hide {
   }
 }
 
-.lh-pyro {
-  display: none;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.lh-score100 .lh-pyro {
-  display: block;
-}
-
 .lh-score100 .lh-lighthouse stop:first-child {
   stop-color: hsla(200, 12%, 95%, 0);
 }
@@ -1944,30 +1934,6 @@ details[open] .lh-clump-toggletext--hide {
   stop-color: hsla(65, 81%, 76%, 1);
 }
 
-.lh-pyro>.lh-pyro-before,
-.lh-pyro>.lh-pyro-after {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 2.5px;
-  box-shadow: 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff;
-  animation: 1s bang ease-out infinite backwards,
-    1s gravity ease-in infinite backwards,
-    5s position linear infinite backwards;
-  animation-delay: 1s, 1s, 1s;
-}
-
-.lh-pyro>.lh-pyro-after {
-  animation-delay: 2.25s, 2.25s, 2.25s;
-  animation-duration: 1.25s, 1.25s, 6.25s;
-}
 
 @keyframes bang {
   to {
@@ -2081,10 +2047,6 @@ details .lh-scores-wrapper {
       </div>
       <div class="lh-scores-wrapper">
         <div class="lh-scores-container">
-          <div class="lh-pyro">
-            <div class="lh-pyro-before"></div>
-            <div class="lh-pyro-after"></div>
-          </div>
           <div class="lh-scores-header">
                 <a class="lh-gauge__wrapper lh-gauge__wrapper--not-applicable">
     <div class="lh-gauge__svg-wrapper">
@@ -2101,10 +2063,6 @@ details .lh-scores-wrapper {
           </div>
         </div>
         <div class="lh-scores-container">
-          <div class="lh-pyro">
-            <div class="lh-pyro-before"></div>
-            <div class="lh-pyro-after"></div>
-          </div>
           <div class="lh-scores-header">
                 <a class="lh-gauge__wrapper lh-gauge__wrapper--fail">
     <div class="lh-gauge__svg-wrapper">
@@ -2247,10 +2205,6 @@ details .lh-scores-wrapper {
         </div>
         <div class="lh-scores-wrapper">
             <div class="lh-scores-container">
-                <div class="lh-pyro">
-                    <div class="lh-pyro-before"></div>
-                    <div class="lh-pyro-after"></div>
-                </div>
                 <div class="lh-scores-header">
                     <a class="lh-gauge__wrapper lh-gauge__wrapper--average">
     <div class="lh-gauge__svg-wrapper">
