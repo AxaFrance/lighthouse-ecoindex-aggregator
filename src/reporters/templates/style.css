@@ -623,7 +623,9 @@ we'd be happy for the URL column to wrap if the URLs are particularly long.
 }
 
 .lh-audit__title span {
-  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+
 }
 
 .lh-audit--load-opportunity .lh-audit__header {
@@ -2023,3 +2025,32 @@ details .lh-scores-wrapper {
   margin-bottom: 2rem;
   width: 100%;
 }
+
+.sheetScoreContainer{
+  display:flex;
+  flex-direction: row;
+}
+
+.sheetScore {
+  width: 50px;
+  margin: auto;
+}
+
+.green-audit--fail {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+.green-audit--pass {
+  fill: #4CAF4B
+
+}
+
+h1.lh-audit__title{
+  flex-direction: row;
+}
+.st0{
+  fill:#009549;
+}
+	

@@ -16,23 +16,24 @@
   <article class="lh-root lh-vars lh-screenshot-overlay--enabled">
     <div class="lh-header-container">
       <div class="lh-audit-group__header">
-        <h1 class="lh-audit__title"><span><%- Translations.LabelGlobalTitle %></span></h1>
+        <h1 class="lh-audit__title">
+          <span><%- Translations.LabelGlobalTitle %></span>
+          <%- GlobalNote %>
+          </h1>
       </div>
-      <div class="lh-scores-wrapper">
-        <div class="lh-scores-container">
-          <div class="lh-scores-header">
-                <%- GlobalNote %>
-          </div>
+      <div class="lh-scores-container">
+        <div class="lh-pyro">
+          <div class="lh-pyro-before"></div>
+          <div class="lh-pyro-after"></div>
         </div>
-        <div class="lh-scores-container">
-          <div class="lh-scores-header">
-                <%- GlobalPerformance %>
-                <%- GlobalAccessibility %>
-                <%- GlobalBestPractices %>
+        <div class="lh-scores-header">
+          <%- GlobalPerformance %>
+            <%- GlobalAccessibility %>
+              <%- GlobalBestPractices %>
                 <%- GlobalEcoIndex %>
-          </div>
         </div>
       </div>
+    </div>
     </div>
     </div>
     <div class="lh-report">
@@ -41,8 +42,8 @@
           <div class="lh-category lh--hoisted-meta" id="performance">
             <div class="lh-audit__description">
               <%- Translations.LabelDescriptionAudit %>
-              </div>
-              <%- GlobalGreenItMetrics %>
+            </div>
+            <%- GlobalGreenItMetrics %>
               <div class="lh-audit-group lh-audit-group--load-opportunities">
                 <div class="lh-audit-group__header"><span class="lh-audit-group__title">
                     <%= Translations.LabelResultByPage %>

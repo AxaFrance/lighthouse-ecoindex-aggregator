@@ -21,6 +21,7 @@ At the end of the readme, we will explain how to generate the lighthouse and eco
 | config | string | Option is used for define configuration file |
 | pass | number | Option is used for define limit pass |
 | fail | number | Option is used for define limit fail |
+| m | boolean | Option is used for minify file output it's true by default |
 
 
 ## Example usage
