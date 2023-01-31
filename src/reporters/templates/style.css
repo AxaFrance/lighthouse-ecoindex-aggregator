@@ -1910,16 +1910,6 @@ details[open] .lh-clump-toggletext--hide {
   }
 }
 
-.lh-pyro {
-  display: none;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.lh-score100 .lh-pyro {
-  display: block;
-}
-
 .lh-score100 .lh-lighthouse stop:first-child {
   stop-color: hsla(200, 12%, 95%, 0);
 }
@@ -1928,30 +1918,6 @@ details[open] .lh-clump-toggletext--hide {
   stop-color: hsla(65, 81%, 76%, 1);
 }
 
-.lh-pyro>.lh-pyro-before,
-.lh-pyro>.lh-pyro-after {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 2.5px;
-  box-shadow: 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff, 0 0 #fff,
-    0 0 #fff, 0 0 #fff, 0 0 #fff;
-  animation: 1s bang ease-out infinite backwards,
-    1s gravity ease-in infinite backwards,
-    5s position linear infinite backwards;
-  animation-delay: 1s, 1s, 1s;
-}
-
-.lh-pyro>.lh-pyro-after {
-  animation-delay: 2.25s, 2.25s, 2.25s;
-  animation-duration: 1.25s, 1.25s, 6.25s;
-}
 
 @keyframes bang {
   to {

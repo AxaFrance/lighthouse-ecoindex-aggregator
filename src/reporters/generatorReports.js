@@ -49,6 +49,9 @@ const generateReports = async (options, results) => {
   if (options?.verbose) {
     console.log("Generate reports html.");
   }
+  if(!options.lang){
+    options.lang = "en-GB";
+  }
   options.translations = populateTranslation(options);
   const htmlPerPageResult = await populateTemplatePerPage(options, results);
   let htmlResult = await populateTemplate(options, results, htmlPerPageResult);
@@ -81,6 +84,8 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
   const myCss = {
     style: fs.readFileSync(path.join(__dirname, folderTemplate, "./style.css"), "utf8"),
   };
+
+  console.log(options)
   return ejs.render(template, {
     [globalNoteTag]: globalNoteBlockTemplate,
     [globalPerformanceTag]: performanceBlockTemplate,
@@ -91,6 +96,7 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
     GlobalGreenItMetrics: GlobalGreenItMetricsTemplate,
     Translations: options.translations,
     myCss: myCss,
+    lang: options.lang
   });
 };
 
@@ -223,9 +229,7 @@ const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
 };
 
 const populateTranslation = (options) => {
-  let templateFile = "En-en.json";
-  const dafaultPath = path.join(__dirname, folderTranslate, templateFile);
-  if (options?.lang) templateFile = `${options.lang}.json`;
+  const templateFile = `${options.lang}.json`;
 
   if (options?.verbose) {
     console.log("Translate by files:", templateFile);

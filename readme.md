@@ -16,7 +16,7 @@ At the end of the readme, we will explain how to generate the lighthouse and eco
 | srcLighthouse | string | Option is used for defined lighthouse reports path  |
 | h | boolean | Option is used for see informations cli |
 | reports | string | Option is used for defined format reports after task unique value possible used is "html" |
-| lang | string | Option is used for translated report values possible used is "Fr-fr" or "En-en" default is "En-en"|
+| lang | string | Option is used for translated report values possible used is "fr-FR" or "en-GB" default is "en-GB"|
 | v | boolean | Option is used for verbose task |
 | config | string | Option is used for define configuration file |
 | pass | number | Option is used for define limit pass |
