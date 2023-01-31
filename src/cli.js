@@ -52,7 +52,7 @@ const sections = [
         name: "lang",
         typeLabel: "{underline string}",
         description: "define language report",
-        value: "En_en",
+        value: "en-GB",
       },
       {
         name: "config",
