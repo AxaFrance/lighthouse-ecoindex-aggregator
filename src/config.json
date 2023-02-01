@@ -2,8 +2,9 @@
     "srcEcoIndex": "C:\\Workspace\\reports\\ecoindex",
     "srcLighthouse": "C:\\Workspace\\reports\\lighthouse",
     "reports": "html",
-    "lang": "fr-FR",
-    "pass": 66,
-    "fail": 50,
-    "verbose": false
+    "lang": "Fr-fr",
+    "pass": 95,
+    "fail": 90,
+    "verbose": true,
+    "minify":true
 }

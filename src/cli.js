@@ -13,6 +13,7 @@ const optionDefinitions = [
   { name: "config", type: String, multiple: false },
   { name: "pass", type: Number, multiple: false },
   { name: "fail", type: Number, multiple: false },
+  { name: "Minify", alias: "m", type: Boolean },
 ];
 
 const sections = [
@@ -68,6 +69,11 @@ const sections = [
         name: "fail",
         typeLabel: "{underline num}",
         description: "define limit fail",
+      },
+      {
+        name: "Minify",
+        typeLabel: "{underline bool}",
+        description: "used minify file",
       },
     ],
   },

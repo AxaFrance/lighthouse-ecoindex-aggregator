@@ -17,6 +17,7 @@ const IconPerPageTag = "IconPerPageTag";
 const numberPageTag = "numberPageTag";
 const pageNameTag = "PageName";
 const statusClassPerPageTag = "StatusClassPerPageTag";
+
 module.exports ={
     PageSizeTag ,
     PageSizeRecommendationTag,
