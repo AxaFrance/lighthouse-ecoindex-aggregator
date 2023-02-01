@@ -21,5 +21,8 @@
     "LabelEcoIndex" : "EcoIndex",
     "LabelPerformance" : "Performances",
     "LabelShowers":"Showers",
-    "LabelStep":"Step"
+    "LabelStep":"Step",
+    "LabelWordFor" : "for",
+    "LabelWordVisits" : "visits"
+
 }

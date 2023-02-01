@@ -5,38 +5,65 @@
     <thead>
         <tr>
             <th class="lh-table-column--url">
-                <div class="lh-text"><%= Translations.LabelMetrics %></div>
+                <div class="lh-text">
+                    <%= Translations.LabelMetrics %>
+                </div>
             </th>
             <th class="lh-table-column--bytes">
-                <div class="lh-text"><%= Translations.LabelValue %></div>
+                <div class="lh-text">
+                    <%= Translations.LabelValue %>
+                </div>
             </th>
             <th class="lh-table-column--bytes">
-                <div class="lh-text"><%= Translations.LabelConvertedValue %></div>
+                <div class="lh-text">
+                    <%= Translations.LabelConvertedValue %>
+                </div>
             </th>
         </tr>
     </thead>
     <tbody>
         <tr class="lh-row--even">
             <td class="lh-table-column--url">
-                <div class="lh-text"><%= Translations.LabelGases %></div>
+                <div class="lh-text"><span>
+                        <%= Translations.LabelGases %>
+                    </span>
+                    <span> 
+                        (<%- Translations.LabelWordFor %> <%= gasesNumberOfVisits %> <%- Translations.LabelWordVisits %>)
+                    </span>
+                </div>
             </td>
             <td class="lh-table-column--bytes">
-                <div class="lh-text"><%= greenhouseGases %></div>
+                <div class="lh-text">
+                    <%= greenhouseGases %>
+                </div>
             </td>
             <td class="lh-table-column--bytes">
-                <div class="lh-text"><%= greenhouseGasesKm %> km</div>
+                <div class="lh-text">
+                    <%= greenhouseGasesKm %> km
+                </div>
             </td>
         </tr>
 
         <tr class="lh-row--odd">
             <td class="lh-table-column--url">
-                <div class="lh-text"><%= Translations.LabelWaterConsummation %></div>
+                <div class="lh-text">
+                    <span>
+                        <%= Translations.LabelWaterConsummation %>
+                    </span>
+                    <span>
+                        (<%- Translations.LabelWordFor %> <%= waterNumberOfVisits %> <%- Translations.LabelWordVisits %>)
+                    </span>
             </td>
             <td class="lh-table-column--bytes">
-                <div class="lh-text"><%= water %></div>
+                <div class="lh-text">
+                    <%= water %>
+                </div>
             </td>
             <td class="lh-table-column--bytes">
-                <div class="lh-text"><%= waterShower %> <%= Translations.LabelShowers %></div>
+                <div class="lh-text">
+                    <%= waterShower %>
+                        <%= Translations.LabelShowers %>
+                </div>
             </td>
         </tr>
     </tbody>

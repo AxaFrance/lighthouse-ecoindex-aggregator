@@ -111,6 +111,8 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
     greenhouseGasesKm: results.greenhouseGasesKm,
     water: results.water,
     waterShower: results.waterShower,
+    waterNumberOfVisits: results.waterNumberOfVisits,
+    gasesNumberOfVisits: results.gasesNumberOfVisits,
   });
 
   const myCss = {
@@ -121,7 +123,7 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
   };
 
   return ejs.render(template, {
-    [globalNoteTag]: statusGreen(results.globalNote,options),
+    [globalNoteTag]: statusGreen(results.globalNote, options),
     [globalPerformanceTag]: performanceBlockTemplate,
     [globalAccessibilityTag]: accessibilityBlockTemplate,
     [globalEcoIndexTag]: ecoIndexBlockTemplate,
@@ -146,6 +148,7 @@ const populateMetrics = (options, metric) => {
     metric?.find((m) => m.name === "Page_complexity") ?? {};
 
   return ejs.render(template, {
+    Translations: options.translations,
     [NumberOfRequestTag]: NumberOfRequestMetric.value,
     [NumberOfRequestRecommendationTag]: NumberOfRequestMetric.recommandation,
     NumberOfRequestCssClass: computeCssClassForMetrics(NumberOfRequestMetric),
@@ -155,13 +158,19 @@ const populateMetrics = (options, metric) => {
     [PageComplexityTag]: PageComplexityMetric.value,
     [PageComplexityRecommendationTag]: PageComplexityMetric.recommandation,
     PageComplexityCssClass: computeCssClassForMetrics(PageComplexityMetric),
-    Translations: options.translations,
   });
 };
 
 const populateGreentItMetrics = (
   options,
-  { greenhouseGases, greenhouseGasesKm, water, waterShower }
+  {
+    greenhouseGases,
+    greenhouseGasesKm,
+    water,
+    waterShower,
+    gasesNumberOfVisits,
+    waterNumberOfVisits,
+  }
 ) => {
   if (options?.verbose) {
     console.log("Populate GreenIt metrics:", {
@@ -169,17 +178,21 @@ const populateGreentItMetrics = (
       greenhouseGasesKm,
       water,
       waterShower,
+      gasesNumberOfVisits,
+      waterNumberOfVisits,
     });
   }
 
   const template = readTemplate("templateGreenItMetrics.html");
 
   return ejs.render(template, {
+    Translations: options.translations,
     greenhouseGases,
     greenhouseGasesKm,
     water,
     waterShower,
-    Translations: options.translations,
+    gasesNumberOfVisits,
+    waterNumberOfVisits,
   });
 };
 
@@ -214,14 +227,16 @@ const populateTemplatePerPage = async (options, results) => {
       numberPage
     );
     const metricsTemplate = populateMetrics(options, page.metrics);
-
     const greenItMetricsTemplate = populateGreentItMetrics(options, {
       greenhouseGasesKm: page.greenhouseGasesKm,
       waterShower: page.waterShower,
       greenhouseGases: page.greenhouseGases,
       water: page.water,
+      gasesNumberOfVisits: page.estimatation_water?.commentDetails?.numberOfVisit,
+      waterNumberOfVisits: page.estimatation_co2?.commentDetails?.numberOfVisit,
     });
     const templatePerPage = ejs.render(defaultTemplatePerPage, {
+      Translations: options.translations,
       [performanceBlock]: performanceBlockTemplate,
       [accessibilityBlock]: accessibilityBlockTemplate,
       [bestPracticesBlock]: bestPracticesBlockTemplate,
@@ -233,7 +248,6 @@ const populateTemplatePerPage = async (options, results) => {
       [lighthouseReportPathTag]: page.lighthouseReport,
       [IconPerPageTag]: pageInErrorOrWarning(page, options),
       [statusClassPerPageTag]: statusPerPage(page, options),
-      Translations: options.translations,
     });
     htmlPerPage += templatePerPage;
   });

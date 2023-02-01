@@ -13,6 +13,8 @@ describe("generatorReports", () => {
     performance: 10,
     accessibility: 20,
     bestPractices: 30,
+    waterNumberOfVisits:100,
+    gasesNumberOfVisits:100,
     perPages: [
       {
         pageName: "test1",
@@ -24,6 +26,8 @@ describe("generatorReports", () => {
         grade: "A",
         greenhouseGases: 2500,
         water: 2,
+        waterNumberOfVisits:100,
+        gasesNumberOfVisits:100,
         metrics: [
           {
             name: "number_requests",

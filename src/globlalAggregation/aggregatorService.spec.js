@@ -17,6 +17,8 @@ describe("AggregatorService", () => {
             accessibility: 0,
             bestPractices: 0,
             globalNote: 0,
+            waterNumberOfVisits: 0,
+            gasesNumberOfVisits: 0,
             perPages: [],
         };
 
@@ -47,6 +49,8 @@ describe("AggregatorService", () => {
             metrics: [],
             greenhouseGasesKm: 2500,
             waterShower: 250,
+            waterNumberOfVisits: 100,
+            gasesNumberOfVisits: 100,
             perPages: [
                 {
                     pageName: "test1",
@@ -57,6 +61,8 @@ describe("AggregatorService", () => {
                     metrics: [],
                     greenhouseGasesKm: 2500,
                     waterShower: 250,
+                    waterNumberOfVisits: 100,
+                    gasesNumberOfVisits: 100,
                 },
             ],
         };
@@ -72,6 +78,8 @@ describe("AggregatorService", () => {
             performance: 70,
             accessibility: 70,
             bestPractices: 70,
+            waterNumberOfVisits: 100,
+            gasesNumberOfVisits: 100,
             perPages: [
                 {
                     pageName: "test1",
@@ -86,6 +94,8 @@ describe("AggregatorService", () => {
                     metrics: [],
                     greenhouseGasesKm: 2500,
                     waterShower: 250,
+                    waterNumberOfVisits: 100,
+                    gasesNumberOfVisits: 100,
                 },
             ],
         };
@@ -106,6 +116,8 @@ describe("AggregatorService", () => {
             metrics: [],
             greenhouseGasesKm: 2500,
             waterShower: 250,
+            waterNumberOfVisits: 100,
+            gasesNumberOfVisits: 100,
             perPages: [
                 {
                     pageName: "test1",
@@ -116,6 +128,8 @@ describe("AggregatorService", () => {
                     metrics: [],
                     greenhouseGasesKm: 2500,
                     waterShower: 250,
+                    waterNumberOfVisits: 100,
+                    gasesNumberOfVisits: 100,
                 },
             ],
         };
@@ -131,6 +145,8 @@ describe("AggregatorService", () => {
             bestPractices: 0,
             greenhouseGasesKm: 2500,
             waterShower: 250,
+            waterNumberOfVisits: 100,
+            gasesNumberOfVisits: 100,
             perPages: [
                 {
                     pageName: "test1",
@@ -145,6 +161,8 @@ describe("AggregatorService", () => {
                     water: 2,
                     metrics: [],
                     waterShower: 250,
+                    waterNumberOfVisits: 100,
+                    gasesNumberOfVisits: 100,
                 },
             ],
         };
