@@ -1,4 +1,4 @@
-const url = "https://example.cypress.io";
+const url = "https://www.google.com/";
 describe("template spec", () => {
     it("ecoindex", () => {
         cy.visit(url);
