@@ -195,7 +195,9 @@ const populateGreentItMetrics = (
     gasesNumberOfVisits,
     waterNumberOfVisits,
     Translations: options.translations,
-    mySvg:{svgIconCo2:svgIconCo2,svgIconWater:svgIconWater}
+    mySvg:{svgIconCo2:svgIconCo2,svgIconWater:svgIconWater},
+    gasesNumberOfVisits,
+    waterNumberOfVisits,
   });
 };
 
