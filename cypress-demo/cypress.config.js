@@ -1,5 +1,5 @@
 const {defineConfig} = require("cypress");
-const {lighthouse, prepareAudit} = require("cypress-audit");
+const {lighthouse, prepareAudit} = require("@cypress-audit/lighthouse")
 const fs = require("fs");
 const path = require("path");
 const aggregate = require("lighthouse-eco-index-aggregator/src/main");
@@ -8,6 +8,8 @@ const ecoIndexOutputPathDir = path.join(__dirname, "reports/ecoindex");
 const globalOutputPathDir = path.join(__dirname, "reports");
 fs.rmdirSync(globalOutputPathDir, { recursive: true, force: true });
 
+fs.mkdirSync(ecoIndexOutputPathDir, {recursive: true});
+fs.mkdirSync(lighthouseOutputPathDir, {recursive: true});
 module.exports = defineConfig({
     e2e: {
         setupNodeEvents(on, config) {
@@ -39,16 +41,13 @@ module.exports = defineConfig({
                 lighthouse: lighthouse(result => {
                     const url = result.lhr.finalUrl;
                     const finalPath = path.resolve(__dirname, path.join(lighthouseOutputPathDir, `${url.replace("://", "_").replace("/", "_")}.json`));
-                    fs.mkdirSync(path.dirname(finalPath), {recursive: true});
                     fs.writeFileSync(
                         finalPath,
                         JSON.stringify(result.lhr, undefined, 2));
                 }),
-                async checkEcoIndex({url, overrideOptions} = {}) {
-                    fs.mkdirSync(ecoIndexOutputPathDir, {recursive: true});
-
+                checkEcoIndex({url, overrideOptions} = {}) {
                     const check = require("eco-index-audit/src/main");
-                    await check(
+                    return check(
                         {
                             ...overrideOptions,
                             url: url,
