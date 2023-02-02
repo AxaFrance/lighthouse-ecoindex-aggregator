@@ -184,7 +184,8 @@ const populateGreentItMetrics = (
   }
 
   const template = readTemplate("templateGreenItMetrics.html");
-
+  const svgIconCo2 = readTemplate("co2.svg");
+  const svgIconWater = readTemplate("water.svg");
   return ejs.render(template, {
     Translations: options.translations,
     greenhouseGases,
@@ -193,6 +194,8 @@ const populateGreentItMetrics = (
     waterShower,
     gasesNumberOfVisits,
     waterNumberOfVisits,
+    Translations: options.translations,
+    mySvg:{svgIconCo2:svgIconCo2,svgIconWater:svgIconWater}
   });
 };
 

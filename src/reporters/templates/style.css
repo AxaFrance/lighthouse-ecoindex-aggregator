@@ -1595,6 +1595,9 @@ we'd be happy for the URL column to wrap if the URLs are particularly long.
 .lh-table-column--url+.lh-table-column--bytes+th.lh-table-column--timespanMs {
   width: 12%;
 }
+.lh-text svg{
+  width: 20px;
+}
 
 .lh-text__url-host {
   display: inline;

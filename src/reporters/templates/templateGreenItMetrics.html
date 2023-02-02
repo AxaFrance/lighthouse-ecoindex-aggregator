@@ -24,13 +24,18 @@
     <tbody>
         <tr class="lh-row--even">
             <td class="lh-table-column--url">
-                <div class="lh-text"><span>
-                        <%= Translations.LabelGases %>
-                    </span>
-                    <span> 
-                        (<%- Translations.LabelWordFor %> <%= gasesNumberOfVisits %> <%- Translations.LabelWordVisits %>)
-                    </span>
-                </div>
+                    <div class="lh-text">
+                        <span>
+                            <%- mySvg.svgIconCo2 %>
+                        </span>
+                        <span>
+                            <%= Translations.LabelGases %>
+                        </span> 
+                         <span>
+                            (<%- Translations.LabelWordFor %>
+                                <%= gasesNumberOfVisits %> <%- Translations.LabelWordVisits %>)
+                        </span>
+                    </div>
             </td>
             <td class="lh-table-column--bytes">
                 <div class="lh-text">
@@ -48,11 +53,15 @@
             <td class="lh-table-column--url">
                 <div class="lh-text">
                     <span>
+                        <%- mySvg.svgIconWater %>
+                    </span>
+                    <span>
                         <%= Translations.LabelWaterConsummation %>
                     </span>
                     <span>
                         (<%- Translations.LabelWordFor %> <%= waterNumberOfVisits %> <%- Translations.LabelWordVisits %>)
                     </span>
+                </div>
             </td>
             <td class="lh-table-column--bytes">
                 <div class="lh-text">
