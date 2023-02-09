@@ -1642,6 +1642,11 @@ we'd be happy for the URL column to wrap if the URLs are particularly long.
   padding-left: 20px;
 }
 
+.lh-table td:first-child .lh-text {
+  display: flex;
+  gap: 10px;
+}
+
 /* Chevron
 https://codepen.io/paulirish/pen/LmzEmK
 */
