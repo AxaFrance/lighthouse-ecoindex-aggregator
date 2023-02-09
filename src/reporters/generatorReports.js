@@ -83,7 +83,7 @@ const generateReports = async (options, results) => {
 };
 
 const populateTemplate = async (options, results, htmlPerPageResult) => {
-  let template = readTemplate("template.html");
+  const template = readTemplate("template.html");
 
   const performanceBlockTemplate = populateTemplatePerformance(
     options,
