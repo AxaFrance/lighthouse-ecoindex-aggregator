@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const folderTemplate = "templates";
 const folderTranslate = "translate";
 const minify = require("html-minifier").minify;
 
