@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const folderTemplate = "templates";
 const folderTranslate = "translate";
 const minify = require("html-minifier").minify;
 
@@ -115,13 +114,6 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
     gasesNumberOfVisits: results.gasesNumberOfVisits,
   });
 
-  const myCss = {
-    style: fs.readFileSync(
-      path.join(__dirname, folderTemplate, "./style.css"),
-      "utf8"
-    ),
-  };
-
   return ejs.render(template, {
     [globalNoteTag]: statusGreen(results.globalNote, options),
     [globalPerformanceTag]: performanceBlockTemplate,
@@ -131,7 +123,7 @@ const populateTemplate = async (options, results, htmlPerPageResult) => {
     [htmlPerPageBlock]: htmlPerPageResult,
     GlobalGreenItMetrics: GlobalGreenItMetricsTemplate,
     Translations: options.translations,
-    myCss: myCss,
+    style: readTemplate("./style.css"),
     lang: options.lang
   });
 };
