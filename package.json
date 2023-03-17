@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "Tool for aggregating lighthouse and eco-index results",
   "main": "src/cli.js",
+  "private": "false",
+   "files": [
+    "src",
+    "readme.md",
+    "globalReports.html",
+    "LICENSE.md",
+    "package.json",
+    "package-lock.json",
+    ".eslintrc.js"
+  ],
   "scripts": {
     "lint": "eslint",
     "test": "jest --coverage",
