@@ -1,23 +1,23 @@
 name: Build
 
 on:
-    workflow_dispatch:
-    push:
-        branches:
-            - main
-    pull_request:
-        types: [opened, synchronize, reopened]
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-              with:
-                  fetch-depth: 0
-            - name: Lint
-              run: |
-                  npm ci
-                  npm run lint
-            - name: Test
-              run: |
-                  npm run test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Lint
+        run: |
+          npm ci
+          npm run lint
+      - name: Test
+        run: |
+          npm run test

@@ -1,4 +1,3 @@
-
 ![image](https://user-images.githubusercontent.com/6480596/213727763-d8cdf611-2b35-4c60-aa94-bd85d5de006c.png)
 
 # Lighthouse EcoIndex Aggregator
@@ -7,22 +6,24 @@ This generator tool can be used if you need to generate a global reports for all
 
 At the end of the readme, we will explain how to generate the lighthouse and ecoindex tools, used by this aggregator.
 
+## Package
 
-##  Options
+- lighthouse-eco-index-aggregator [![npm version](https://badge.fury.io/js/lighthouse-eco-index-aggregator.svg)](https://badge.fury.io/js/lighthouse-eco-index-aggregator)
 
-| Nom      |      Type     |  Description |
-|----------|-------------|------|
-| srcEcoIndex | string   | Option is used for defined ecoIndex reports path  |
-| srcLighthouse | string | Option is used for defined lighthouse reports path  |
-| h | boolean | Option is used for see informations cli |
-| reports | string | Option is used for defined format reports after task unique value possible used is "html" |
-| lang | string | Option is used for translated report values possible used is "fr-FR" or "en-GB" default is "en-GB"|
-| v | boolean | Option is used for verbose task |
-| config | string | Option is used for define configuration file |
-| pass | number | Option is used for define limit pass |
-| fail | number | Option is used for define limit fail |
-| m | boolean | Option is used for minify file output it's true by default |
+## Options
 
+| Nom           | Type    | Description                                                                                        |
+| ------------- | ------- | -------------------------------------------------------------------------------------------------- |
+| srcEcoIndex   | string  | Option is used for defined ecoIndex reports path                                                   |
+| srcLighthouse | string  | Option is used for defined lighthouse reports path                                                 |
+| h             | boolean | Option is used for see informations cli                                                            |
+| reports       | string  | Option is used for defined format reports after task unique value possible used is "html"          |
+| lang          | string  | Option is used for translated report values possible used is "fr-FR" or "en-GB" default is "en-GB" |
+| v             | boolean | Option is used for verbose task                                                                    |
+| config        | string  | Option is used for define configuration file                                                       |
+| pass          | number  | Option is used for define limit pass                                                               |
+| fail          | number  | Option is used for define limit fail                                                               |
+| m             | boolean | Option is used for minify file output it's true by default                                         |
 
 ## Example usage
 
@@ -33,12 +34,14 @@ node ./cli.js  --srcLighthouse="C:\Workspace\reports\lighthouse" --srcEcoIndex="
 You can also used this module programmatically
 
 ```js
-const aggregate = require('lighthouse-eco-index-aggregator/src/main');
+const aggregate = require("lighthouse-eco-index-aggregator/src/main");
 
-console.log(aggregate({
-  srcLighthouse: './reports/lighthouse',
-  srcEcoIndex: './reports/ecoindex'
-}))
+console.log(
+  aggregate({
+    srcLighthouse: "./reports/lighthouse",
+    srcEcoIndex: "./reports/ecoindex",
+  })
+);
 ```
 
 ## How to generate Lighthouse and EcoIndex reports
@@ -55,25 +58,26 @@ const ecoIndexOutputPathDir = path.join(__dirname, "reports/ecoindex");
 const globalOutputPathDir = path.join(__dirname, "reports");
 
 module.exports = defineConfig({
-    e2e: {
-        setupNodeEvents(on, config) {
-            on("after:run", async () => {
-                await aggregate({
-                    reports: "html",
-                    verbose: true,
-                    srcLighthouse: lighthouseOutputPathDir,
-                    srcEcoIndex: ecoIndexOutputPathDir,
-                    outputPath: path.resolve(globalOutputPathDir, "report.html")
-                });
-            });
-         }
-   }
-})
+  e2e: {
+    setupNodeEvents(on, config) {
+      on("after:run", async () => {
+        await aggregate({
+          reports: "html",
+          verbose: true,
+          srcLighthouse: lighthouseOutputPathDir,
+          srcEcoIndex: ecoIndexOutputPathDir,
+          outputPath: path.resolve(globalOutputPathDir, "report.html"),
+        });
+      });
+    },
+  },
+});
 ```
+
 But in order to generate this global report, we need the lighthouse and ecoindex reports (available in the `lighthouse` and `ecoindex` subfolders. In order to do so, we will use two extra NPM packages :
 
-* [Cypress Audit](https://github.com/mfrachet/cypress-audit) in order to run Lighthouse
-* [Eco Index Audit](https://github.com/EmmanuelDemey/eco-index-audit) in order to run EcoIndex.
+- [Cypress Audit](https://github.com/mfrachet/cypress-audit) in order to run Lighthouse
+- [Eco Index Audit](https://github.com/EmmanuelDemey/eco-index-audit) in order to run EcoIndex.
 
 You will find a sample Cypress tests suite in the `cypress-demo` folder. Please have a look to the `demo.cy.js` and `cypress.config.js`.
 
