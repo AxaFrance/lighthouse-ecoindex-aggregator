@@ -81,7 +81,7 @@ But in order to generate this global report, we need the lighthouse and ecoindex
 
 You will find a sample Cypress tests suite in the `cypress-demo` folder. Please have a look to the `demo.cy.js` and `cypress.config.js`.
 
-In order to run the Cypress tests suite, you will execute the following commands :
+In order to run the Cypress tests suite, you have to execute the following commands :
 
 ```shell
 cd cypress-demo
