@@ -74,7 +74,7 @@ module.exports = defineConfig({
 });
 ```
 
-But in order to generate this global report, we need the lighthouse and ecoindex reports (available in the `lighthouse` and `ecoindex` subfolders. In order to do so, we will use two extra NPM packages :
+But in order to generate this global report, we need the lighthouse and ecoindex reports available in the `lighthouse` and `ecoindex` subfolders. In order to do so, we will use two extra NPM packages :
 
 - [Cypress Audit](https://github.com/mfrachet/cypress-audit) in order to run Lighthouse
 - [Eco Index Audit](https://github.com/EmmanuelDemey/eco-index-audit) in order to run EcoIndex.
