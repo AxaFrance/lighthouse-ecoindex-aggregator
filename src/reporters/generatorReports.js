@@ -37,6 +37,60 @@ const computeCssClassForMetrics = require("./utils/computeCssClassForMetrics");
 const pageInErrorOrWarning = require("./utils/displayPageErrorIcon");
 const { statusGreen } = require("./utils/statusGreen");
 const { statusPerPage } = require("./utils/statusPerPage");
+const { cwd } = require("process");
+const { dirname } = require("path");
+
+
+
+const generateReportsSonar = async (options, results) => {
+  if (!options.sonarFilePath) {
+    console.error("You should define the sonarFilePath property");
+    process.exit(1);
+  }
+  if (!options.outputPath) {
+    console.error("You should define the outputPath property");
+    process.exit(1);
+  }
+
+  const issues = [];
+
+  const addIssues = (value, ruleId, name) => {
+    if (options.fail > value) {
+      issues.push({
+        engineId: "eco-index",
+        ruleId,
+        severity: "MAJOR",
+        type: "BUG",
+        primaryLocation: {
+          message: `You ${name} (${value}) is below the configured threshold (${options.fail})`,
+          filePath: options.sonarFilePath,
+        },
+      });
+    } else {
+      if (options.fail <= value && value < options.pass) {
+        issues.push({
+          engineId: "eco-index",
+          ruleId,
+          severity: "MINOR",
+          type: "BUG",
+          primaryLocation: {
+            message: `You ${name} (${value}) is below the configured threshold (${options.pass})`,
+            filePath: options.sonarFilePath,
+          },
+        });
+      }
+    }
+  };
+
+  addIssues(results.ecoIndex, "eco-index-below-threshold", "ecoindex");
+  addIssues(results.performance, "performance-below-threshold", "performance");
+  addIssues(results.accessibility, "accessibility-below-threshold", "accessibility");
+  addIssues(results.bestPractices, "bestPractices-below-threshold", "bestPractices");
+
+  fs.mkdirSync(dirname(path.resolve(cwd(), options.outputPath)), {recursive: true});
+  fs.writeFileSync(path.resolve(cwd(), options.outputPath), JSON.stringify({ issues }));
+};
+
 const generateReports = async (options, results) => {
   if (!options?.pass) {
     options.pass = 90;
@@ -341,6 +395,7 @@ const generateCSSClassBasedOnValue = (value, { pass, fail }) => {
 
 module.exports = {
   generateReports,
+  generateReportsSonar,
   populateTemplatePerformance,
   populateTemplateAccessibility,
   populateTemplateBestPractices,

@@ -14,6 +14,7 @@ const optionDefinitions = [
   { name: "pass", type: Number, multiple: false },
   { name: "fail", type: Number, multiple: false },
   { name: "Minify", alias: "m", type: Boolean },
+  { name: "sonarFilePath", type: String },
 ];
 
 const sections = [
@@ -74,6 +75,11 @@ const sections = [
         name: "Minify",
         typeLabel: "{underline bool}",
         description: "used minify file",
+      },
+      {
+        name: "sonarFilePath",
+        typeLabel: "{underline string}",
+        description: "the file to a static file managed by sonar",
       },
     ],
   },

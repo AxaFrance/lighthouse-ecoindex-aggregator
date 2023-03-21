@@ -1,7 +1,7 @@
 const aggregatorServiceLighthouse = require("./lighthouse/aggregatorService");
 const aggregatorServiceEcoIndex = require("./ecoIndex/aggregatorService");
 const aggregatorGlobalService = require("./globlalAggregation/aggregatorService");
-const { generateReports } = require("./reporters/generatorReports");
+const { generateReports, generateReportsSonar } = require("./reporters/generatorReports");
 
 module.exports = async (options) => {
   if (!options?.pass) {
@@ -16,6 +16,9 @@ module.exports = async (options) => {
 
   if (options.reports === "html") {
     await generateReports(options, resultsGlobal);
+  }
+  if (options.reports === "sonar") {
+    await generateReportsSonar(options, resultsGlobal);
   }
 
   return resultsGlobal;

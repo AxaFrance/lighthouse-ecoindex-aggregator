@@ -17,18 +17,19 @@ At the end of the readme, we will explain how to generate the lighthouse and eco
 | srcEcoIndex   | string  | Option is used for defined ecoIndex reports path                                                   |
 | srcLighthouse | string  | Option is used for defined lighthouse reports path                                                 |
 | h             | boolean | Option is used for see informations cli                                                            |
-| reports       | string  | Option is used for defined format reports after task unique value possible used is "html"          |
+| reports       | string  | Option is used for defined the format of the generated report. Possible vaue "html" or "sonar"     |
 | lang          | string  | Option is used for translated report values possible used is "fr-FR" or "en-GB" default is "en-GB" |
 | v             | boolean | Option is used for verbose task                                                                    |
 | config        | string  | Option is used for define configuration file                                                       |
 | pass          | number  | Option is used for define limit pass                                                               |
 | fail          | number  | Option is used for define limit fail                                                               |
 | m             | boolean | Option is used for minify file output it's true by default                                         |
+| sonarFilePath | string  | Option is used when generating the sonar report, in order to make the issue visible on SonarCloud  |
 
 ## Example usage
 
 ```bash
-node ./cli.js  --srcLighthouse="C:\Workspace\reports\lighthouse" --srcEcoIndex="C:\Workspace\reports\ecoindex" --reports="html"
+node ./src/cli.js  --srcLighthouse="C:\Workspace\reports\lighthouse" --srcEcoIndex="C:\Workspace\reports\ecoindex" --reports="html"
 ```
 
 You can also used this module programmatically
@@ -88,3 +89,9 @@ cd cypress-demo
 npm i
 npx cypress run -b chrome
 ```
+
+## Sonar report
+
+This tool can also generate a external sonar report you can add to the Sonar configuration (via the sonar.externalIssuesReportPaths option).
+
+You need to define the path to one of your file managed by Sonar, in order to make the rule visible in Sonar Cloud.
