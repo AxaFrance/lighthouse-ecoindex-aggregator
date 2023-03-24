@@ -3,6 +3,9 @@ const aggregatorServiceEcoIndex = require("./ecoIndex/aggregatorService");
 const aggregatorGlobalService = require("./globlalAggregation/aggregatorService");
 const { generateReports, generateReportsSonar } = require("./reporters/generatorReports");
 
+const path = require("path");
+const fs = require("fs");
+
 module.exports = async (options) => {
   if (!options?.pass) {
     options.pass = 90;
@@ -14,12 +17,25 @@ module.exports = async (options) => {
   const resultsGlobalEcoindex = await aggregatorServiceEcoIndex(options);
   const resultsGlobal = aggregatorGlobalService(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
 
-  if (options.reports === "html") {
-    await generateReports(options, resultsGlobal);
+
+  const reports = Array.isArray(options.reports) ? options.reports : [options.reports];
+  const destFolder = path.join(process.cwd(), options.outputPath ?? "globalReports")
+  if(fs.existsSync(destFolder)){
+    fs.rmSync(destFolder, { recursive: true });
   }
-  if (options.reports === "sonar") {
-    await generateReportsSonar(options, resultsGlobal);
-  }
+  fs.mkdirSync(destFolder, { recursive: true });
+  options.outputPath = destFolder;
+
+
+  await Promise.all(reports.map(report => {
+    if (report === "html") {
+      return generateReports(options, resultsGlobal);
+    }
+    if (report === "sonar") {
+      return generateReportsSonar(options, resultsGlobal);
+    }
+  }))
+
 
   return resultsGlobal;
 };

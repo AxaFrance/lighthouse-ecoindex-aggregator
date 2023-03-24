@@ -4,7 +4,7 @@ const aggregate = require("./main");
 
 const optionDefinitions = [
   { name: "verbose", alias: "v", type: Boolean },
-  { name: "reports", type: String, multiple: false },
+  { name: "reports", type: String, multiple: true },
   { name: "srcLighthouse", type: String, multiple: false },
   { name: "srcEcoIndex", type: String, multiple: false },
   { name: "outputPath", type: String, multiple: false },
