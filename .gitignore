@@ -3,7 +3,7 @@
 # dependencies
 node_modules
 
-globalReports.html
+report.html
 
 npm-debug.log*
 yarn-debug.log*

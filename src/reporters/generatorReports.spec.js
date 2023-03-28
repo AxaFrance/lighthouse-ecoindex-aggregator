@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 describe("generatorReports", () => {
-  const options = { verbose: true, lang: "Fr-fr", pass: 90, fail: 20 };
+  const options = { verbose: true, lang: "Fr-fr", pass: 90, fail: 20, outputPath: "./" };
 
   const output = {
     ecoIndex: 86,
@@ -56,7 +56,8 @@ describe("generatorReports", () => {
 
   it("replace all tag", async () => {
     await generateReports(options, output);
-    var result = fs.readFileSync("globalReports.html").toString();
+    const result = fs.readFileSync("report.html").toString();
     expect(result).toMatchSnapshot();
+    fs.rmSync("report.html");
   });
 });
