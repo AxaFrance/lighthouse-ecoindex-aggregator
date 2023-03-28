@@ -19,7 +19,7 @@ module.exports = async (options) => {
 
 
   const reports = Array.isArray(options.reports) ? options.reports : [options.reports];
-  const destFolder = path.join(process.cwd(), options.outputPath ?? "globalReports")
+  const destFolder = path.join(process.cwd(), options.outputPath ?? "globalReports");
   if(fs.existsSync(destFolder)){
     fs.rmSync(destFolder, { recursive: true });
   }
