@@ -8,7 +8,7 @@ module.exports = {
   reports: [
     "html",
     (_options, result) => {
-      console.log(result)
+      console.log(result);
     },
   ],
   verbose: true,

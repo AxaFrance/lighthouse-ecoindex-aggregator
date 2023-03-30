@@ -21,6 +21,7 @@ if(fs.existsSync(ecoIndexOutputPathDir)){
 fs.mkdirSync(ecoIndexOutputPathDir, {recursive: true});
 fs.mkdirSync(lighthouseOutputPathDir, {recursive: true});
 
+
 module.exports = defineConfig({
     e2e: {
         setupNodeEvents(on) {
@@ -37,10 +38,12 @@ module.exports = defineConfig({
             on("task", {
                 lighthouse: lighthouse(result => {
                     const url = result.lhr.finalUrl;
-                    const finalPath = path.resolve(__dirname, path.join(lighthouseOutputPathDir, `${url.replace("://", "_").replace("/", "_")}.json`));
                     fs.writeFileSync(
-                        finalPath,
+                        path.resolve(__dirname, path.join(lighthouseOutputPathDir, `${url.replace("://", "_").replace("/", "_")}.json`)),
                         JSON.stringify(result.lhr, undefined, 2));
+                    fs.writeFileSync(
+                        path.resolve(__dirname, path.join(lighthouseOutputPathDir, `${url.replace("://", "_").replace("/", "_")}.html`)),
+                        result.report);
                 }),
                 checkEcoIndex: ({ url }) => checkEcoIndex({ 
                     url, 
