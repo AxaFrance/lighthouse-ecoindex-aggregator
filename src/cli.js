@@ -97,10 +97,6 @@ const sections = [
     return;
   }
 
-  if (options?.config) {
-    options = require(options.config);
-  }
-
   if (!options?.pass) {
     options.pass = 90;
   }

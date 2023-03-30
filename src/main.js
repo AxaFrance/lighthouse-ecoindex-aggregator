@@ -6,13 +6,24 @@ const { generateReports, generateReportsSonar } = require("./reporters/generator
 const path = require("path");
 const fs = require("fs");
 
-module.exports = async (options) => {
-  if (!options?.pass) {
-    options.pass = 90;
+const defaultThreshold = {
+  pass: 90,
+  fail: 30
+};
+
+module.exports = async (_options) => {
+  let options = {
+    ...defaultThreshold,
+    ..._options
+  };
+  
+  if(options.config){
+    options = {
+      ...options,
+      ...require(options.config)
+    };
   }
-  if (!options?.fail) {
-    options.fail = 30;
-  }
+
   const resultsGlobalLighthouse = await aggregatorServiceLighthouse(options);
   const resultsGlobalEcoindex = await aggregatorServiceEcoIndex(options);
   const resultsGlobal = aggregatorGlobalService(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
@@ -28,13 +39,16 @@ module.exports = async (options) => {
 
 
   await Promise.all(reports.map(report => {
+    if(typeof report !== "string"){
+      return report(options, resultsGlobal);
+    }
     if (report === "html") {
       return generateReports(options, resultsGlobal);
     }
     if (report === "sonar") {
       return generateReportsSonar(options, resultsGlobal);
     }
-  }))
+  }));
 
 
   return resultsGlobal;
