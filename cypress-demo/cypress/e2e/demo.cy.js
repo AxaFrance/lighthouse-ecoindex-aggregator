@@ -10,6 +10,6 @@ describe("template spec", () => {
 
     it("lighthouse", () => {
         cy.visit(url);
-        cy.lighthouse();
+        cy.lighthouse(undefined, { output: "html"});
     });
 });

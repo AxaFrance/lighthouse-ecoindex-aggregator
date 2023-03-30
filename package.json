@@ -4,7 +4,7 @@
   "description": "Tool for aggregating lighthouse and eco-index results",
   "main": "src/cli.js",
   "private": false,
-   "files": [
+  "files": [
     "src",
     "readme.md",
     "globalReports.html",
@@ -23,11 +23,12 @@
     "command-line-args": "^5.2.1",
     "command-line-usage": "^5.0.0",
     "ejs": "^3.1.8",
+    "fs-extra": "^11.1.1",
     "html-minifier": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.32.0",
+    "eslint": "^8.36.0",
     "husky": "^8.0.3",
-    "jest": "^29.3.1"
+    "jest": "^29.5.0"
   }
 }
