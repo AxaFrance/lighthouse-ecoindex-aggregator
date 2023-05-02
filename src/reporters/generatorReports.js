@@ -3,7 +3,7 @@ const path = require("path");
 const folderTranslate = "translate";
 const minify = require("html-minifier").minify;
 const fse = require("fs-extra");
-
+const defaultLang = "en-GB";
 const {
   globalNoteTag,
   globalPerformanceTag,
@@ -108,8 +108,9 @@ const generateReports = async (options, results) => {
     console.log("Generate reports html.");
   }
   if (!options.lang) {
-    options.lang = "en-GB";
+    options.lang = defaultLang;
   }
+
   options.translations = populateTranslation(options);
 
   if (options.srcLighthouse) {
@@ -386,16 +387,21 @@ const populateTemplateEcoIndex = (options, ecoIndex, numberPage) => {
 };
 
 const populateTranslation = options => {
-  const templateFile = `${options.lang}.json`;
+  const i18nFile = `${options.lang}.json`;
 
   if (options?.verbose) {
-    console.log("Translate by files:", templateFile);
+    console.log("Translate by files:", i18nFile);
   }
-  const templatePath = path.join(__dirname, folderTranslate, templateFile);
+  const templatePath = path.join(__dirname, folderTranslate, i18nFile);
   if (fs.existsSync(templatePath)) {
     return require(templatePath);
   }
-  return require(dafaultPath);
+
+  if (options?.verbose) {
+    console.log(`The file ${i18nFile} does not exist. We will use the default one.`);
+  }
+
+  return populateTranslation({ ...options, lang: defaultLang});
 };
 
 const generateCSSClassBasedOnValue = (value, { pass, fail }) => {
