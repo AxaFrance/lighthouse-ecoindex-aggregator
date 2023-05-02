@@ -11,6 +11,13 @@ const defaultThreshold = {
   fail: 30
 };
 
+const formatReports = reports => {
+  if(!reports){
+    return [];
+  }
+  return Array.isArray(reports) ? reports : [reports];
+};
+
 module.exports = async (_options) => {
   let options = {
     ...defaultThreshold,
@@ -29,14 +36,13 @@ module.exports = async (_options) => {
   const resultsGlobal = aggregatorGlobalService(options, resultsGlobalLighthouse, resultsGlobalEcoindex);
 
 
-  const reports = Array.isArray(options.reports) ? options.reports : [options.reports];
+  const reports = formatReports(options.reports);
   const destFolder = path.join(process.cwd(), options.outputPath ?? "globalReports");
   if(fs.existsSync(destFolder)){
     fs.rmSync(destFolder, { recursive: true });
   }
   fs.mkdirSync(destFolder, { recursive: true });
   options.outputPath = destFolder;
-
 
   await Promise.all(reports.map(report => {
     if(typeof report !== "string"){
