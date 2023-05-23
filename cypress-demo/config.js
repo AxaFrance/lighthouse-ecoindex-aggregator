@@ -10,6 +10,7 @@ module.exports = {
     (_options, result) => {
       console.log(result);
     },
+    "sonar",
   ],
   verbose: true,
   srcLighthouse: lighthouseOutputPathDir,
