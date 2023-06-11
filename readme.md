@@ -1,3 +1,5 @@
+🔴🔴 Ce repository n'est plus actif. Le code a été migré dans l'organisation du CNUMR. Vous le trouverez [ici](https://github.com/cnumr/ecoindex-audit) 🔴🔴
+
 # Lighthouse EcoIndex Aggregator
 
 This generator tool can be used if you need to generate a global reports for all pages audited by **lighthouse** and **ecoindex** tools. After the generation, we will have access to a global HTML report. As an example, you can use this tool at the end of a Cypress test suite in order to generate
