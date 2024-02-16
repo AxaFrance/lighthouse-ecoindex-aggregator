@@ -1,0 +1,1 @@
+corrige le nan dans ecoindex
