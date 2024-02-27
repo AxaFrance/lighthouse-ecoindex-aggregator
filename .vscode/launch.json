@@ -12,7 +12,7 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}\\src\\cli.js",
-             "args": ["--srcLighthouse", "./example/lighthouse", "--srcEcoIndex","./example/ecoindex" ,"--reports","html", "--outputPath" , "./example/report_final"]
+             "args": ["--srcLighthouse", "./example/lighthouse", "--srcEcoIndex","./example/ecoindex" ,"--reports","[\"html\",\"sonar\"]", "--outputPath" , "./example/report_final", "--sonarFilePath", "./sonarReport.json"]
         }
     ]
 }
