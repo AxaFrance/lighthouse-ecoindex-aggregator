@@ -1,0 +1,20 @@
+{
+  "name": "lighthouse-eco-index-aggregatore-playwright-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cnumr/eco-index-audit": "4.7.2",
+    "@cnumr/lighthouse-eco-index-aggregator": "1.1.0",
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.9.3",
+    "lighthouse": "^11.3.0"
+  },
+  "type": "module"
+}

@@ -16,7 +16,7 @@
   "scripts": {
     "start": "node src/cli.js --srcLighthouse=./example/lighthouse --srcEcoIndex=./example/ecoindex --reports=html --outputPath=./example/report_final",
     "lint": "eslint",
-    "test": "jest --coverage",
+    "test": "jest --coverage src/",
     "prepare": "husky install"
   },
   "license": "MIT",
