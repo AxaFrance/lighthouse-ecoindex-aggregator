@@ -54,7 +54,17 @@ console.log(
 
 ## How to generate Lighthouse and EcoIndex reports
 
-This aggregator tool can also be used directly inside a cypress test. For example, we can generate the global report once the Cypress tests suite has finished.
+This aggregator tool can also be used directly inside a cypress or playwright test. For example, we can generate the global report once the Cypress or Playwright tests suite has finished.
+
+### To generate playwright suite tests 
+
+Please take a look here :
+[generate playwright suite tests ](playwright-demo/README.md)
+
+Your playwright test will look like [this](playwright-demo/Tests/welcomeAxaPage.spec.ts)
+
+
+### To generate cypress suite tests 
 
 ```javascript
 // cypress.config.js
